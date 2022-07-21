@@ -1,19 +1,13 @@
-package com.project.donate_prj.seo.domain;
+package com.project.donate_prj.domain;
 
 import lombok.*;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Donate {
+public class DonateBoard {
 
     private Long boardNo;
     private String title;
@@ -25,6 +19,4 @@ public class Donate {
     private String startDate;
     private String endDate;
     private int likeCnt;
-
-
 }

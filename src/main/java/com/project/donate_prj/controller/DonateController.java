@@ -1,6 +1,6 @@
-package com.project.donate_prj.seo.controller;
+package com.project.donate_prj.controller;
 
-import com.project.donate_prj.seo.service.DonateService;
+import com.project.donate_prj.service.DonateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
