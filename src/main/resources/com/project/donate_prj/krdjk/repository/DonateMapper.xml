@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.donate_prj.krdjk.repository.DonateMapper">
+    
+    <resultMap id="donateBoardMap" type="com.project.donate_prj.krdjk.domain.DonateBoard">
+        <result property="boardNo" column="board_no" />
+        <result property="targetMoney" column="target_money" />
+        <result property="currentMoney" column="current_money" />
+        <result property="startDate" column="start_date" />
+        <result property="endDate" column="end_date" />
+        <result property="likeCnt" column="like_cnt" />
+    </resultMap>
+
+
+    <select id="findAll" resultMap="donateBoardMap">
+        SELECT  *
+        FROM (SELECT ROWNUM rn, d_board.*
+                FROM (
+                        SELECT *
+                        FROM donate_board
+                        <!-- type = value 에서 value 값을 한글자로 주면 char 타입으로 인식하기 때문에 한글자 입력은 피하라! -->
+                        <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+                        <if test="type == 'writer'">WHERE writer LIKE '%' || #{keyword} || '%'</if>
+                        <if test="type == 'content'">WHERE content LIKE '%' || #{keyword} || '%'</if>
+                        <if test="type == 'tc'">WHERE title LIKE '%' || #{keyword} || '%'
+                            OR content LIKE '%' || #{keyword} || '%'</if>
+                ORDER BY board_no DESC
+                ) d_board)
+        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
+    </select>
+
+
+    <select id="findOne" resultMap="donateBoardMap">
+        SELECT *
+        FROM donate_board
+        WHERE board_no = #{boardNo}
+    </select>
+
+
+    <select id="getTotalCnt" resultType="int">
+        SELECT COUNT(*)
+        FROM donate_board
+    </select>
+
+
+    <update id="upLikeCnt">
+        UPDATE donate_board
+        SET like_cnt = like_cnt + 1
+        WHERE board_no = #{boardNo}
+    </update>
+
+
+</mapper>
