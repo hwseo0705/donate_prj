@@ -1,5 +1,7 @@
 package com.project.donate_prj.repository;
 
+import com.project.donate_prj.common.paging.Page;
+import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +23,7 @@ class DonateMapperTest {
     @Test
     @DisplayName("등록된 모금 글이 전부 조회되어야 한다")
     void findAllTest() {
-        mapper.findAll().forEach(System.out::println);
+        mapper.findAll(new Search()).forEach(System.out::println);
     }
 
     @Test
@@ -34,7 +36,10 @@ class DonateMapperTest {
     @Test
     @DisplayName("등록된 모금 글이 총 몇개인지를 알려줘야 한다")
     void getTotalCntTest() {
-        Long totalCnt = mapper.getTotalCnt();
+        Search search = new Search();
+        search.setType("title");
+        search.setKeyword("donation");
+        Long totalCnt = mapper.getTotalCnt(search);
 
         assertTrue(totalCnt == 3);
     }

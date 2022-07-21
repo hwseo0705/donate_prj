@@ -34,21 +34,21 @@
 
 
     <select id="findAll" resultMap="donateBoardMap">
-<!--        SELECT  *-->
-<!--        FROM (SELECT ROWNUM rn, d_board.*-->
-<!--        FROM (-->
-<!--        SELECT *-->
-<!--        FROM donate_board-->
-<!--        &lt;!&ndash; type = value 에서 value 값을 한글자로 주면 char 타입으로 인식하기 때문에 한글자 입력은 피하라! &ndash;&gt;-->
-<!--        <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>-->
-<!--        <if test="type == 'writer'">WHERE writer LIKE '%' || #{keyword} || '%'</if>-->
-<!--        <if test="type == 'content'">WHERE content LIKE '%' || #{keyword} || '%'</if>-->
-<!--        <if test="type == 'tc'">WHERE title LIKE '%' || #{keyword} || '%'-->
-<!--            OR content LIKE '%' || #{keyword} || '%'</if>-->
-<!--        ORDER BY board_no DESC-->
-<!--        ) d_board)-->
-<!--        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})-->
-        SELECT * FROM donate_board
+        SELECT  *
+        FROM (SELECT ROWNUM rn, d_board.*
+                FROM (
+                        SELECT *
+                        FROM donate_board
+                        <!-- type = value 에서 value 값을 한글자로 주면 char 타입으로 인식하기 때문에 한글자 입력은 피하라! -->
+                        <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+                        <if test="type == 'writer'">WHERE writer LIKE '%' || #{keyword} || '%'</if>
+                        <if test="type == 'content'">WHERE content LIKE '%' || #{keyword} || '%'</if>
+                        <if test="type == 'tc'">WHERE title LIKE '%' || #{keyword} || '%'
+                            OR content LIKE '%' || #{keyword} || '%'</if>
+                        ORDER BY board_no DESC
+                ) d_board)
+        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
+<!--        SELECT * FROM donate_board-->
     </select>
 
 
@@ -59,9 +59,14 @@
     </select>
 
 
-    <select id="getTotalCnt" resultType="int">
+    <select id="getTotalCnt" resultType="long">
         SELECT COUNT(*)
         FROM donate_board
+        <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+        <if test="type == 'writer'">WHERE writer LIKE '%' || #{keyword} || '%'</if>
+        <if test="type == 'content'">WHERE content LIKE '%' || #{keyword} || '%'</if>
+        <if test="type == 'tc'">WHERE title LIKE '%' || #{keyword} || '%'
+            OR content LIKE '%' || #{keyword} || '%'</if>
     </select>
 
 
