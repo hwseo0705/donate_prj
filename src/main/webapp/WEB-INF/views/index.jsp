@@ -39,6 +39,20 @@
             display: flex;
             justify-content: flex-end;
         }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .bd-placeholder-img:hover {
+            cursor: pointer;
+        }
+
+        .lnr-heart {
+            margin-right: 5px;
+            color: #ff0000;
+            font-weight: 700;
+        }
     </style>
 </head>
 
@@ -59,6 +73,7 @@
                     <c:forEach var="db" items="${dbList}">
                         <div class="col">
                             <div class="card shadow-sm">
+                                <div class="hidden">${db.boardNo}</div>
                                 <img class="bd-placeholder-img card-img-top" width="100%" height="225"
                                     src="${db.thumbnail}" role="img" aria-label="Placeholder: Thumbnail"
                                     preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -72,22 +87,18 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <div class="btn-group">
-                                                # 목표 모금액
-                                                <button type="button"
-                                                    class="btn btn-sm btn-outline-secondary">${db.targetMoney}</button>
+                                                <p># 목표 모금액 : ${db.targetMoney}</p>
                                             </div>
-                                            
+
                                             <br>
 
                                             <div class="btn-group">
-                                                # 현재 모금액
-                                                <button type="button"
-                                                    class="btn btn-sm btn-outline-secondary">${db.currentMoney}</button>
+                                                <p># 현재 모금액 : ${db.currentMoney}</p>
                                             </div>
                                         </div>
 
-                                        <small class="text-muted">좋아요 수??</small>
 
+                                        <small class="text-muted"><span class="lnr lnr-heart"></span>${db.likeCnt}</small>
                                     </div>
                                 </div>
                             </div>
@@ -140,6 +151,40 @@
     <%@ include file="include/footer.jsp" %>
 
 
+    <script>
+
+        function detailRequestEvent() {
+            //상세보기 요청 이벤트
+            const $ul = document.querySelector(".list");
+
+            // 테이블 자체에 한번 걸어서 자식 태그들이 버블링으로 자동으로 이벤트가 적용되게끔!!
+            $ul.addEventListener('click', e => {
+                console.log('e.target - ', e.target);
+
+                if (!e.target.matches('img')) return; // td 구역이 아닌 곳(th 구간) 을 클릭하면 작동하지 않게 함.
+
+                console.log('썸네일 클릭됨! - ', e.target);
+                
+                let bn = e.target.parentElement.firstElementChild.textContent; // 
+                console.log('글번호: ' + bn);
+
+                location.href = '/detail/' + bn + '?pageNum=${pm.page.pageNum}&amount=${pm.page.amount}';
+            });
+        }
+
+
+
+
+        // 즉시 실행 함수
+        (function () {
+
+            detailRequestEvent();
+
+        }) ();
+        
+
+    </script>
+    
 </body>
 
 </html>
