@@ -2,69 +2,98 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- RESET CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 
-<!-- 검색 엔진 최적화(SEO) -->
-<meta name="author" content="Soongu Hong">
-<meta name="description" content="Soon9's Web Site">
+    <!-- fontawesome css: https://fontawesome.com -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 
-<!-- http://ogp.me -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Soon9's Web studio">
-<meta property="og:title" content="Soon9's Web studio">
-<meta property="og:description" content="Welcome to Soon9's Web studio">
-<meta property="og:image" content="img/visual2.jpg">
-<meta property="og:url" content="http://www.soon9.co.kr">
+    <!-- linear icons -->
+    <!-- https://linearicons.com/free#cdn -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
-<meta property="twitter:card" content="summary">
-<meta property="twitter:site_name" content="Soon9's Web studio">
-<meta property="twitter:title" content="Soon9's Web studio">
-<meta property="twitter:description" content="Welcome to Soon9's Web studio">
-<meta property="twitter:image" content="img/visual2.jpg">
-<meta property="twitter:url" content="http://www.soon9.co.kr">
+    <!-- animate css v3.7.0 || https://animate.style -->
+    <link rel="stylesheet" href="/css/animate.min.css">
 
-<title>Hong Studio</title>
+    <!-- slick css || https://kenwheeler.github.io/slick/  -->
+    <link rel="stylesheet" href="/css/slick.css">
 
-<!-- 파비콘 넣기 -->
-<link rel="icon" href="/siteicon.ico">
-<link rel="apple-touch-icon" href="/siteicon.ico">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- reset css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <!-- libraries -->
+    <!-- scrolla js -->
+    <script src="/js/scrolla.jquery.min.js" defer></script>
+    <!-- slick js -->
+    <script src="/js/slick.min.js" defer></script>
 
-<!-- fontawesome css: https://fontawesome.com -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
-<!-- linear icons -->
-<!-- https://linearicons.com/free#cdn -->
-<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <!-- jQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>나중에 jsp로 옮겨야 함~~</title>
 
-<!-- animate css v3.7.0 || https://animate.style -->
-<link rel="stylesheet" href="/css/animate.min.css">
+    <style>
+        header {
+            background: rgb(233, 203, 203) !important;
+        }
 
-<!-- slick css || https://kenwheeler.github.io/slick/  -->
-<link rel="stylesheet" href="/css/slick.css">
+        .container2 {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
 
-<!-- bootstrap css -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        .container2 .logo {
+            flex: 1;
+            width: 130px;
+            /* height: 40px; */
+            /* background: red; */
+        }
 
-<!-- custom css -->
-<link rel="stylesheet" href="/css/main.css">
+        .container2 .logo #logo {
+            height: 80px;
+        }
+        .container2 .nav {
+            flex: 3;
+            /* background: blue; */
+            align-items: center;
+            justify-content: center;
+        }
 
-<!-- jquery -->
-<script src="/js/jquery-3.3.1.min.js"></script>
+        .container2 .nav li {
+            margin-right: 80px;
+        }
 
-<!-- libraries -->
-<!-- scrolla js -->
-<script src="/js/scrolla.jquery.min.js" defer></script>
-<!-- slick js -->
-<script src="/js/slick.min.js" defer></script>
+        .container2 .search-join {
+            flex: 2;
+            /* background: green; */
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
 
-<!-- bootstrap js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
+        .container2 .search-join form {
+            margin-right: 20px;
+        }
 
-<!-- custom js -->
-<script src="/js/config.js" defer></script>
-<script src="/js/gnb-event.js" defer></script>
-<script src="/js/scroll-event.js" defer></script>
+        .body {
+            height: 1000px;
+        }
+
+        .foot-left {
+            margin-left: 10px;
+        }
+
+        .foot-right {
+            margin-right: 10px;
+        }
+
+        .foot-logo #foot-logo {
+            height: 80px;
+        }
+
+    </style>

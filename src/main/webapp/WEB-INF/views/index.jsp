@@ -18,15 +18,11 @@
 
 <body>
 
-    <%@ include file="/include/header.jsp" %>
+    <%@ include file="include/header.jsp" %>
 
-    <div class="center-list">
+    <div class="body"></div>
 
-        
-
-    </div>
-
-    <%@ include file="/include/footer.jsp" %>
+    <%@ include file="include/footer.jsp" %>
 
 
 </body>

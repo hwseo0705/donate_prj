@@ -25,7 +25,7 @@ public class DonateController {
         service.findAllService(board);
 
         model.addAttribute("bList", service.findAllService(board));
-        return "donate-list";
+        return "index";
     }
 
     // write get
