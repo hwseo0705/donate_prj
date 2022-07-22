@@ -1,12 +1,12 @@
-package com.project.donate_prj.donateUser.repository;
+package com.project.donate_prj.repository;
 
-import com.project.donate_prj.donateUser.domain.DonateUser;
+import com.project.donate_prj.domain.DonateUser;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface DonateMapper {
+public interface LoginMapper {
 
     // 회원가입 기능
     boolean save(DonateUser donateUser);

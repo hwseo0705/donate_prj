@@ -5,7 +5,7 @@
 
 <head>
 
-    <%@ include file="include/static-head.jsp" %>
+    <%@ include file="/WEB-INF/views/include/static-head.jsp" %>
 
     <style>
         .wrapper {
@@ -44,7 +44,7 @@
 
 <body>
 
-    <%@ include file="include/header.jsp" %>
+    <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
     <div class="wrapper">
         <section class="main">
@@ -133,7 +133,7 @@
     </div>
 
 
-    <%@ include file="include/footer.jsp" %>
+    <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 
 </body>

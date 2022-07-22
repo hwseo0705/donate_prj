@@ -1,13 +1,12 @@
-package com.project.donate_prj.donateUser.service;
+package com.project.donate_prj.service;
 
-import com.project.donate_prj.donateUser.domain.DonateUser;
-import com.project.donate_prj.donateUser.repository.DonateMapper;
+import com.project.donate_prj.domain.DonateUser;
+import com.project.donate_prj.repository.LoginMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +16,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class DonateService {
+public class LoginService {
 
     @Autowired
-    private final DonateMapper mapper;
+    private final LoginMapper mapper;
 
     // 회원 가입 서비스 // 아이디 중복 검사 완로
     public int saveService(DonateUser donateUser) {

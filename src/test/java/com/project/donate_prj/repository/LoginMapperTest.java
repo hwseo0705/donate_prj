@@ -1,6 +1,7 @@
-package com.project.donate_prj.donateUser.repository;
+package com.project.donate_prj.repository;
 
-import com.project.donate_prj.donateUser.domain.DonateUser;
+import com.project.donate_prj.domain.DonateUser;
+import com.project.donate_prj.repository.LoginMapper;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Log4j2
 @SpringBootTest
-class DonateMapperTest {
+class LoginMapperTest {
 
     @Autowired
-    DonateMapper donateMapper;
+    LoginMapper donateMapper;
 
     @Test
     @DisplayName("잘 들어갔는지 확인 ")

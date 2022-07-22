@@ -1,4 +1,4 @@
-package com.project.donate_prj.donateUser.domain;
+package com.project.donate_prj.domain;
 
 
 import lombok.*;

@@ -37,7 +37,7 @@ class DonateMapperTest {
     @DisplayName("등록된 모금 글이 총 몇개인지를 알려줘야 한다")
     void getTotalCntTest() {
         Search search = new Search();
-        search.setType("title");
+        //search.setType("title");
         search.setKeyword("donation");
         Long totalCnt = mapper.getTotalCnt(search);
 

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.donate_prj.donateUser.repository.DonateMapper">
+<mapper namespace="com.project.donate_prj.repository.LoginMapper">
 
-    <resultMap id="donateMap" type="com.project.donate_prj.donateUser.domain.DonateUser">
+    <resultMap id="donateMap" type="com.project.donate_prj.domain.DonateUser">
 
         <result property="userId" column="user_id"/>
 

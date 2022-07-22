@@ -1,6 +1,7 @@
-package com.project.donate_prj.donateUser.service;
+package com.project.donate_prj.service;
 
-import com.project.donate_prj.donateUser.domain.DonateUser;
+import com.project.donate_prj.domain.DonateUser;
+import com.project.donate_prj.service.LoginService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DonateServiceTest {
 
     @Autowired
-    DonateService service;
+    LoginService service;
 
 
     @Test
