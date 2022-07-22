@@ -1,5 +1,8 @@
 package com.project.donate_prj.controller;
 
+import com.project.donate_prj.common.paging.Page;
+import com.project.donate_prj.common.paging.PageMaker;
+import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import com.project.donate_prj.service.DonateService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +22,19 @@ public class DonateController {
     private final DonateService service;
 
     // index : 메인페이지 화면 요청 - 모금글 전부 출력 (페이징)
-    @GetMapping("/")
-    public String list(DonateBoard board, Model model) {
-        log.info("controller request / GET - {}", board);
-        service.findAllService(board);
+    @GetMapping("/main")
+    public String list(Search search, Model model) {
+        log.info("controller request / GET - {}, {}", search, search.getPageNum());
 
-        model.addAttribute("bList", service.findAllService(board));
+        Map<String, Object> findAllMap = service.findAllService(search);
+
+        //  페이지 정보 생성용
+        PageMaker pm = new PageMaker(new Page(search.getPageNum(), search.getAmount()), (Long) findAllMap.get("tc"));
+
+
+        model.addAttribute("dbList", findAllMap.get("dbList"));
+        model.addAttribute("pm",pm);
+
         return "index";
     }
 

@@ -11,6 +11,6 @@ public class HomeController {
     @GetMapping("/")
     public String home() {
         log.info("welcome page");
-        return "index";
+        return "redirect:/main";
     }
 }

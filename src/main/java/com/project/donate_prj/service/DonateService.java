@@ -1,11 +1,14 @@
 package com.project.donate_prj.service;
 
+import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import com.project.donate_prj.repository.DonateMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -17,8 +20,16 @@ public class DonateService {
         return mapper.save(board);
     }
 
-    public List<DonateBoard> findAllService(DonateBoard board) {
-        return mapper.findAll();
+    public Map<String, Object> findAllService(Search search) {
+
+        List<DonateBoard> DBList = mapper.findAll(search);
+        Long totalCnt = mapper.getTotalCnt(search);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("dbList", DBList);
+        map.put("tc", totalCnt);
+
+        return map;
     }
 
     public boolean removeService(Long boardNo) {

@@ -7,7 +7,7 @@
         <h1 class="logo">
             <a href="#">
                 <!-- 경로 수정 -->
-                <img id="logo" src="img/logo2.jpg" alt="로고이미지">
+                <img id="logo" src="/img/logo2.jpg" alt="로고이미지">
             </a>
         </h1>
         <ul class="nav">
@@ -19,9 +19,9 @@
         </ul>
 
         <div class="search-join">
-            <form class="" role="search">
+            <form class="/" role="search">
                 <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                    aria-label="Search">
+                    aria-label="Search" name="keyword">
             </form>
 
             <div class="text-end">

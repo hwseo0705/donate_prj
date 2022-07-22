@@ -16,10 +16,10 @@ public class PageMaker {
 
     private Page page; // 현재 위치한 페이지 정보
 
-    private int totalCount; // 총 게시물 수
+    private Long totalCount; // 총 게시물 수
 
 
-    public PageMaker(Page page, int totalCount) {
+    public PageMaker(Page page, Long totalCount) {
         this.page = page;
         this.totalCount = totalCount;
         makePageInfo();

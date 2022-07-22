@@ -17,7 +17,7 @@ public class Page {
     // 아무것도 입력하지 않았을 시에 기본값으로 가질 값 세팅.
     public Page() {
         this.pageNum = 1L;
-        this.amount = 10;
+        this.amount = 9;
     }
 
     public void setPageNum(Long pageNum) {
@@ -31,7 +31,7 @@ public class Page {
 
     public void setAmount(int amount) {
         // url을 통한 이상한 get 요청 걸러내기
-        if (amount < 10 || amount > 100) {
+        if (amount < 9 || amount > 100) {
             this.amount = 10;
             return;
         }
