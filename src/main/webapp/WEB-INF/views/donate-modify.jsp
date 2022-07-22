@@ -29,6 +29,8 @@
 
         <input type="hidden" name="boardNo" value="${b.boardNo}">
 
+        <h1 class="main-title">${b.boardNo}번 게시물</h1>
+
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">제목</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="제목" name="title"

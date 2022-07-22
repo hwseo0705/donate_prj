@@ -72,21 +72,17 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <div class="btn-group">
-                                                # 목표 모금액
-                                                <button type="button"
-                                                    class="btn btn-sm btn-outline-secondary">${db.targetMoney}</button>
+                                                <p># 목표 모금액: ${db.targetMoney}</p>
                                             </div>
                                             
                                             <br>
 
                                             <div class="btn-group">
-                                                # 현재 모금액
-                                                <button type="button"
-                                                    class="btn btn-sm btn-outline-secondary">${db.currentMoney}</button>
+                                                <p># 현재 모금액: ${db.currentMoney}</p>
                                             </div>
                                         </div>
 
-                                        <small class="text-muted">좋아요 수??</small>
+                                        <small class="text-muted">좋아요 수: ${db.likeCnt}</small>
 
                                     </div>
                                 </div>
