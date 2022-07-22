@@ -41,13 +41,17 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">썸네일</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="썸네일" name="thumbnail">
+            <select class="form-select" name="thumbnail" id="thumbnail">
+                <option value="/img/example1">img1</option>
+                <option value="/img/example2">img2</option>
+                <option value="/img/example3">img3</option>
+                <option value="/img/example4">img4</option>
+            </select>
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-            <textarea name="content" class="form-control" id="exampleFormControlTextarea1"
-                rows="10"></textarea>
+            <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
         </div>
 
         <div class="mb-3">
