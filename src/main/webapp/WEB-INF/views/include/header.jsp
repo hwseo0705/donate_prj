@@ -19,9 +19,9 @@
         </ul>
 
         <div class="search-join">
-            <form class="" role="search">
+            <form class="/" role="search">
                 <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                    aria-label="Search">
+                    aria-label="Search" name="keyword">
             </form>
 
             <div class="text-end">

@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 public class Search extends Page {
 
-    private String type;
-
     private String keyword;
+
 }
