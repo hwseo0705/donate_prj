@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.donate_prj.donateUser.repository.DonateMapper">
+
+    <resultMap id="donateMap" type="com.project.donate_prj.donateUser.domain.DonateUser">
+
+        <result property="userId" column="user_id"/>
+
+    </resultMap>
+   <!--#{} 이거 안에 들어가는 놈들은 다 자바 언어 -->
+
+
+    <!--    회원 가입 기능이기 때문에 다 넣어줘야 한다 -->
+    <insert id="save">
+        INSERT INTO donate_user
+        VALUES (#{userId}, #{password}, #{name}, #{email}, #{money})
+    </insert>
+
+    <!--     기본적인 전체 순환 조회 -->
+    <select id="findAll" resultMap="donateMap">
+        select * from donate_user
+    </select>
+
+
+    <!--    일반적인 아이디로 찾기 -->
+    <select id="findOne" resultMap="donateMap">
+        select * from donate_user
+        WHERE user_id=#{userId}
+    </select>
+
+    <!--     회원 탈퇴 , 삭제 !! -->
+    <!--    아이디랑 비밀번호를 같이 눌러야 삭제 -->
+    <insert id="remove">
+        DELETE FROM donate_user
+        WHERE user_id=#{userId}
+    </insert>
+
+
+    <!--    아이디 입력하면 비밀번호 , 이름 , 이메일 수정할수 있음 -->
+    <insert id="modify">
+        UPDATE donate_user
+        SET password=#{password}, name=#{name} , email=#{email}
+        WHERE user_id=#{userId}
+    </insert>
+
+    <!--    아이디로 찾기  -->
+    <select id="findId" resultType="int">
+        select count(*) from donate_user
+        where user_id=#{userId}
+    </select>
+
+    <!--    비밀번호 일치 여부  일치할수 -->
+    <select id="findPassword" resultType="String">
+        select password
+        from donate_user
+        where  user_id =#{userId}
+    </select>
+
+
+    <!--돈 증가 -->
+    <insert id="plusMoney">
+        UPDATE donate_user
+        SET money = money + #{money}
+        where user_id=#{userId}
+    </insert>
+
+    <!--    돈 차감 빼기 -->
+    <insert id="minusMoney">
+        UPDATE donate_user
+        SET money = money - #{money}
+        where user_id=#{userId}
+    </insert>
+
+
+    <!--    &lt;!&ndash;    비밀번호와 아이디 둘다 가져야함  &ndash;&gt;-->
+    <!--    <select id="idAndPassword" resultType="int">-->
+    <!--        select count(*) from donate_user-->
+    <!--        where user_id=#{userId} and password=#{password}-->
+    <!--    </select>-->
+
+
+</mapper>
