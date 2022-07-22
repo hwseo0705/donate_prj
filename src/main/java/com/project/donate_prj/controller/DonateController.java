@@ -89,4 +89,19 @@ public class DonateController {
         if (flag) ra.addFlashAttribute("msg", "modification-success");
         return "redirect:/main";
     }
+
+
+    @GetMapping("/mypage")
+    public String mypage() {
+        return "mypage/myinfo";
+    }
+
+    @GetMapping("/mydonation")
+    public String mydonation() {
+        return "mypage/mydonation";
+    }
+    @GetMapping("/myboard")
+    public String myboard() {
+        return "mypage/myboard";
+    }
 }

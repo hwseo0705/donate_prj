@@ -8,9 +8,6 @@
     <%@ include file="/WEB-INF/views/include/static-head.jsp" %>
 
     <style>
-        .body {
-            height: 1000px;
-        }
 
         .wrap {
             width: 90%;
