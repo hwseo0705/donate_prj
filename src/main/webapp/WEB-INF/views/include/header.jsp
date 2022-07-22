@@ -5,7 +5,7 @@
     <div class="container2">
 
         <h1 class="logo">
-            <a href="#">
+            <a href="/main">
                 <!-- 경로 수정 -->
                 <img id="logo" src="/img/logo2.jpg" alt="로고이미지">
             </a>
@@ -31,4 +31,41 @@
         </div>
 
     </div>
+    
+    <script>
+
+        // 로그인 버튼 클릭 이벤트
+        function loginRequestEvent() {
+            // 로그인 화면 요청이 들어가야함
+
+            const $loginBtn = document.querySelector('.text-end').firstElementChild;
+
+            $loginBtn.addEventListener('click', e => {
+                
+                location.href = '/login';
+            });
+        }
+
+        // 회원가입 버튼 클릭 이벤트
+        function signUpRequestEvent() {
+            // 회원가입 화면 요청이 들어가야 함
+
+            const $signUpBtn = document.querySelector('.text-end').lastElementChild;
+
+            $signUpBtn.addEventListener('click', e => {
+
+                location.href = '/register';
+            });
+        }
+
+
+        // 함수 실행부
+        (function () {
+            loginRequestEvent();
+            signUpRequestEvent();
+
+            
+        }) ();
+
+    </script>
 </header>

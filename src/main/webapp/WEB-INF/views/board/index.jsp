@@ -5,7 +5,7 @@
 
 <head>
 
-    <%@ include file="/WEB-INF/views/include/static-head.jsp" %>
+    <%@ include file="include/static-head.jsp" %>
 
     <style>
         .wrapper {
@@ -44,7 +44,7 @@
 
 <body>
 
-    <%@ include file="/WEB-INF/views/include/header.jsp" %>
+    <%@ include file="include/header.jsp" %>
 
     <div class="wrapper">
         <section class="main">
@@ -72,17 +72,21 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
                                             <div class="btn-group">
-                                                <p># 목표 모금액: ${db.targetMoney}</p>
+                                                # 목표 모금액
+                                                <button type="button"
+                                                    class="btn btn-sm btn-outline-secondary">${db.targetMoney}</button>
                                             </div>
                                             
                                             <br>
 
                                             <div class="btn-group">
-                                                <p># 현재 모금액: ${db.currentMoney}</p>
+                                                # 현재 모금액
+                                                <button type="button"
+                                                    class="btn btn-sm btn-outline-secondary">${db.currentMoney}</button>
                                             </div>
                                         </div>
 
-                                        <small class="text-muted">좋아요 수: ${db.likeCnt}</small>
+                                        <small class="text-muted">좋아요 수??</small>
 
                                     </div>
                                 </div>
@@ -133,7 +137,7 @@
     </div>
 
 
-    <%@ include file="/WEB-INF/views/include/footer.jsp" %>
+    <%@ include file="include/footer.jsp" %>
 
 
 </body>

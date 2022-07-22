@@ -5,7 +5,7 @@
     <p class="foot-left col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
 
     <h1 class="foot-logo">
-        <a href="#">
+        <a href="/main">
             <!-- 경로 수정 -->
             <img id="foot-logo" src="/img/logo2.jpg" alt="로고이미지">
         </a>
