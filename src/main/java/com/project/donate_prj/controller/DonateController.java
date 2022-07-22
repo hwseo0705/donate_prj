@@ -34,14 +34,14 @@ public class DonateController {
 
         model.addAttribute("dbList", findAllMap.get("dbList"));
         model.addAttribute("pm",pm);
-        return "index";
+        return "board/index";
     }
 
     // write get
     @GetMapping("/write")
     public String write() {
         log.info("controller request /write GET!");
-        return "donate-write";
+        return "board/donate-write";
     }
 
     // write post
@@ -50,7 +50,7 @@ public class DonateController {
         log.info("controller request /write POST! - {}", board);
         boolean flag = service.saveService(board);
         if (flag) ra.addFlashAttribute("msg", "reg-success");
-        return "redirect:/";
+        return "redirect:/main";
     }
 
     // remove get
@@ -59,7 +59,7 @@ public class DonateController {
         log.info("controller request /remove GET! - {}", boardNo);
         boolean flag = service.removeService(boardNo);
         if (flag) ra.addFlashAttribute("msg", "remove-success");
-        return "redirect:/";
+        return "redirect:/main";
     }
 
     // detail get
@@ -68,7 +68,7 @@ public class DonateController {
         log.info("controller request /detail GET! - {}", boardNo);
         DonateBoard board = service.findOneService(boardNo);
         model.addAttribute("b", board);
-        return "donate-detail";
+        return "board/donate-detail";
     }
 
     // modify get
@@ -78,7 +78,7 @@ public class DonateController {
         log.info("controller request /modify GET! - bno: {}", boardNo);
         DonateBoard board = service.findOneService(boardNo);
         model.addAttribute("b", board);
-        return "donate-modify";
+        return "board/donate-modify";
     }
 
     // modify post
@@ -87,6 +87,6 @@ public class DonateController {
         log.info("controller request /modify POST! - {}", board);
         boolean flag = service.modifyService(board);
         if (flag) ra.addFlashAttribute("msg", "modification-success");
-        return "redirect:/";
+        return "redirect:/main";
     }
 }
