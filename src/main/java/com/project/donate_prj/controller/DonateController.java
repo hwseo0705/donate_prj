@@ -40,6 +40,7 @@ public class DonateController {
     // write get
     @GetMapping("/write")
     public String write() {
+        //ㅋㅋ
         log.info("controller request /write GET!");
         return "donate-write";
     }
