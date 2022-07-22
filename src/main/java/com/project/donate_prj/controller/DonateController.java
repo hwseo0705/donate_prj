@@ -1,5 +1,6 @@
 package com.project.donate_prj.controller;
 
+import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import com.project.donate_prj.service.DonateService;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +21,9 @@ public class DonateController {
 
     // index : 메인페이지 화면 요청 - 모금글 전부 출력 (페이징)
     @GetMapping("/")
-    public String list(DonateBoard board, Model model) {
-        log.info("controller request / GET - {}", board);
-        service.findAllService(board);
-
-        model.addAttribute("bList", service.findAllService(board));
+    public String list(@ModelAttribute("s") Search search,  Model model) {
+        log.info("controller request / GET - {}", search);
+        model.addAttribute("bList", service.findAllService(search));
         return "index";
     }
 
@@ -63,8 +62,9 @@ public class DonateController {
     }
 
     // modify get
-    @GetMapping("/modify")
-    public String modify(Long boardNo, Model model) {
+//    @GetMapping("/modify")
+    @GetMapping("/modify/{boardNo}")
+    public String modify(@PathVariable Long boardNo, /*Long boardNo,*/ Model model) {
         log.info("controller request /modify GET! - bno: {}", boardNo);
         DonateBoard board = service.findOneService(boardNo);
         model.addAttribute("b", board);

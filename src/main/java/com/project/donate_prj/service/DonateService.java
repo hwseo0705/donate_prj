@@ -1,5 +1,6 @@
 package com.project.donate_prj.service;
 
+import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import com.project.donate_prj.repository.DonateMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,8 @@ public class DonateService {
         return mapper.save(board);
     }
 
-    public List<DonateBoard> findAllService(DonateBoard board) {
-        return mapper.findAll();
+    public List<DonateBoard> findAllService(Search search) {
+        return mapper.findAll(search);
     }
 
     public boolean removeService(Long boardNo) {

@@ -7,7 +7,7 @@
         <h1 class="logo">
             <a href="#">
                 <!-- 경로 수정 -->
-                <img id="logo" src="img/logo2.jpg" alt="로고이미지">
+                <img id="logo" src="/img/logo2.jpg" alt="로고이미지">
             </a>
         </h1>
         <ul class="nav">
