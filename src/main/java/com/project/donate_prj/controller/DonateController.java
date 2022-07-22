@@ -34,7 +34,6 @@ public class DonateController {
 
         model.addAttribute("dbList", findAllMap.get("dbList"));
         model.addAttribute("pm",pm);
-
         return "index";
     }
 
@@ -73,8 +72,9 @@ public class DonateController {
     }
 
     // modify get
-    @GetMapping("/modify")
-    public String modify(Long boardNo, Model model) {
+//    @GetMapping("/modify")
+    @GetMapping("/modify/{boardNo}")
+    public String modify(@PathVariable Long boardNo, /*Long boardNo,*/ Model model) {
         log.info("controller request /modify GET! - bno: {}", boardNo);
         DonateBoard board = service.findOneService(boardNo);
         model.addAttribute("b", board);

@@ -1,8 +1,114 @@
 <!DOCTYPE html>
-<html lang="ko">
 
-<head>
+<head lang="ko">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- RESET CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+
+    <!-- fontawesome css: https://fontawesome.com -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
+    <!-- linear icons -->
+    <!-- https://linearicons.com/free#cdn -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+    <!-- animate css v3.7.0 || https://animate.style -->
+    <link rel="stylesheet" href="/css/animate.min.css">
+
+    <!-- slick css || https://kenwheeler.github.io/slick/  -->
+    <link rel="stylesheet" href="/css/slick.css">
+
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- libraries -->
+    <!-- scrolla js -->
+    <script src="/js/scrolla.jquery.min.js" defer></script>
+    <!-- slick js -->
+    <script src="/js/slick.min.js" defer></script>
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+    <!-- jQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>나중에 jsp로 옮겨야 함~~</title>
+
+    <style>
+        header {
+            background: rgb(233, 203, 203) !important;
+        }
+
+        .container2 {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        .container2 .logo {
+            flex: 1;
+            width: 130px;
+            /* height: 40px; */
+            /* background: red; */
+        }
+
+        .container2 .logo #logo {
+            height: 80px;
+        }
+
+        .container2 .nav {
+            flex: 3;
+            /* background: blue; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container2 .nav li {
+            margin-right: 80px;
+        }
+
+        .container2 .search-join {
+            flex: 2;
+            /* background: green; */
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .container2 .search-join form {
+            margin-right: 20px;
+        }
+
+        .body {
+            height: 1000px;
+        }
+
+
+
+
+
+
+
+
+        /*  */
     
+
+        form {
+            width: 50%;
+            margin: auto;
+        }
+
+
+        .main-title {
+
+            margin: 40px 0;
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -39,7 +145,61 @@
         </div>
     </header>
 
-    <div class="body"></div>
+    <form action="/modify" method="post">
+
+        <input type="hidden" name="boardNo" value="${b.boardNo}">
+
+        <h1 class="main-title">${b.boardNo}번 게시물</h1>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">제목</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="제목" name="title"
+                value="${b.title}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">작성자</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="writer"
+                value="${b.writer}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">썸네일</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="썸네일" name="thumbnail"
+                value="${b.writer}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+            <textarea name="content" class="form-control" id="exampleFormControlTextarea1"
+                rows="10">${b.content}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">목표 모금액</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="targetMoney"
+                value="${b.targetMoney}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">시작일</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="yy-mm-dd"
+                name="startDate" value="${b.startDate}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">종료일</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="yy-mm-dd" name="endDate"
+                value="${b.endDate}">
+        </div>
+
+
+        <div class="btn-group btn-group-lg custom-btn-group" role="group">
+            <button id="mod-btn" type="submit" class="btn btn-danger">완료</button>
+            <button type="button" class="btn btn-dark">목록</button>
+        </div>
+
+    </form>
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <p class="foot-left col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
