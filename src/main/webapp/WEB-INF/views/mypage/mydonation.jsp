@@ -55,6 +55,18 @@
         .my-donation {
             width: 60%;
         }
+
+        .my-donation {
+            width: 60%;
+        }
+
+        .my-donation h1 {
+            margin: 40px 0 40px 30px;
+        }
+
+        .my-donation .table {
+            margin-left: 20px;
+        }
     </style>
 </head>
 
@@ -75,7 +87,7 @@
 
         <div class="my-donation">
             <h1>내가 기부한 목록</h1>
-            <table class="table table-secondary table-striped table-hover articles">
+            <table class="table table-striped table-hover">
                 <tr>
                     <th>번호</th>
                     <th>작성자</th>
@@ -109,31 +121,29 @@
             </table>
         </div>
 
-
-        <script>
-            function detailEvent() {
-                //상세보기 요청 이벤트
-                const $table = document.querySelector(".articles");
-
-                $table.addEventListener('click', e => {
-
-
-                    if (!e.target.matches('.articles td')) return;
-
-                    console.log('tr 클릭됨! - ', e.target);
-
-                    let bn = e.target.parentElement.firstElementChild.textContent;
-                    console.log('글번호: ' + bn);
-                    location.href = '/detail/' + bn;
-                });
-            }
-            (function () {
-                detailEvent();
-            })();
-        </script>
-
     </div>
 
+    <script>
+        function detailEvent() {
+            //상세보기 요청 이벤트
+            const $table = document.querySelector(".articles");
+
+            $table.addEventListener('click', e => {
+
+
+                if (!e.target.matches('.articles td')) return;
+
+                console.log('tr 클릭됨! - ', e.target);
+
+                let bn = e.target.parentElement.firstElementChild.textContent;
+                console.log('글번호: ' + bn);
+                location.href = '/detail/' + bn;
+            });
+        }
+        (function () {
+            detailEvent();
+        })();
+    </script>
 
 
 

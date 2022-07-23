@@ -43,4 +43,6 @@ public class DonateService {
     public boolean modifyService(DonateBoard board) {
         return mapper.modify(board);
     }
+
+    public void upLikeService(Long boardNo) { mapper.upLikeCnt(boardNo); }
 }

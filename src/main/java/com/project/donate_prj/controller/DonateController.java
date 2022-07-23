@@ -106,6 +106,11 @@ public class DonateController {
         return "mypage/myboard";
     }
 
+    @PostMapping("/like")
+    public String upLike(Long boardNo) {
+        service.upLikeService(boardNo);
+        return "redirect:/main";
+    }
 
     // login get
     @GetMapping("/login")
