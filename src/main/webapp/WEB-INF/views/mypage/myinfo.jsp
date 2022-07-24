@@ -172,6 +172,8 @@
             // cash amount 입력 받는 창
             $cashBtn.onclick = e => {
                 console.log('cash event clicked');
+                var cash = +prompt("캐시를 얼마 충전하시겠습니까?");
+                location.href = '/upCash?money=' + cash;
 
             }
         }
@@ -182,6 +184,7 @@
 
             $delBtn.onclick = e => {
                 console.log('delete event clicked');
+                location.href='/login/remove';
                 
             }
         }
@@ -192,7 +195,6 @@
             deleteEvent();
         })();
     </script>
-
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 
