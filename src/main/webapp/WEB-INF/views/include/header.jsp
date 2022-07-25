@@ -57,7 +57,7 @@
             <c:choose>
 
                 <c:when test="${not empty y}">
-                    <div class="wrap">
+                    <div class="wrapz">
                         <div class="text-end yes-user-info">
                             <button type="button" id="my-name" class="btn btn-outline-light me-2">${y.name}님 안녕하세요
                             </button>
