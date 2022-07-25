@@ -13,6 +13,10 @@
         }
 
 
+        .inputbtn{
+            margin-top: 30px;
+
+
         .lnr-heart {
             margin-right: 5px;
             color: red;
@@ -60,6 +64,12 @@
             <button type="button" id="share-btn" class="pink btn btn-primary">공유</button>
             <button type="button" id="donate-btn" class="pink btn btn-primary">기부하기</button>
         </div>
+        <div class="inputbtn">
+            <form hidden action="/donateMoney/${b.boardNo}?userId=${y.userId}" method="post" id="inputdonation">
+                <input type="number" name="money">
+                <button type="submit" class="btn btn-primary">기부확인</button>
+            </form>
+        </div>
 
         <div id="hidden-btn" class="btn-group" role="group" aria-label="Basic example">
 
@@ -69,6 +79,7 @@
 
 
     </div>
+
 
     <script>
         function hiddenBtn() {
@@ -103,6 +114,7 @@
             }
         }
 
+
         function upLikeResult() {
             // console.log('lr:', '${likeResult}');
             if ('${likeResult}' === 'true') {
@@ -126,10 +138,20 @@
 
         function donate() {
             const $donateBtn = document.getElementById('donate-btn');
+            // 히든인 인풋창 가져옴 
+            const $donationinput = document.getElementById('inputdonation');
+
 
             $donateBtn.onclick = e => {
+
+                // 히든을 지움 
+                $donationinput.hidden = false;
+                // console.log('donate clicked');
+                // location.href='/donate'
+
                 console.log('donate clicked');
                 location.href = '/donate'
+
             }
 
         }
@@ -140,7 +162,12 @@
             upLikeResult();
             hiddenBtn();
         })();
-    </script>
+
+
+
+
+        </script>
+
 
 
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>

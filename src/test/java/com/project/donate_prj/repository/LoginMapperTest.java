@@ -30,7 +30,7 @@ class LoginMapperTest {
             donateUser.setName("고구마"+i);
             donateUser.setEmail("email"+i+"@naver.com");
             donateUser.setMoney(50000+i);
-            donateMapper.save(donateUser);
+//            donateMapper.save(donateUser);
         }
     }
 
@@ -90,5 +90,19 @@ class LoginMapperTest {
 //        assertTrue(a4.getMoney()==70000);
     return a4;
     }
+
+    @Test
+    @DisplayName(" a1 돈 찾기 ")
+    void  findMoney(){
+        long a1 = donateMapper.findMoney("a1");
+        System.out.println(a1);
+    }
+
+    @Test
+    @DisplayName(" a1이 가진 금액 만큼 넣으면, 안넣으면  테스트 ")
+    void minusMoneyTest(){
+        donateMapper.minusMoney("a1",50500);
+    }
+
 
 }

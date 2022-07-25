@@ -3,6 +3,7 @@ package com.project.donate_prj.repository;
 import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,6 +15,11 @@ public interface DonateMapper {
     boolean remove(Long donateNo);
 
     boolean modify(DonateBoard donate);
+
+    // 기부하면 현재 금액 올라가는 메서드
+    void plusDonation(@Param("boardNo")long boardNo, @Param("currentMoney") long currentMoney);
+
+
 
     // 게시물 전체 조회
     List<DonateBoard> findAll(Search search);
@@ -32,4 +38,6 @@ public interface DonateMapper {
 //    void upCash(Long userId, Long money);
 
     // 캐시충전 클릭시 얼마 충전할지 입력하고 보유금액 상승
+
+
 }

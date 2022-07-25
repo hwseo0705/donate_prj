@@ -76,12 +76,12 @@
         where user_id=#{userId}
     </insert>
 
+    <!--    아이디로 해당 머니찾기  -->
+    <select id="findMoney" resultType="long">
+        select money from donate_user
+        where user_id=#{userId}
+    </select>
 
-    <!--    &lt;!&ndash;    비밀번호와 아이디 둘다 가져야함  &ndash;&gt;-->
-    <!--    <select id="idAndPassword" resultType="int">-->
-    <!--        select count(*) from donate_user-->
-    <!--        where user_id=#{userId} and password=#{password}-->
-    <!--    </select>-->
 
     <update id="upLikeCnt">
         UPDATE donate_board

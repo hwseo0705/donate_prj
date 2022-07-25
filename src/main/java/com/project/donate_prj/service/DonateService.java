@@ -51,6 +51,12 @@ public class DonateService {
 
     public void upLikeService(Long boardNo) { mapper.upLikeCnt(boardNo); }
 
+    // 플러스 해주는 서비스
+    public void plusDonationService(long boardNo , long currentMoney ){
+        mapper.plusDonation(boardNo,currentMoney);
+    }
+
+
 //    public void upCashService(Long userId, Long money) {
 //        mapper.upCash(userId, money);
 //    }
