@@ -107,6 +107,37 @@ public class DonateController {
 //        return "mypage/myboard";
 //    }
 
+    @GetMapping("/mypage")
+    public String mypage() {
+        return "mypage/myinfo";
+    }
+
+    @GetMapping("/mydonation")
+    public String mydonation() {
+        return "mypage/mydonation";
+    }
+    @GetMapping("/myboard")
+    public String myboard() {
+        return "mypage/myboard";
+    }
+
+    @PostMapping("/like")
+    public String upLike(Long boardNo) {
+        service.upLikeService(boardNo);
+        return "redirect:/detail/"+boardNo;
+    }
+
+    @PostMapping("/upCash")
+    public String upCash(Long money, Long userId) {
+        service.upCashService(userId, money);
+        return "redirect:/mypage";
+    }
+
+    // login get
+    @GetMapping("/login")
+    public String login() {
+        log.info("controller request /login GET! ");
+
 
 //    // login get
 //    @GetMapping("/login")

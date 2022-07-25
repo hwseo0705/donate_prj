@@ -55,6 +55,14 @@
         .my-board {
             width: 60%;
         }
+
+        .my-board h1 {
+            margin: 40px 0 40px 30px;
+        }
+
+        .my-board .table {
+            margin-left: 20px;
+        }
     </style>
 </head>
 
@@ -75,7 +83,7 @@
 
         <div class="my-board">
             <h1>내가 작성한 글</h1>
-            <table class="table table-secondary table-striped table-hover articles">
+            <table class="table table-striped table-hover">
                 <tr>
                     <th>번호</th>
                     <th>작성자</th>

@@ -39,18 +39,41 @@
         </div>
 
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="like-cnt btn btn-primary">응원 ${b.likeCnt}</button>
-            <button type="button" class="share btn btn-primary">공유</button>
-            <button type="button" class="donate btn btn-primary">기부하기</button>
+            <button type="button" id="like-btn" class="btn btn-primary">응원 ${b.likeCnt}</button>
+            <button type="button" id="share-btn" class="btn btn-primary">공유</button>
+            <button type="button" id="donate-btn" class="btn btn-primary">기부하기</button>
         </div>
 
     </div>
 
     <script>
 
-        // 기부하기 onclick -> 기부하기 페이지
+        function upLikeCnt() {
+            const $likeBtn = document.getElementById('like-btn');
 
-    </script>
+            $likeBtn.onclick = e => {
+                console.log('like clicked');
+                location.href='/like';
+            }
+
+        }
+
+        function donate() {
+            const $donateBtn = document.getElementById('donate-btn');
+
+            $donateBtn.onclick = e => {
+                console.log('donate clicked');
+                location.href='/donate'
+            }
+
+        }
+
+        (function() {
+            upLikeCnt();
+            donate();
+        })();
+
+        </script>
 
 
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
