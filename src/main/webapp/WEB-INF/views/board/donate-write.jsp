@@ -36,7 +36,7 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">작성자</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="writer">
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="writer" value="${y.userId}" disabled>
         </div>
 
         <div class="mb-3">
