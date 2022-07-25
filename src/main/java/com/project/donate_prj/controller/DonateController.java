@@ -4,7 +4,9 @@ import com.project.donate_prj.common.paging.Page;
 import com.project.donate_prj.common.paging.PageMaker;
 import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
+import com.project.donate_prj.domain.DonateUser;
 import com.project.donate_prj.service.DonateService;
+import com.project.donate_prj.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import java.util.Map;
 public class DonateController {
 
     private final DonateService service;
+//    private LoginService Uservice;
 
 
     // index : 메인페이지 화면 요청 - 모금글 전부 출력 (페이징)
@@ -67,6 +70,7 @@ public class DonateController {
     // detail get
     @GetMapping("/detail/{boardNo}")
     public String detail(@PathVariable Long boardNo, Model model) {
+
         log.info("controller request /detail GET! - {}", boardNo);
         DonateBoard board = service.findOneService(boardNo);
         model.addAttribute("b", board);

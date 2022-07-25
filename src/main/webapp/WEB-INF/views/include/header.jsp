@@ -64,6 +64,7 @@
 
                             <button type="button" id="logout" class="btn btn-warning"><a
                                     href="/logout">logout</a></button>
+
                         </div>
                     </div>
                 </c:when>
