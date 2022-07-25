@@ -70,8 +70,7 @@ public class LoginService {
                 // 아이디가 일치하는 비밀번호를 가져왔을때 그 비밀번호가 들어온 스트링 값이랑 같으면
                 // 로그인 성공 이니까 여기서 쿠키를 준다
 
-
-                Cookie cookie = new Cookie("loginCookie", userId);
+                Cookie cookie = new Cookie("loginCookie"+userId, userId);
                 cookie.setMaxAge(60 * 60); // 한시간짜리 쿠키
                 cookie.setPath("/");
                 // 로그인 하면 어디든 다닐수 있어야 하니까 전체폴더로 잡았어요
@@ -107,6 +106,17 @@ public class LoginService {
 //    Cookie foundCookie = WebUtils.getCookie(request, "b" + boardNo);
 
 
+    // 응원하기 관련 서비스
+    public boolean likeCheckService(Long boardNo, String userId) {
+
+        boolean flag = mapper.isLike(boardNo, userId);
+        if (flag) {
+            mapper.likeCheck(boardNo, userId);
+            mapper.upLikeCnt(boardNo);
+            return true;
+        }
+        return false;
+    }
 
 
 }

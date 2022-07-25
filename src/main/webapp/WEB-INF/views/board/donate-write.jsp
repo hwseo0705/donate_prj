@@ -42,10 +42,10 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">썸네일</label>
             <select class="form-select" name="thumbnail" id="thumbnail">
-                <option value="/img/example1">img1</option>
-                <option value="/img/example2">img2</option>
-                <option value="/img/example3">img3</option>
-                <option value="/img/example4">img4</option>
+                <option value="/img/example1.jpg">유니세프 로고</option>
+                <option value="/img/example2.jpg">세이브 더 칠드런 로고</option>
+                <option value="/img/example3.jpg">굿네이버스 로고</option>
+                <option value="/img/example4.jpg">월드비전 로고</option>
             </select>
         </div>
 
@@ -56,7 +56,7 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">목표 모금액</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="targetMoney">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="목표모금액을 입력하세요" name="targetMoney">
         </div>
 
         <div class="mb-3">

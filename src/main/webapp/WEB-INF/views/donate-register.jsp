@@ -22,7 +22,7 @@
             <!-- <div class="col-md-7 col-lg-8"> -->
             <div class="col-12 center">
 
-                <form action="/login/register" method="post" class="needs-validation" novalidate>
+                <form action="/register" method="post" class="needs-validation" novalidate>
                     <div>
                         <!-- class="row g-3" -->
                         <!-- <div class="col-sm-6"> -->
@@ -31,7 +31,7 @@
                         <div class="col-12">
                             <label for="userId" class="form-label">아이디</label>
                             <input type="text" class="form-control" name="userId" id="userId" placeholder="로그인시 사용할 id를 입력하세요."
-                                value="" required>
+                                value="" required maxlength="15">
                             <!-- required = 필수값이란뜻  -->
                             <div class="invalid-feedback">
                                 필수입력 항목입니다.
@@ -42,8 +42,8 @@
 
                         <div class="col-12">
                             <label for="password" class="form-label">비밀번호</label>
-                            <input type="text" class="form-control" name="password" id="password" placeholder="10글자 이내로 작성하세요."
-                                required>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="10글자 이내로 작성하세요."
+                                required maxlength="15">
 
                             <div class="invalid-feedback">
                                 필수입력 항목입니다.
@@ -54,7 +54,7 @@
 
                         <div class="col-12">
                             <label for="name" class="form-label">이름</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="성함을 입력하세요." required>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="성함을 입력하세요." required maxlength="5">
                             <div class="invalid-feedback">
                                 필수입력 항목입니다.
                             </div>
@@ -65,7 +65,7 @@
                         <div class="col-12">
                             <!-- <span class="text-muted">(Optional)</span> -->
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" name="email" id="email" placeholder="you@example.com">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="you@example.com" maxlength="25">
                             <div class="invalid-feedback">
                                 필수입력 항목입니다.
                             </div>

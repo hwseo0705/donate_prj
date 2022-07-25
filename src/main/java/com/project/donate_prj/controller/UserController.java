@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,12 +18,13 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
 @Log4j2
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping
+public class UserController {
 
     @Autowired
     private final LoginService service;
@@ -73,23 +75,25 @@ public class LoginController {
 
     // 요청 입력하면 확인하고 돌려보냄
     @PostMapping("/login")
-    public String login(String userId, String password, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra, Model model) {
+    public String login(String userId, String password, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra, Model model
+    , HttpSession session) {
         log.info("userId : {} , password : {}", userId, password);
         int i = service.loginCookieService(userId, password, request, response);
         log.info("result: {}", i);
         switch (i) {
             case 1:
                 ra.addFlashAttribute("msg", 1);
-                return "redirect:/login/login";
+                return "redirect:/login";
             // 여기까진 성공 `
             case 2:
                 ra.addFlashAttribute("msg", 2);
-                return "redirect:/login/login";
+                return "redirect:/login";
             //  여기까지도 성공
             case 3:
                 DonateUser info = service.findOneService(userId);
-                ra.addFlashAttribute("y", info);
-//                model.addAttribute("y", info);
+                session.setAttribute("y", info);
+//                ra.addFlashAttribute("y",info); // 진화 2
+//                model.addAttribute("y", info); // 진화 1
                 return "redirect:/main";
 
 
@@ -112,32 +116,35 @@ public class LoginController {
 
 
     // 회원 정보 삭제  // 탈퇴
-    @GetMapping("/remove")
-    public String delete(String userId) {
-        service.deleteService(userId);
-        return "board/board-list";
-    }
+//    @GetMapping("/delUser")
+//    public String delete(String userId) {
+//        service.deleteService(userId);
+//        return "board/board-list";
+//    }
 
-    // 회원 정보 수정
-    @GetMapping("/modify")
-    public String modify(String userId, Model model) {
-        // 수정전 파일을 소환
-        DonateUser one = service.findOneService(userId);
-        // 수정전 파일을 모델 객체에 넣어서 전달
-        model.addAttribute("one", one);
-        return "/login/login-modify";
+//     회원 정보 수정
+//    @GetMapping("/modiUser")
+//    public String modify(String userId, Model model) {
+//        // 수정전 파일을 소환
+//        DonateUser one = service.findOneService(userId);
+//        // 수정전 파일을 모델 객체에 넣어서 전달
+//        model.addAttribute("one", one);
+//        return "/login-modify";
+//    }
 
-    }
-
-    @PostMapping("/modify")
-    public String modify(DonateUser donateUser) {
-        boolean b = service.modifyService(donateUser);
-        return "redirect:/board/boardList";
-
-    }
+//    @PostMapping("/modiUser")
+//    public String modify(DonateUser donateUser) {
+//        boolean b = service.modifyService(donateUser);
+//        return "redirect:/board/boardList";
+//
+//    }
 
     @GetMapping("/hello")
-    public String hello(HttpServletRequest request) {
+    public String hello(HttpServletRequest request, HttpSession session) {
+
+        if (session.getAttribute("y") == null) {
+
+        }
         log.info("hello!!");
 
         Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
@@ -147,16 +154,18 @@ public class LoginController {
             // 로그인 헬로 ~
             return "login/hello";
         }
-        return "redirect:/login/login";
+        return "redirect:/login";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletResponse response, HttpServletRequest request) {
+    public String logout(HttpServletResponse response, HttpServletRequest request, HttpSession session) {
+        session.invalidate(); //
         Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
         if (loginCookie != null) {
             Cookie cookie = new Cookie("loginCookie", "out");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
+
         }
         return "redirect:/main";
     }
@@ -183,7 +192,7 @@ public class LoginController {
                 ra.addFlashAttribute("msg", 1);
                 ra.addFlashAttribute("register",userId);
                 // 중복 아이디
-                return "redirect:/login/register";
+                return "redirect:/register";
             case 2:
                 ra.addFlashAttribute("msg", 2);
 //                ra.addFlashAttribute("register",i);
@@ -215,6 +224,18 @@ public class LoginController {
         return "mypage/myinfo";
     }
 
+    @GetMapping("/uplike/{boardNo}/{userId}")
+    public String upLike(@PathVariable Long boardNo, @PathVariable String userId, RedirectAttributes ra) {
+
+        boolean flag = service.likeCheckService(boardNo, userId);
+
+        if (flag) {
+            ra.addFlashAttribute("y", true);
+        } else {
+            ra.addFlashAttribute("n", false);
+        }
+        return "redirect:/detail/" + boardNo;
+    }
 
 
 
