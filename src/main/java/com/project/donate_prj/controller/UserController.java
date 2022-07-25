@@ -81,8 +81,8 @@ public class UserController {
 
 
     // 회원 정보 삭제  // 탈퇴
-    @GetMapping("/delUser/{userId}/{password}")
-    public String delete(@PathVariable String userId, @PathVariable String password, RedirectAttributes ra) {
+    @PostMapping("/delUser/{userId}")
+    public String delete(@PathVariable String userId, String password, RedirectAttributes ra) {
         boolean flag = service.deleteService(userId, password);
         if (flag) { // 삭제 성공한 경우
             ra.addFlashAttribute("delUser", true);
