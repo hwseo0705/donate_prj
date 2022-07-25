@@ -23,7 +23,7 @@
     <div class="wrap">
         <div class="main-detail">
             <h1 class="title">${b.title}</h1>
-            <p class="writer">${b.  writer}</p>
+            <p class="writer">${b.writer}</p>
             <p class="date">${b.startDate} ~ ${b.endDate}</p>
             <p class="content"> ${b.content}</p>
         </div>
@@ -48,12 +48,23 @@
 
     <script>
 
+        function upLikeResult() {
+            // console.log('lr:', '${likeResult}');
+            if ('${likeResult}' === 'true') {
+                alert('${b.boardNo}번 게시물을 응원하였습니다.');
+            } else if ('${likeResult}' === 'false') {
+                alert('이미 응원하고 있는 게시물입니다.');
+            }
+        }
+
+
         function upLikeCnt() {
             const $likeBtn = document.getElementById('like-btn');
 
             $likeBtn.onclick = e => {
                 console.log('like clicked');
-                location.href='/like';
+
+                location.href='/uplike/' + '${b.boardNo}/' + '${y.userId}';
             }
 
         }
@@ -71,6 +82,7 @@
         (function() {
             upLikeCnt();
             donate();
+            upLikeResult();
         })();
 
         </script>

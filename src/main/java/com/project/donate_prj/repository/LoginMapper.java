@@ -55,7 +55,7 @@ public interface LoginMapper {
     // 응원하기 클릭시 like_cnt 숫자 상승 시켜서 db에 저장할 메서드
     void upLikeCnt(Long boardNo);
 
-    boolean isLike(Long boardNo, String userId);
+    int isLike(Long boardNo, String userId);
 
     void likeCheck(Long boardNo, String userId);
 
