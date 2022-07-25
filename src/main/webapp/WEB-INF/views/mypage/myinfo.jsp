@@ -112,7 +112,7 @@
 
                 <div class="mb-3">
                     <label hidden id="hidden-label" for="exampleFormControlInput1" class="form-label">충전할 금액 입력</label>
-                    <input hidden id="hidden-input" type="text" class="form-control" id="exampleFormControlInput1"
+                    <input hidden id="hidden-input" type="number" class="form-control" id="exampleFormControlInput1"
                         placeholder="충전할 금액">
                 </div>
 
