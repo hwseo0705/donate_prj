@@ -79,45 +79,27 @@
         <div class="top-banner">
 
             <div class="my-section">
-                <div class="mypage"><a href="/mypage">내정보</a></div>
-                <div class="mydonation"><a href="/mydonation">내기부</a></div>
-                <div class="myboard"><a href="/myboard">나의글</a></div>
+                <div class="mypage"><a href="/myinfo/${y.userId}">내정보</a></div>
+                <div class="mydonation"><a href="/mydonation/${y.userId}">내기부</a></div>
+                <div class="myboard"><a href="/myboard/${y.userId}">나의글</a></div>
             </div>
         </div>
 
         <div class="my-donation">
             <h1>내가 기부한 목록</h1>
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover articles">
                 <tr>
-                    <th>번호</th>
-                    <th>작성자</th>
-                    <th>제목</th>
+                    <th>기부 번호</th>
+                    <th>기부자</th>
+                    <th>기부액</th>
                 </tr>
                 <c:forEach var="d" items="${dList}">
                     <tr>
-                        <td>${b.boardNo}</td>
-                        <td>${b.writer}</td>
-                        <td>${b.title}</td>
+                        <td>${d.boardNo}</td>
+                        <td>${d.userId}</td>
+                        <td>${d.donateMoney}</td>
                     </tr>
                 </c:forEach>
-
-                <!-- ---------------temporary list----------------- -->
-                <tr>
-                    <td>${b.boardNo}</td>
-                    <td>${b.writer}</td>
-                    <td>${b.title}</td>
-                </tr>
-                <tr>
-                    <td>${b.boardNo}</td>
-                    <td>${b.writer}</td>
-                    <td>${b.title}</td>
-                </tr>
-                <tr>
-                    <td>${b.boardNo}</td>
-                    <td>${b.writer}</td>
-                    <td>${b.title}</td>
-                </tr>
-                <!-- ---------------temporary list----------------- -->
             </table>
         </div>
 
