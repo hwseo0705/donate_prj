@@ -53,8 +53,10 @@ public class DonateService {
 
     // 플러스 해주는 서비스
     public void plusDonationService(long boardNo , long currentMoney ){
+
         mapper.plusDonation(boardNo,currentMoney);
     }
+
 
 
 //    public void upCashService(Long userId, Long money) {

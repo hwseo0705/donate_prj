@@ -16,22 +16,23 @@
         .inputbtn {
             margin-top: 30px;
 
+        }
 
-            .lnr-heart {
-                margin-right: 5px;
-                color: red;
-            }
+        .lnr-heart {
+            margin-right: 5px;
+            color: red;
+        }
 
-            .pink {
-                background: rgb(174, 16, 111);
-                border: 1px solid rgb(174, 16, 111);
-            }
+        .pink {
+            background: rgb(174, 16, 111);
+            border: 1px solid rgb(174, 16, 111);
+        }
 
-            .pink:hover {
-                background: rgb(131, 2, 79);
-                border: 1px solid rgb(131, 2, 79);
+        .pink:hover {
+            background: rgb(131, 2, 79);
+            border: 1px solid rgb(131, 2, 79);
 
-            }
+        }
     </style>
 </head>
 
@@ -65,7 +66,8 @@
             <button type="button" id="donate-btn" class="pink btn btn-primary">기부하기</button>
         </div>
         <div class="inputbtn">
-            <form hidden action="/donateMoney/${b.boardNo}?userId=${y.userId}&title=${b.title}" method="post" id="inputdonation">
+            <form hidden action="/donateMoney/${b.boardNo}?userId=${y.userId}&title=${b.title}" method="post"
+                id="inputdonation">
                 <input type="number" name="money">
                 <button type="submit" class="btn btn-primary">기부확인</button>
             </form>

@@ -35,7 +35,6 @@ public class UserController {
     private final DonateService donateService;
 
 
-
     // 로그인 요청 들어옴
     @GetMapping("/login")
     public String login() {
@@ -49,7 +48,7 @@ public class UserController {
     @PostMapping("/login")
 
     public String login(String userId, String password, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra, Model model
-    , HttpSession session) {
+            , HttpSession session) {
 
         log.info("userId : {} , password : {}", userId, password);
         int i = service.loginCookieService(userId, password, request, response);
@@ -81,7 +80,6 @@ public class UserController {
     }
 
 
-
     // 회원 정보 삭제  // 탈퇴
     @GetMapping("/delUser/{userId}/{password}")
     public String delete(@PathVariable String userId, @PathVariable String password, RedirectAttributes ra) {
@@ -109,7 +107,8 @@ public class UserController {
 
     public String hello(HttpServletRequest request, HttpSession session) {
 
-        if (session.getAttribute("y") == null) {}
+        if (session.getAttribute("y") == null) {
+        }
 
         log.info("hello!!");
 
@@ -194,24 +193,24 @@ public class UserController {
     }
 
 
-
     @GetMapping("/upCash/{userId}/{money}")
     public String upCash(@PathVariable String userId, @PathVariable Long money) {
         service.upCashService(userId, money);
-        return "redirect:/myinfo/"+userId;
+        return "redirect:/myinfo/" + userId;
     }
 
 
-        // 새로 추가할 메서드
+    // 새로 추가할 메서드
 
 
     @PostMapping("/donateMoney/{boardNo}")
-    public String donateMoney(@PathVariable Long boardNo, long money ,String userId , String title, RedirectAttributes ra){
-        log.info("{},{},{}",boardNo,money,userId);
-        donateService.plusDonationService(boardNo ,money); // 기부 금액 증가
+    public String donateMoney(@PathVariable Long boardNo, long money, String userId, String title, RedirectAttributes ra) {
+        log.info("{},{},{}", boardNo, money, userId);
+        donateService.plusDonationService(boardNo, money); // 기부 금액 증가
         boolean b = service.minusMoneyService(userId, money); // 기부 금액 차감
         ra.addFlashAttribute("user", userId); // 님이 기부하셨습니다.
 
+        // DonateInfo에 내가 기부한 정보 세이브
         DonateInfo di = new DonateInfo();
         di.setDonateMoney(money);
         di.setUserId(userId);
@@ -221,8 +220,6 @@ public class UserController {
         return "redirect:/detail/{boardNo}";
 
     }
-
-
 
 
 }
