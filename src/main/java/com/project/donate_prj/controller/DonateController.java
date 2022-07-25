@@ -96,17 +96,12 @@ public class DonateController {
         return "redirect:/main";
     }
 
-    @PostMapping("/like")
-    public String upLike(Long boardNo) {
-        service.upLikeService(boardNo);
-        return "redirect:/detail/" + boardNo;
-    }
-
 //    @PostMapping("/upCash/{userId}/{money}")
 //    public String upCash(@PathVariable Long userId, @PathVariable Long money) {
 //        service.upCashService(userId, money);
 //        return "redirect:/myinfo";
 //    }
+
 
 }
 

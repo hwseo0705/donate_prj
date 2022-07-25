@@ -90,16 +90,16 @@
     </update>
 
 
-    <select id="isLike" resultType="boolean">
-        SELECT board_no
+    <select id="isLike" resultType="int">
+        SELECT COUNT(like_board_no)
         FROM like_check
         WHERE user_id = #{userId}
-        AND board_no = #{boardNo}
+            AND like_board_no = #{boardNo}
     </select>
 
     <insert id="likeCheck">
         INSERT INTO like_check
-        VALUES (#{userId}, #{#boardNo})
+        VALUES (#{userId}, #{boardNo})
     </insert>
 
     <update id="upCash">

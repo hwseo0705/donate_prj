@@ -232,22 +232,26 @@ public class UserController {
 
     @GetMapping("/uplike/{boardNo}/{userId}")
     public String upLike(@PathVariable Long boardNo, @PathVariable String userId, RedirectAttributes ra) {
+        log.info("UserController request /uplike GET! - {}, {}", boardNo, userId);
 
         boolean flag = service.likeCheckService(boardNo, userId);
 
         if (flag) {
-            ra.addFlashAttribute("y", true);
+            ra.addFlashAttribute("likeResult", true);
         } else {
-            ra.addFlashAttribute("n", false);
+            ra.addFlashAttribute("likeResult", false);
         }
         return "redirect:/detail/" + boardNo;
     }
+
+
 
     @GetMapping("/upCash/{userId}/{money}")
     public String upCash(@PathVariable String userId, @PathVariable Long money) {
         service.upCashService(userId, money);
         return "redirect:/myinfo/"+userId;
     }
+
 }
 
 
