@@ -75,9 +75,9 @@
         <div class="top-banner">
 
             <div class="my-section">
-                <div class="mypage"><a href="/myinfo/${my.userId}">내정보</a></div>
-                <div class="mydonation"><a href="/mydonation/${my.userId}">내기부</a></div>
-                <div class="myboard"><a href="/myboard/${my.userId}">나의글</a></div>
+                <div class="mypage"><a href="/myinfo/${y.userId}">내정보</a></div>
+                <div class="mydonation"><a href="/mydonation/${y.userId}">내기부</a></div>
+                <div class="myboard"><a href="/myboard/${y.userId}">나의글</a></div>
             </div>
         </div>
 
