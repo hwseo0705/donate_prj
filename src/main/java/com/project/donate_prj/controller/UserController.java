@@ -1,6 +1,7 @@
 package com.project.donate_prj.controller;
 
 
+import com.project.donate_prj.domain.DonateBoard;
 import com.project.donate_prj.domain.DonateUser;
 import com.project.donate_prj.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -8,10 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
@@ -122,11 +120,11 @@ public class UserController {
 
 
     // 회원 정보 삭제  // 탈퇴
-//    @GetMapping("/delUser")
-//    public String delete(String userId) {
-//        service.deleteService(userId);
-//        return "board/board-list";
-//    }
+    @GetMapping("/delUser/{userId}")
+    public String delete(@PathVariable String userId) {
+        service.deleteService(userId);
+        return "redirect:/main";
+    }
 
 //     회원 정보 수정
 //    @GetMapping("/modiUser")
@@ -138,12 +136,13 @@ public class UserController {
 //        return "/login-modify";
 //    }
 
-//    @PostMapping("/modiUser")
-//    public String modify(DonateUser donateUser) {
-//        boolean b = service.modifyService(donateUser);
-//        return "redirect:/board/boardList";
-//
-//    }
+    @PostMapping("/modiUser")
+    public String modify(DonateUser donateUser) {
+        log.info("modify POST - {}", donateUser);
+        boolean b = service.modifyService(donateUser);
+        return "redirect:/myinfo/" + donateUser.getUserId();
+
+    }
 
     @GetMapping("/hello")
 
@@ -198,7 +197,7 @@ public class UserController {
         switch (i) {
             case 1:
                 ra.addFlashAttribute("msg", 1);
-                ra.addFlashAttribute("register",userId);
+                ra.addFlashAttribute("register", userId);
                 // 중복 아이디
                 return "redirect:/register";
             case 2:
@@ -211,24 +210,23 @@ public class UserController {
     }
 
 
-    //mppage/myboard
     @GetMapping("/myboard")
-    public String hello(){
+    public String myBoard() {
         log.info("into mypage/myboard");
         return "mypage/myboard";
     }
 
-    //mppage/mydonattion
     @GetMapping("/mydonation")
-    public String detail(){
+    public String myDonation() {
         log.info("into mypage/mydonation");
         return "mypage/mydonation";
     }
 
-    // login/login-save
-    @GetMapping("myinfo")
-    public String loginsave(){
-        log.info("mypage/myinfo");
+    @GetMapping("/myinfo/{userId}")
+    public String myInfo(@PathVariable String userId, Model model) {
+        log.info("mypage/myinfo - {}", userId);
+        DonateUser user = service.findOneService(userId);
+        model.addAttribute("my", user);
         return "mypage/myinfo";
     }
 
@@ -245,10 +243,11 @@ public class UserController {
         return "redirect:/detail/" + boardNo;
     }
 
-
-
-
-
+    @GetMapping("/upCash/{userId}/{money}")
+    public String upCash(@PathVariable String userId, @PathVariable Long money) {
+        service.upCashService(userId, money);
+        return "redirect:/myinfo/"+userId;
+    }
 }
 
 

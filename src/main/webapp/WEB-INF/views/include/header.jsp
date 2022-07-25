@@ -55,27 +55,26 @@
             </form>
 
             <c:choose>
-     
+
                 <c:when test="${not empty y}">
                     <div class="wrap">
-                        <div class="text-end">
-
-                            <button type="button" class="btn btn-outline-light me-2">${y.name}님 안녕하세요</button>
-                           
-
-                            <button type="button" class="btn btn-outline-light me-2">${y.name}님 안녕하세요
+                        <div class="text-end yes-user-info">
+                            <button type="button" id="my-name" class="btn btn-outline-light me-2">${y.name}님 안녕하세요
                             </button>
 
-                            <button type="button" class="btn btn-warning"><a href="/logout">logout</a></button>
+                            <button type="button" id="logout" class="btn btn-warning"><a
+                                    href="/logout">logout</a></button>
+
                         </div>
                     </div>
                 </c:when>
 
                 <c:when test="${empty y}">
-                    <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2"><a
+                    <div class="text-end no-user-info">
+                        <button type="button" id="login" class="btn btn-outline-light me-2"><a
                                 href="/login">login</a></button>
-                        <button type="button" class="btn btn-warning"><a href="/register">Sign-up</a></button>
+                        <button type="button" id="register" class="btn btn-warning"><a
+                                href="/register">Sign-up</a></button>
                     </div>
                 </c:when>
             </c:choose>
@@ -91,32 +90,48 @@
         function loginRequestEvent() {
             // 로그인 화면 요청이 들어가야함
 
-            const $loginBtn = document.querySelector('.text-end').firstElementChild;
+            const $loginBtn = document.getElementById('login');
 
-            $loginBtn.addEventListener('click', e => {
+            if ($loginBtn != null) {
 
-                location.href = '/login';
-            });
+
+                $loginBtn.addEventListener('click', e => {
+
+                    location.href = '/login';
+                });
+            }
         }
 
         // 회원가입 버튼 클릭 이벤트
         function signUpRequestEvent() {
             // 회원가입 화면 요청이 들어가야 함
 
-            const $signUpBtn = document.querySelector('.text-end').lastElementChild;
+            const $signUpBtn = document.getElementById('register');
 
-            $signUpBtn.addEventListener('click', e => {
+            if ($signUpBtn != null) {
 
-                location.href = '/register';
-            });
+                $signUpBtn.addEventListener('click', e => {
+
+                    location.href = '/register';
+                });
+            }
         }
 
+        // ''님 안녕하세요 클릭시 마이페이지로 이동
+        function goToMyPage() {
+            const $myName = document.getElementById('my-name');
+
+            $myName.onclick = e => {
+                console.log('clicked');
+                location.href = '/myinfo/' + 'a1'
+            }
+        }
 
         // 함수 실행부
         (function () {
             loginRequestEvent();
             signUpRequestEvent();
-
+            goToMyPage();
 
         })();
     </script>

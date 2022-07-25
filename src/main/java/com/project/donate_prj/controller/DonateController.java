@@ -102,11 +102,11 @@ public class DonateController {
         return "redirect:/detail/" + boardNo;
     }
 
-    @PostMapping("/upCash")
-    public String upCash(Long money, Long userId) {
-        service.upCashService(userId, money);
-        return "redirect:/mypage";
-    }
+//    @PostMapping("/upCash/{userId}/{money}")
+//    public String upCash(@PathVariable Long userId, @PathVariable Long money) {
+//        service.upCashService(userId, money);
+//        return "redirect:/myinfo";
+//    }
 
 }
 

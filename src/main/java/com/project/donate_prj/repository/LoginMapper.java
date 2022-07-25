@@ -59,5 +59,6 @@ public interface LoginMapper {
 
     void likeCheck(Long boardNo, String userId);
 
+    void upCash(String userId, Long money);
 
 }
