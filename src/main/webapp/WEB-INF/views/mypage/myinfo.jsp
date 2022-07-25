@@ -79,51 +79,52 @@
         <div class="my-info">
             <h1>회원정보</h1>
 
-            <form action="/login/modify" method="post">
+            <form action="/modiUser" method="post">
 
-            <input type="hidden" name="boardNo" value="${b.boardNo}">
-        
+                <input type="hidden" name="boardNo" value="${b.boardNo}">
 
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">아이디</label>
-                <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디"
-                    name="userId" value="${my.userId}">
-            </div>
 
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">이름</label>
-                <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름"
-                    name="name" value="${my.name}">
-            </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">아이디</label>
+                    <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디"
+                        name="userId" value="${my.userId}">
+                </div>
 
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">이메일</label>
-                <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="이메일"
-                    name="email" value="${my.email}">
-            </div>
+                <input hidden type="password" name="password" value="${my.password}">
 
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">보유금액</label>
-                <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="보유금액"
-                    name="money" value="${my.money}">
-            </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">이름</label>
+                    <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름"
+                        name="name" value="${my.name}">
+                </div>
 
-            <div class="btn-group btn-group-lg custom-btn-group" role="group">
-                <button id="cash-btn" type="button" class="btn btn-success">캐시충전</button>
-            </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">이메일</label>
+                    <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="이메일"
+                        name="email" value="${my.email}">
+                </div>
 
-            <div class="btn-group btn-group-lg custom-btn-group" role="group">
-                <button id="mod-btn" type="button" class="btn btn-warning">수정</button>
-            </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">보유금액</label>
+                    <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="보유금액"
+                        name="money" value="${my.money}">
+                </div>
 
-            <div class="btn-group btn-group-lg custom-btn-group" role="group">
-                <button hidden id="done-btn" type="button" class="btn btn-secondary">수정완료</button> 
-                <!-- change button to submit -->
-            </div>
+                <div class="btn-group btn-group-lg custom-btn-group" role="group">
+                    <button id="cash-btn" type="button" class="btn btn-success">캐시충전</button>
+                </div>
 
-            <div class="btn-group btn-group-lg custom-btn-group" role="group">
-                <button id="del-btn" type="button" class="btn btn-danger">탈퇴</button>
-            </div>
+                <div class="btn-group btn-group-lg custom-btn-group" role="group">
+                    <button id="mod-btn" type="button" class="btn btn-warning">수정</button>
+                </div>
+
+                <div class="btn-group btn-group-lg custom-btn-group" role="group">
+                    <button hidden id="done-btn" type="submit" class="btn btn-secondary">수정완료</button>
+                </div>
+
+                <div class="btn-group btn-group-lg custom-btn-group" role="group">
+                    <button id="del-btn" type="button" class="btn btn-danger">탈퇴</button>
+                </div>
 
             </form>
 
@@ -134,7 +135,6 @@
 
 
     <script>
-
         // 회원정보 수정 이벤트
         function modifyEvent() {
             const $modify = document.querySelector('#mod-btn');
@@ -146,7 +146,7 @@
 
                 console.log('clicked');
 
-                for (let i = 0; i < $form.length; i++) {
+                for (let i = 0; i < $form.length - 1; i++) {
                     $form[i].removeAttribute('disabled');
                 }
 
@@ -154,15 +154,15 @@
 
             };
 
-            // 수정 완료 버튼 누르면 다시 disabled
-            $done.onclick = e => {
-                $done.hidden = true;
-                for (let i = 0; i < $form.length; i++) {
-                    $form[i].disabled = true;
-                }
+            // // 수정 완료 버튼 누르면 다시 disabled
+            // $done.onclick = e => {
+            //     $done.hidden = true;
+            //     for (let i = 0; i < $form.length; i++) {
+            //         // $form[i].disabled = true;
+            //     }
 
-                //location.href = '/mypage';
-            }
+            //     //location.href = '/mypage';
+            // }
         }
 
         // 캐시충전 이벤트 (미완성)
@@ -173,7 +173,7 @@
             $cashBtn.onclick = e => {
                 console.log('cash event clicked');
                 var cash = +prompt("캐시를 얼마 충전하시겠습니까?");
-                location.href = '/upCash?money=' + cash;
+                location.href = '/upCash/' + '${my.userId}/' + cash;
 
             }
         }
@@ -183,9 +183,11 @@
             const $delBtn = document.getElementById('del-btn');
 
             $delBtn.onclick = e => {
-                console.log('delete event clicked');
-                location.href='/login/remove';
-                
+                var proceed = confirm("정말로 탈퇴하시겠습니까?");
+
+                if (proceed) {
+                    location.href = '/delUser/' + '${my.userId}';
+                }
             }
         }
 
