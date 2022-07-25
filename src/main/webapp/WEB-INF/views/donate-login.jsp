@@ -85,7 +85,7 @@
 
     <div class="wrapper text-center">
         <section class="target form-signin w-100 m-auto">
-            <form action="/login/login" method="post"> 
+            <form action="/login" method="post"> 
                 <!-- 경로 주의 나중에 /login로 바꿔야됨  -->
                 <img class="mb-4" src="/img/logo2.jpg" alt="" width="150" height="150">
                 <h1 class="h3 mb-3 fw-normal">Please Login</h1>

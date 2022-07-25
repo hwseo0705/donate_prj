@@ -83,5 +83,24 @@
     <!--        where user_id=#{userId} and password=#{password}-->
     <!--    </select>-->
 
+    <update id="upLikeCnt">
+        UPDATE donate_board
+        SET like_cnt = like_cnt + 1
+        WHERE board_no = #{boardNo}
+    </update>
+
+
+    <select id="isLike" resultType="boolean">
+        SELECT board_no
+        FROM like_check
+        WHERE user_id = #{userId}
+        AND board_no = #{boardNo}
+    </select>
+
+    <insert id="likeCheck">
+        INSERT INTO like_check
+        VALUES (#{userId}, #{#boardNo})
+    </insert>
+
 
 </mapper>

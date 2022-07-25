@@ -34,7 +34,7 @@ public class DonateController {
 
 
         model.addAttribute("dbList", findAllMap.get("dbList"));
-        model.addAttribute("pm",pm);
+        model.addAttribute("pm", pm);
         return "board/index";
     }
 
@@ -92,39 +92,10 @@ public class DonateController {
         return "redirect:/main";
     }
 
-//
-//    @GetMapping("/mypage")
-//    public String mypage() {
-//        return "mypage/myinfo";
-//    }
-//
-//    @GetMapping("/mydonation")
-//    public String mydonation() {
-//        return "mypage/mydonation";
-//    }
-//    @GetMapping("/myboard")
-//    public String myboard() {
-//        return "mypage/myboard";
-//    }
-
-    @GetMapping("/mypage")
-    public String mypage() {
-        return "mypage/myinfo";
-    }
-
-    @GetMapping("/mydonation")
-    public String mydonation() {
-        return "mypage/mydonation";
-    }
-    @GetMapping("/myboard")
-    public String myboard() {
-        return "mypage/myboard";
-    }
-
     @PostMapping("/like")
     public String upLike(Long boardNo) {
         service.upLikeService(boardNo);
-        return "redirect:/detail/"+boardNo;
+        return "redirect:/detail/" + boardNo;
     }
 
     @PostMapping("/upCash")
@@ -133,48 +104,5 @@ public class DonateController {
         return "redirect:/mypage";
     }
 
-    // login get
-    @GetMapping("/login")
-    public String login() {
-        log.info("controller request /login GET! ");
-
-
-//    // login get
-//    @GetMapping("/login")
-//    public String login() {
-//        log.info("controller request /login GET! ");
-//
-//        return "donate-login";
-//    }
-
-//    donate-login
-
-//     login post : 기원이형!! 로그인이 되면 어떤 로직들이 실행되어야 하는지 하단부 주석 작성해주세요!!
-//    @PostMapping("/login")
-//    public String login( id, pw 별로 검증이 필요해서 커맨드 객체보다 따로 받는게 나으려나?? 여긴 형 스타일대로~~ ) {
-//        log.info("controller request /login POST! - {}", 로그 꼭 확인하세요!! );
-//
-//
-//        return "redirect:/index";
-//    }
-
-
-//    // register get
-//    @GetMapping("/register")
-//    public String register() {
-//        log.info("controller request /register GET! ");
-//
-//        return "donate-register";
-//    }
-
-
-////     register post : To 기원이형!!
-//    @PostMapping("/register")
-//    public String register() {
-//        log.info("controller request /register POST! - {}", 매개변수들 잘 들어왔는지 확인 잘 해주세요~~);
-//
-//        return "redirect:/"; // 로그인 성공했으면 메인 화면으로 가야할듯요!
-//    }
-
-
 }
+

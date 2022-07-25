@@ -107,6 +107,17 @@ public class LoginService {
 //    Cookie foundCookie = WebUtils.getCookie(request, "b" + boardNo);
 
 
+    // 응원하기 관련 서비스
+    public boolean likeCheckService(Long boardNo, String userId) {
+
+        boolean flag = mapper.isLike(boardNo, userId);
+        if (flag) {
+            mapper.likeCheck(boardNo, userId);
+            mapper.upLikeCnt(boardNo);
+            return true;
+        }
+        return false;
+    }
 
 
 }

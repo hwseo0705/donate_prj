@@ -68,7 +68,7 @@
                                     <li><a href="">3</a></li>
                                 </ul>
                             </div>
-                            <button type="button" class="btn btn-warning"><a href="login/logout">logout</a></button>
+                            <button type="button" class="btn btn-warning"><a href="/logout">logout</a></button>
                         </div>
                     </div>
                 </c:when>
@@ -76,8 +76,8 @@
                 <c:when test="${empty y}">
                     <div class="text-end">
                         <button type="button" class="btn btn-outline-light me-2"><a
-                                href="login/login">login</a></button>
-                        <button type="button" class="btn btn-warning"><a href="login/register">Sign-up</a></button>
+                                href="/login">login</a></button>
+                        <button type="button" class="btn btn-warning"><a href="/register">Sign-up</a></button>
                     </div>
                 </c:when>
             </c:choose>
