@@ -59,8 +59,13 @@
                 <c:when test="${not empty y}">
                     <div class="wrap">
                         <div class="text-end">
+
                             <button type="button" class="btn btn-outline-light me-2">${y.name}님 안녕하세요</button>
                            
+
+                            <button type="button" class="btn btn-outline-light me-2">${y.name}님 안녕하세요
+                            </button>
+
                             <button type="button" class="btn btn-warning"><a href="/logout">logout</a></button>
                         </div>
                     </div>

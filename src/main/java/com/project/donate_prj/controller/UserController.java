@@ -18,7 +18,9 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -75,8 +77,10 @@ public class UserController {
 
     // 요청 입력하면 확인하고 돌려보냄
     @PostMapping("/login")
+
     public String login(String userId, String password, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra, Model model
     , HttpSession session) {
+
         log.info("userId : {} , password : {}", userId, password);
         int i = service.loginCookieService(userId, password, request, response);
         log.info("result: {}", i);
@@ -91,9 +95,11 @@ public class UserController {
             //  여기까지도 성공
             case 3:
                 DonateUser info = service.findOneService(userId);
+
                 session.setAttribute("y", info);
 //                ra.addFlashAttribute("y",info); // 진화 2
 //                model.addAttribute("y", info); // 진화 1
+
                 return "redirect:/main";
 
 
@@ -140,11 +146,11 @@ public class UserController {
 //    }
 
     @GetMapping("/hello")
+
     public String hello(HttpServletRequest request, HttpSession session) {
 
-        if (session.getAttribute("y") == null) {
+        if (session.getAttribute("y") == null) {}
 
-        }
         log.info("hello!!");
 
         Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
@@ -158,8 +164,10 @@ public class UserController {
     }
 
     @GetMapping("/logout")
+
     public String logout(HttpServletResponse response, HttpServletRequest request, HttpSession session) {
         session.invalidate(); //
+
         Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
         if (loginCookie != null) {
             Cookie cookie = new Cookie("loginCookie", "out");
