@@ -34,10 +34,7 @@
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="제목" name="title">
         </div>
 
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">작성자</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="writer">
-        </div>
+        <input hidden type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="writer" value="${y.userId}">
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">썸네일</label>

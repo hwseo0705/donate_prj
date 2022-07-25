@@ -55,6 +55,11 @@
         WHERE board_no = #{boardNo}
     </select>
 
+    <select id="findAllWrite" resultMap="donateBoardMap">
+        SELECT *
+        FROM donate_board
+        WHERE writer=#{writer}
+    </select>
 
     <select id="getTotalCnt" resultType="long">
         SELECT COUNT(*)

@@ -8,9 +8,25 @@
     <%@ include file="/WEB-INF/views/include/static-head.jsp" %>
 
     <style>
-
         .wrap {
             width: 90%;
+        }
+
+
+        .lnr-heart {
+            margin-right: 5px;
+            color: red;
+        }
+
+        .pink {
+            background: rgb(174, 16, 111);
+            border: 1px solid rgb(174, 16, 111);
+        }
+
+        .pink:hover {
+            background: rgb(131, 2, 79);
+            border: 1px solid rgb(131, 2, 79);
+
         }
     </style>
 </head>
@@ -39,14 +55,53 @@
         </div>
 
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" id="like-btn" class="btn btn-primary">응원 ${b.likeCnt}</button>
-            <button type="button" id="share-btn" class="btn btn-primary">공유</button>
-            <button type="button" id="donate-btn" class="btn btn-primary">기부하기</button>
+            <button type="button" id="like-btn" class="pink btn btn-primary"><small class="text-muted"><span
+                        class="lnr lnr-heart"></span></small>응원 ${b.likeCnt}</button>
+            <button type="button" id="share-btn" class="pink btn btn-primary">공유</button>
+            <button type="button" id="donate-btn" class="pink btn btn-primary">기부하기</button>
         </div>
+
+        <div id="hidden-btn" class="btn-group" role="group" aria-label="Basic example">
+
+            <button hidden type="button" id="mod-btn" class="btn btn-primary">수정하기</button>
+            <button hidden type="button" id="del-btn" class="btn btn-primary">삭제하기</button>
+        </div>
+
 
     </div>
 
     <script>
+        function hiddenBtn() {
+            const $hiddenBtn = document.getElementById('hidden-btn');
+            if ('${b.writer}' === '${y.userId}') {
+                modButton();
+                delButton();
+            }
+        }
+
+        function modButton() {
+            const $modBtn = document.getElementById('mod-btn');
+
+            $modBtn.hidden = false;
+
+            $modBtn.onclick = e => {
+                location.href = '/modify/${boardNo}';
+            }
+        }
+
+        function delButton() {
+            const $delBtn = document.getElementById('del-btn');
+
+
+            $delBtn.hidden = false;
+
+            $delBtn.onclick = e => {
+                var proceed = confirm("정말로 삭제하시겠습니까?");
+                if (proceed) {
+                    location.href = '/remove?boardNo=${boardNo}';
+                }
+            }
+        }
 
         function upLikeResult() {
             // console.log('lr:', '${likeResult}');
@@ -64,7 +119,7 @@
             $likeBtn.onclick = e => {
                 console.log('like clicked');
 
-                location.href='/uplike/' + '${b.boardNo}/' + '${y.userId}';
+                location.href = '/uplike/' + '${b.boardNo}/' + '${y.userId}';
             }
 
         }
@@ -74,18 +129,18 @@
 
             $donateBtn.onclick = e => {
                 console.log('donate clicked');
-                location.href='/donate'
+                location.href = '/donate'
             }
 
         }
 
-        (function() {
+        (function () {
             upLikeCnt();
             donate();
             upLikeResult();
+            hiddenBtn();
         })();
-
-        </script>
+    </script>
 
 
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>

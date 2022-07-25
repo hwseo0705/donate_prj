@@ -27,6 +27,8 @@ public interface DonateMapper {
     // 응원하기 클릭시 like_cnt 숫자 상승 시켜서 db에 저장할 메서드
     void upLikeCnt(Long boardNo);
 
+    List<DonateBoard> findAllWrite(String writer);
+
 //    void upCash(Long userId, Long money);
 
     // 캐시충전 클릭시 얼마 충전할지 입력하고 보유금액 상승

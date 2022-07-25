@@ -10,6 +10,7 @@ import lombok.*;
 public class DonateInfo {
 
     private Long boardNo;
+    private String title;
     private String userId;
     private Long donateMoney;
 }
