@@ -69,7 +69,10 @@
             <form hidden action="/donateMoney/${b.boardNo}?userId=${y.userId}&title=${b.title}" method="post"
                 id="inputdonation">
                 <input type="number" name="money">
-                <button type="submit" class="btn btn-primary">기부확인</button>
+                <div class="invalid-feedback">
+                    비정상적 입력입니다.
+                </div>
+                <button type="button" class="btn btn-primary donate">기부확인</button>
             </form>
         </div>
 
@@ -158,8 +161,17 @@
 
                 }
             }
-
         }
+
+        const $dBtn = document.querySelector('.donate');
+        $dBtn.addEventListener('click', e => {
+            const $dMoney = $dBtn.previousElementSibling.previousElementSibling.value;
+            if ($dMoney < 1) {
+                $dBtn.previousElementSibling.style.display = 'block';
+                return;
+            }
+            $dBtn.parentElement.submit();
+        });
 
         const no = '${no}';
         console.log(no);

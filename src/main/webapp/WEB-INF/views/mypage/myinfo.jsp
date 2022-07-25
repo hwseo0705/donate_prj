@@ -56,6 +56,11 @@
             width: 60%;
             margin-left: 30px;
         }
+
+        .d-btn {
+            display: none;
+        }
+
     </style>
 </head>
 
@@ -135,9 +140,22 @@
                 <div class="btn-group btn-group-lg custom-btn-group" role="group">
                     <button id="del-btn" type="button" class="btn btn-danger">탈퇴</button>
                 </div>
-
+                 
             </form>
 
+            <br>
+
+            <div class="inputbtn d-btn">
+                <form action="/delUser/${my.userId}" method="post"
+                    id="input-del-user">
+                    <input type="password" name="password" maxlength="15" placeholder="삭제하려면 비밀번호를 입력하세요.">
+                    <!-- <div class="invalid-feedback">
+                        비정상적 입력입니다.
+                    </div> -->
+                    <button type="submit" class="btn btn-danger delete">탈퇴하기</button>
+                </form>
+            </div>
+            
         </div>
 
 
@@ -204,12 +222,15 @@
             const $delBtn = document.getElementById('del-btn');
 
             $delBtn.onclick = e => {
-                var proceed = confirm("정말로 탈퇴하시겠습니까?");
+                const $delBox = document.querySelector('.d-btn');
+                $delBox.style.display = 'block';
 
-                if (proceed) {
-                    let pw = prompt('비밀번호를 입력하세요');
-                    location.href = '/delUser/' + '${my.userId}/' + pw;
-                }
+            //     var proceed = confirm("정말로 탈퇴하시겠습니까?");
+
+            //     if (proceed) {
+            //         let pw = prompt('비밀번호를 입력하세요');
+            //         location.href = '/delUser/' + '${my.userId}/' + pw;
+            //     }
             }
         }
 
