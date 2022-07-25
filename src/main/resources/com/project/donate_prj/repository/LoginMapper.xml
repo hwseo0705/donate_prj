@@ -102,5 +102,10 @@
         VALUES (#{userId}, #{boardNo})
     </insert>
 
+    <update id="upCash">
+        UPDATE donate_user
+        SET money = money + #{money}
+        WHERE user_id = #{userId}
+    </update>
 
 </mapper>

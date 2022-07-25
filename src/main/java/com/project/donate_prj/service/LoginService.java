@@ -22,16 +22,16 @@ public class LoginService {
     private final LoginMapper mapper;
 
     // 회원 가입 서비스 // 아이디 중복 검사 완로
-    public int saveService(String userId, String password , String name, String email) {
-        log.info("saveService ~~ donateUser = {},{},{},{}", userId,password , name,  email);
+    public int saveService(String userId, String password, String name, String email) {
+        log.info("saveService ~~ donateUser = {},{},{},{}", userId, password, name, email);
         if (findIdService(userId)) {
             // 아이디 찾는 서비스 하나라도 나온다면 true 이기 때문에
             log.info("joungbok");
             return 1;
         }
         log.info("saveService success");
-        mapper.save(userId,password,name,email);
-        return 2 ;
+        mapper.save(userId, password, name, email);
+        return 2;
     }
 
     // 모두 불러오기
@@ -118,5 +118,7 @@ public class LoginService {
         return false;
     }
 
-
+    public void upCashService(String userId, Long money) {
+        mapper.upCash(userId, money);
+    }
 }
