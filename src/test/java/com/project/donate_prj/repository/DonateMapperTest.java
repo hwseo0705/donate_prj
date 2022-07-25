@@ -102,4 +102,18 @@ class DonateMapperTest {
         assertTrue(modify);
         assertEquals("글쓴이 수정", board.getWriter());
     }
+
+    @Test
+    @DisplayName("boardNo 주고 금액 말하면 현재 가격이 오름 ")
+    void plusDonationTest(){
+        mapper.plusDonation(21,5500);
+    }
+
+
+
+
+
+
+
+
 }

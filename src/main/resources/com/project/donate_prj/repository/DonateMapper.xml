@@ -77,4 +77,13 @@
 <!--    </update>-->
 
 
+    <!--   기부 -->
+    <update id="plusDonation">
+        UPDATE donate_board
+        SET current_money = current_money + #{currentMoney}
+        WHERE board_no = #{boardNo}
+    </update>
+
+
+
 </mapper>

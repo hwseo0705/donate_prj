@@ -121,4 +121,26 @@ public class LoginService {
     public void upCashService(String userId, Long money) {
         mapper.upCash(userId, money);
     }
+
+
+    // 가진 돈 보다 많이 기부하면 false , 가진 돈 보다 적게 기부하면 true
+    public boolean minusMoneyService(String userId, long money) {
+
+        if (findMoneyService(userId) < money){
+            System.out.println("money to many false ");
+            return false;
+        }
+        // 내가 가진 돈 보다 적게 기부하면 차감
+        mapper.minusMoney(userId, money);
+        return true;
+    }
+
+    // 내가 가진돈 보여주는 메서드
+    public long findMoneyService(String userId) {
+        long money = mapper.findMoney(userId);
+        return money;
+    }
+
+
+
 }

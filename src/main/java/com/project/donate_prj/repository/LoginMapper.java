@@ -2,6 +2,7 @@ package com.project.donate_prj.repository;
 
 import com.project.donate_prj.domain.DonateUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -32,27 +33,19 @@ public interface LoginMapper {
     // 돈 증가
     boolean plusMoney(String userId , long money);
 
-    // 돈 마이너스
-    boolean minusMoney(String userId , long money);
 
-    // 아이디 찾기
-    // 가입한 이메일로 찾기
-    // 가입한 이름으로 찾기
-    // return 아이디
+    // 기부하는 메서드
+    // 1. 내가 가진 금액 찾기
+    long findMoney(String useId);
 
-    // 비밀번호 찾기
-    // 아이디 + 가입한 이메일로 찾기
-    // 아이디 + 가입한 이름으로 찾기
-    // return 비밀번호
+    // 2. 내가 가진 금액에서 - 기부하기
+    // 마이너스
+    void minusMoney(@Param("userId") String userId , @Param("money") long money);
 
-//
-//    // 전체 게시물 수 조회
-//    int getTotalCount();
-//
-//    // 조회수 상승 처리
-//    void upViewCount();
 
-    // 응원하기 클릭시 like_cnt 숫자 상승 시켜서 db에 저장할 메서드
+
+
+
     void upLikeCnt(Long boardNo);
 
     int isLike(Long boardNo, String userId);

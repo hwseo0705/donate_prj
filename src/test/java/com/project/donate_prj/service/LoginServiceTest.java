@@ -40,15 +40,21 @@ class LoginServiceTest {
 
     }
 
+
     @Test
-    @DisplayName(" 저장 잘 되는지 확인 ")
-    void saveServiceTest(){
-//        DonateUser d = new DonateUser("a1","22","12","qwe",1000);
-//        int i = service.saveService(d);
-//        assertEquals(1 ,i);  이 경우 성공함
-        DonateUser d = new DonateUser("b3","22","12","qwe",1000);
-        int i = loginService.saveService(d);
-        assertEquals(2 ,i); // 이것도 성공함
+    @DisplayName("a1 돈 찾는 서비스 ")
+    void findMoneyServiceTest(){
+        long a1 = loginService.findMoneyService("a1");
+        System.out.println(a1);
+    }
+    @Test
+    @DisplayName("a1 이 가진 돈 보다 많이 넣으면 false , ")
+    void minusMoneyServiceTest(){
+        long a1 = loginService.findMoneyService("a1");
+        System.out.println(a1);
+        loginService.minusMoneyService("a1",9954);
+        // 정상작동
+
     }
 
 
