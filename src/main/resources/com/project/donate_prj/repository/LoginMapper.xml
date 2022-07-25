@@ -13,9 +13,12 @@
 
 
     <!--    회원 가입 기능이기 때문에 다 넣어줘야 한다 -->
+
+
     <insert id="save">
         INSERT INTO donate_user
-        VALUES (#{userId}, #{password}, #{name}, #{email}, #{money})
+        (user_id, password, name, email)
+        VALUES (#{userId}, #{password}, #{name}, #{email})
     </insert>
 
     <!--     기본적인 전체 순환 조회 -->

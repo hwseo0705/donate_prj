@@ -13,7 +13,7 @@
     로그인한 사람만 들어오는 페이지다!
         <div>
             
-            <a href="/logout">로그아웃 하자 </a>
+            <a href="/login/logout">로그아웃 하자 </a>
         
         </div>
 
