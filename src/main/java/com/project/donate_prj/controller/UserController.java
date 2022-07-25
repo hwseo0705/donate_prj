@@ -2,6 +2,7 @@ package com.project.donate_prj.controller;
 
 
 import com.project.donate_prj.domain.DonateUser;
+import com.project.donate_prj.service.DonateService;
 import com.project.donate_prj.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,8 +28,11 @@ import javax.servlet.http.HttpSession;
 @RequestMapping
 public class UserController {
 
-    @Autowired
+
     private final LoginService service;
+
+    private final DonateService donateService;
+
 
 
     // 로그인 요청 들어옴
@@ -190,6 +194,18 @@ public class UserController {
     }
 
 
+        // 새로 추가할 메서드
+
+
+    @PostMapping("/donateMoney/{boardNo}")
+    public String donateMoney(@PathVariable Long boardNo, long money ,String userId , RedirectAttributes ra){
+        log.info("{},{},{}",boardNo,money,userId);
+        donateService.plusDonationService(boardNo ,money); // 기부 금액 증가
+        boolean b = service.minusMoneyService(userId, money); // 기부 금액 차감
+        ra.addFlashAttribute("user", userId); // 님이 기부하셨습니다.
+        return "redirect:/detail/{boardNo}";
+
+    }
 
 
 
