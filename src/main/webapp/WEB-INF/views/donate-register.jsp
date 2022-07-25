@@ -7,6 +7,14 @@
 
     <%@ include file="include/static-head.jsp" %>
 
+    <style>
+
+        .invalid-feedback {
+            /* display: block; */
+        }
+
+    </style>
+
 </head>
 
 <body class="bg-light">
@@ -22,7 +30,7 @@
             <!-- <div class="col-md-7 col-lg-8"> -->
             <div class="col-12 center">
 
-                <form action="/register" method="post" class="needs-validation" novalidate>
+                <form id="reg-form" action="/register" method="post" class="needs-validation" novalidate>
                     <div>
                         <!-- class="row g-3" -->
                         <!-- <div class="col-sm-6"> -->
@@ -111,7 +119,7 @@
 
                     <hr class="my-4">
 
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">회원가입</button>
+                    <button type="button" class="w-100 btn btn-primary btn-lg register-btn">회원가입</button>
                 </form>
             </div>
     </div>
@@ -133,6 +141,81 @@
     } else if (msg === '2') {
         alert('가입에 성공하셨습니다.');
     }
+
+
+    // 회원가입시 입력사항들 다 입력했는지 확인하고 넘기기
+    const $registerBtn = document.querySelector('.register-btn');
+
+    $registerBtn.addEventListener('click', e => {
+        for (let c of checkArr) {
+            if (c === false) {
+                return;
+            }
+        }
+
+        $regForm.submit();
+
+    });
+
+    
+
+    const $regForm = document.getElementById('reg-form');
+    const $inputGroup = $regForm.querySelectorAll('input');
+    
+    const checkArr = [false, false, false, false];
+
+    $regForm.onkeyup = e => {
+
+        // console.log('keyup: ', e.target.value);
+
+
+        // 검증
+        const [$id, $pw, $name, $email] = [...$inputGroup];
+
+        // 1. id가 공란인지 확인
+        if ($id.value.trim() === '') {
+            $id.nextElementSibling.style.display='block';
+            checkArr[0] = false;
+        } else {
+            $id.nextElementSibling.style.display='none';
+            checkArr[0] = true;
+        }
+
+        // 2. pw가 공란인지 확인
+        if ($pw.value.trim() === '') {
+            $pw.nextElementSibling.style.display='block';
+            checkArr[1] = false;
+        } else {
+            $pw.nextElementSibling.style.display='none';
+            checkArr[1] = true;
+        }
+
+        // 3. name이 공란인지 확인
+        if ($name.value.trim() === '') {
+            $name.nextElementSibling.style.display='block';
+            checkArr[2] = false;
+        } else {
+            $name.nextElementSibling.style.display='none';
+            checkArr[2] = true;
+        }
+
+
+        // 4. email이 공란인지 확인
+        if ($email.value.trim() === '') {
+            $email.nextElementSibling.style.display='block';
+            checkArr[3] = false;
+        } else {
+            $email.nextElementSibling.style.display='none';
+            checkArr[3] = true;
+        }
+    };
+    
+
+    // 즉시 실행 함수
+    (function() {
+
+    })();
+
 </script>
 
 

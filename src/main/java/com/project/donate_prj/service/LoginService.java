@@ -46,12 +46,13 @@ public class LoginService {
     }
 
     // 삭제 하기 회원 탈퇴
-    public boolean deleteService(String userId) {
-        if (!findIdService(userId)) {
-            log.info("삭제할 id가 없습니다", userId);
+    public boolean deleteService(String userId, String password) {
+        if (!findPasswordService(userId).equals(password)) {
+            log.info("일치하지 않는 비밀번호입니다. - {}", password);
             return false;
         }
-        return mapper.remove(userId);
+        mapper.remove(userId);
+        return true;
     }
 
     // 개인정보 수정

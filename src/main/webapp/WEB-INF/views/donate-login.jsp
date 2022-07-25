@@ -125,9 +125,9 @@
         const msg = '${msg}';
         console.log(msg);
         if (msg === '1') {
-            alert('아이디가 없어')
+            alert('존재하지 않는 아이디입니다.')
         } else if (msg === '2') {
-            alert('비번틀렸어');
+            alert('일치하지 않는 비밀번호입니다.');
         }
     </script>
 

@@ -207,15 +207,32 @@
                 var proceed = confirm("정말로 탈퇴하시겠습니까?");
 
                 if (proceed) {
-                    location.href = '/delUser/' + '${my.userId}';
+                    let pw = prompt('비밀번호를 입력하세요');
+                    location.href = '/delUser/' + '${my.userId}/' + pw;
                 }
             }
         }
 
+
+        // 회원탈퇴에 실패했을 경우 띄울 알림창
+        function delUserResult() {
+            if ('${delUser}' === 'false') {
+                alert('회원 탈퇴에 실패했습니다. 비밀번호가 일치하지 않습니다.');
+
+            } else if ('${delUser}' === 'true') {
+                alert('성공적으로 회원탈퇴하였습니다. 메인으로 돌아갑니다.');
+
+                location.href = '/logout';
+            }
+        }
+
+
+        // 즉시 실행 함수
         (function () {
             modifyEvent();
             cashEvent();
             deleteEvent();
+            delUserResult();
         })();
     </script>
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>

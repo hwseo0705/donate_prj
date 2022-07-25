@@ -173,10 +173,8 @@
         }
 
 
-
         // 즉시 실행 함수
         (function () {
-
             detailRequestEvent();
 
         }) ();
