@@ -16,8 +16,13 @@ public class DonateService {
 
     private final DonateMapper mapper;
 
+
     public boolean saveService(DonateBoard board) {
         return mapper.save(board);
+    }
+
+    public List<DonateBoard> findAllWrite(String writer) {
+        return mapper.findAllWrite(writer);
     }
 
     public Map<String, Object> findAllService(Search search) {

@@ -86,12 +86,14 @@
             <table class="table table-striped table-hover articles">
                 <tr>
                     <th>번호</th>
+                    <th>제목</th>
                     <th>작성자</th>
                 </tr>
                 <c:forEach var="d" items="${dList}">
                     <tr>
                         <td>${d.boardNo}</td>
-                        <td>${d.userId}</td>
+                        <td>${d.title}</td>
+                        <td>${d.writer}</td>
                     </tr>
                 </c:forEach>
             </table>
