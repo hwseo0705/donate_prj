@@ -90,12 +90,14 @@
             <table class="table table-striped table-hover articles">
                 <tr>
                     <th>기부 번호</th>
+                    <th>기부 이름</th>
                     <th>기부자</th>
                     <th>기부액</th>
                 </tr>
                 <c:forEach var="d" items="${dList}">
                     <tr>
                         <td>${d.boardNo}</td>
+                        <td>${d.title}</td>
                         <td>${d.userId}</td>
                         <td>${d.donateMoney}</td>
                     </tr>

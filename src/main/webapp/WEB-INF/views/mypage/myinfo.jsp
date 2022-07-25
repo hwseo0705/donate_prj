@@ -106,12 +106,22 @@
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">보유금액</label>
-                    <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="보유금액"
-                        name="money" value="${my.money}">
+                    <input disabled type="text" class="myMoney form-control" id="exampleFormControlInput1"
+                        placeholder="보유금액" name="money" value="${my.money}">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden id="hidden-label" for="exampleFormControlInput1" class="form-label">충전할 금액 입력</label>
+                    <input hidden id="hidden-input" type="number" class="form-control" id="exampleFormControlInput1"
+                        placeholder="충전할 금액">
                 </div>
 
                 <div class="btn-group btn-group-lg custom-btn-group" role="group">
                     <button id="cash-btn" type="button" class="btn btn-success">캐시충전</button>
+                </div>
+
+                <div class="btn-group btn-group-lg custom-btn-group" role="group">
+                    <button hidden id="cash-done" type="button" class="btn btn-secondary">캐시충전완료</button>
                 </div>
 
                 <div class="btn-group btn-group-lg custom-btn-group" role="group">
@@ -141,13 +151,16 @@
             const $form = document.querySelectorAll('.form-control')
             const $done = document.getElementById('done-btn');
 
-            // 수정 누르면 수정완료 버튼 생성, disabled remove
+            // 수정 누르면 수정완료 버튼 생성, disabled remove$form[i]
+            ;
             $modify.onclick = e => {
 
                 console.log('clicked');
 
-                for (let i = 0; i < $form.length - 1; i++) {
-                    $form[i].removeAttribute('disabled');
+                for (let i = 0; i < $form.length; i++) {
+                    if (!$form[i].classList.contains('myMoney')) {
+                        $form[i].removeAttribute('disabled');
+                    }
                 }
 
                 $done.removeAttribute('hidden');
@@ -171,10 +184,18 @@
 
             // cash amount 입력 받는 창
             $cashBtn.onclick = e => {
-                console.log('cash event clicked');
-                var cash = +prompt("캐시를 얼마 충전하시겠습니까?");
-                location.href = '/upCash/' + '${my.userId}/' + cash;
+                const $cashDone = document.getElementById('cash-done');
+                $cashDone.hidden = false;
 
+                const $hiddenInput = document.getElementById('hidden-input');
+                $hiddenInput.hidden = false;
+
+                const $hiddenLabel = document.getElementById('hidden-label');
+                $hiddenLabel.hidden = false;
+
+                $cashDone.onclick = e => {
+                    location.href = '/upCash/' + '${my.userId}/' + $hiddenInput.value;
+                }
             }
         }
 

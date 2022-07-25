@@ -5,6 +5,7 @@ import com.project.donate_prj.common.paging.PageMaker;
 import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import com.project.donate_prj.domain.DonateUser;
+import com.project.donate_prj.service.DonateInfoService;
 import com.project.donate_prj.service.DonateService;
 import com.project.donate_prj.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -101,6 +102,13 @@ public class DonateController {
 //        service.upCashService(userId, money);
 //        return "redirect:/myinfo";
 //    }
+@GetMapping("/myboard/{writer}")
+public String myBoard(@PathVariable String writer, Model model) {
+    log.info("into mypage/myboard");
+    model.addAttribute("dList", service.findAllWrite(writer));
+    return "mypage/myboard";
+}
+
 
 
 }
