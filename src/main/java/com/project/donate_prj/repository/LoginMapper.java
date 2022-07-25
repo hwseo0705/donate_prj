@@ -9,7 +9,7 @@ import java.util.List;
 public interface LoginMapper {
 
     // 회원가입 기능
-    boolean save(DonateUser donateUser);
+    boolean save(String userId, String password , String name, String email);
 
     // 회원 전체 조회
     List<DonateUser> findAll();

@@ -8,7 +8,6 @@
     <%@ include file="include/static-head.jsp" %>
 
     <style>
-
         body {
             height: 100vh;
         }
@@ -78,8 +77,6 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
-
-
     </style>
 
 </head>
@@ -88,10 +85,11 @@
 
     <div class="wrapper text-center">
         <section class="target form-signin w-100 m-auto">
-            <form>
+            <form action="/login/login" method="post"> 
+                <!-- 경로 주의 나중에 /login로 바꿔야됨  -->
                 <img class="mb-4" src="/img/logo2.jpg" alt="" width="150" height="150">
                 <h1 class="h3 mb-3 fw-normal">Please Login</h1>
-    
+
                 <div class="form-floating">
                     <input type="id" class="form-control" id="floatingInput" placeholder="kim1234" name="userId">
                     <label for="floatingInput">ID</label>
@@ -100,11 +98,12 @@
 
 
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                        name="password">
                     <label for="floatingPassword">Password</label>
 
                 </div>
-    
+
 
                 <div class="checkbox mb-3">
                     <label>
@@ -121,6 +120,16 @@
         </section>
     </div>
 
+
+    <script>
+        const msg = '${msg}';
+        console.log(msg);
+        if (msg === '1') {
+            alert('아이디가 없어')
+        } else if (msg === '2') {
+            alert('비번틀렸어');
+        }
+    </script>
 
 
 

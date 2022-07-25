@@ -55,7 +55,7 @@ public class LoginController {
 //    주의! db에서 걸어놓은 byte 제한을 넘지 않도록 검증도 해줘야 함
 //
 // / mypage (get) : 내 정보 화면 요청
-//            ( 내가 어디 기부했는지 까지도 포함(but 페이징 기능 써서)하는 모든 정보 )
+//            ( 내가 어디 기부했는지 까지도  포함(but 페이징 기능 써서)하는 모든 정보 )
 //
 //            / mypage / delete (get) : 회원 탈퇴 화면 요청
 //
@@ -65,26 +65,34 @@ public class LoginController {
     // 로그인 요청 들어옴
     @GetMapping("/login")
     public String login() {
-        log.info(" 로그인 화면으로 들어가는 페이지 ");
-        return "login/login-detail";
+        log.info(" login success  ");
+        return "donate-login";
+
+//        login/login-detail // 남기원 만든 페이지
     }
 
     // 요청 입력하면 확인하고 돌려보냄
     @PostMapping("/login")
     public String login(String userId, String password, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra, Model model) {
+        log.info("userId : {} , password : {}", userId, password);
         int i = service.loginCookieService(userId, password, request, response);
         log.info("result: {}", i);
         switch (i) {
             case 1:
                 ra.addFlashAttribute("msg", 1);
-                return "redirect:/login";
+                return "redirect:/login/login";
+            // 여기까진 성공 `
             case 2:
                 ra.addFlashAttribute("msg", 2);
-                return "redirect:/login";
+                return "redirect:/login/login";
+            //  여기까지도 성공
             case 3:
                 DonateUser info = service.findOneService(userId);
-                model.addAttribute("y", info);
-                return "board/board-list";
+                ra.addFlashAttribute("y", info);
+//                model.addAttribute("y", info);
+                return "redirect:/main";
+
+
         }
         // 1 아이디 없음
         // 2 비밀번호 틀렸음
@@ -92,40 +100,19 @@ public class LoginController {
         return null;
     }
 
-    // 회원가입 요청 페이지
-    @GetMapping("/save")
-    public String signUp() {
-        log.info("login request page ");
-        return "/login/login-save";
-    }
-
-    // 회원 가입 통과면 저장된 정보를 가지고 가져가라 ~
-    @PostMapping("/save")
-    public String signUp(DonateUser donateUser, Model model, RedirectAttributes ra) {
-        int i = service.saveService(donateUser);
-        if (i == 1) {
-            ra.addFlashAttribute("msg2", 1);
-            return "redirect:/save";
-        } else {
-            model.addAttribute("save", i);
-            return "board/board-list";
-        }
-
-
-    }
 
     // 개인정보 보기
-    @GetMapping("/login/detail")
-    public String detail(String userId, Model model) {
-        log.info("/login/detail GET request - {}", userId);
-        DonateUser one = service.findOneService(userId);
-        model.addAttribute(one);
-        return "login/login-detail";
-    }
+//    @GetMapping("/detail")
+//    public String detail(String userId, Model model) {
+//        log.info("/login/detail GET request - {}", userId);
+//        DonateUser one = service.findOneService(userId);
+//        model.addAttribute(one);
+//        return "login/login-detail";
+//    }
 
 
     // 회원 정보 삭제  // 탈퇴
-    @GetMapping("/login/remove")
+    @GetMapping("/remove")
     public String delete(String userId) {
         service.deleteService(userId);
         return "board/board-list";
@@ -156,36 +143,87 @@ public class LoginController {
         Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
         log.info("{}", loginCookie);
         if (loginCookie != null) {
+            // 쿠키가 null 이 아니면
+            // 로그인 헬로 ~
             return "login/hello";
         }
-        return "redirect:/login";
+        return "redirect:/login/login";
     }
 
     @GetMapping("/logout")
-    public void logout(HttpServletResponse response , HttpServletRequest request) {
+    public String logout(HttpServletResponse response, HttpServletRequest request) {
         Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
         if (loginCookie != null) {
             Cookie cookie = new Cookie("loginCookie", "out");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
+        return "redirect:/main";
+    }
+
+    //
+//    // register get
+    @GetMapping("/register")
+    public String register() {
+        log.info("controller request /register GET!");
+        log.info("register success");
+
+        return "donate-register";
+    }
+
+
+    // register post
+    @PostMapping("/register")
+    public String register(String userId, String password, String name, String email, RedirectAttributes ra) {
+        log.info("DonateUser info- {},{},{},{}", userId, password, name, email);
+        int i = service.saveService(userId, password, name, email);
+        log.info("savePoint = {}", i);
+        switch (i) {
+            case 1:
+                ra.addFlashAttribute("msg", 1);
+                ra.addFlashAttribute("register",userId);
+                // 중복 아이디
+                return "redirect:/login/register";
+            case 2:
+                ra.addFlashAttribute("msg", 2);
+//                ra.addFlashAttribute("register",i);
+                return "redirect:/main";
+        }
+
+        return null;
+    }
+
+
+    //mppage/myboard
+    @GetMapping("/myboard")
+    public String hello(){
+        log.info("into mypage/myboard");
+        return "mypage/myboard";
+    }
+
+    //mppage/mydonattion
+    @GetMapping("/mydonation")
+    public String detail(){
+        log.info("into mypage/mydonation");
+        return "mypage/mydonation";
+    }
+
+    // login/login-save
+    @GetMapping("myinfo")
+    public String loginsave(){
+        log.info("mypage/myinfo");
+        return "mypage/myinfo";
     }
 
 
 
-//        finishCookie(response, "memberId");
-//        return "redirect:/";
 
-//    private void finishCookie(HttpServletResponse response, String cookieName) {
-//        log.info("cookieName == {}",cookieName);
-//        Cookie cookie = new Cookie(cookieName, "s");
-//        cookie.setMaxAge(0);
-//        response.addCookie(cookie);
-//    }
-    // 쿠키를 0 인놈으로 주면
-    // 기존에 있던애는 어떻게 되는걸까 ?
+
 
 }
+
+
+
 
 
 

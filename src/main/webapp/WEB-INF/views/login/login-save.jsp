@@ -11,7 +11,7 @@
 <body>
 
         <h1>회원 가입하자 </h1>
-        <form action="/save" method="post">
+        <form action="/login/save" method="post">
                 <!-- action="/board/list" 정보가 갈곳 -->
                 
 
@@ -26,7 +26,7 @@
                 돈       :<input type="text" name="money"  maxlength="10">
 
 
-                <button type="submit"></button>
+                <button type="submit">회원 가입</button>
             
         </form>
 

@@ -22,14 +22,15 @@ public class LoginService {
     private final LoginMapper mapper;
 
     // 회원 가입 서비스 // 아이디 중복 검사 완로
-    public int saveService(DonateUser donateUser) {
-        log.info("saveService ~~ donateUser = {}", donateUser);
-        if (findIdService(donateUser.getUserId())) {
+    public int saveService(String userId, String password , String name, String email) {
+        log.info("saveService ~~ donateUser = {},{},{},{}", userId,password , name,  email);
+        if (findIdService(userId)) {
             // 아이디 찾는 서비스 하나라도 나온다면 true 이기 때문에
-            log.info("중복된 아이디 입니다.");
+            log.info("joungbok");
             return 1;
         }
-        mapper.save(donateUser);
+        log.info("saveService success");
+        mapper.save(userId,password,name,email);
         return 2 ;
     }
 
