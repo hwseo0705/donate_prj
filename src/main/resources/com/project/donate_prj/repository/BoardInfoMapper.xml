@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.donate_prj.repository.BoardInfoMapper">
+
+    <resultMap id="boardInfoMap" type="com.project.donate_prj.domain.BoardInfo">
+        <result property="boardNo" column="board_no" />
+        <result property="userId" column="user_id" />
+    </resultMap>
+
+    <insert id="save">
+        INSERT INTO board_info
+        VALUES (#{boardNo}, #{userId})
+    </insert>
+
+    <select id="findAll" resultMap="boardInfoMap">
+        SELECT *
+        FROM board_info
+        WHERE user_id=#{userId}
+    </select>
+</mapper>
