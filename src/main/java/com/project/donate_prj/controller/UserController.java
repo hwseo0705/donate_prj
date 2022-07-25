@@ -1,6 +1,7 @@
 package com.project.donate_prj.controller;
 
 
+import com.project.donate_prj.domain.DonateInfo;
 import com.project.donate_prj.domain.DonateUser;
 import com.project.donate_prj.service.DonateService;
 import com.project.donate_prj.service.LoginService;
@@ -85,9 +86,9 @@ public class UserController {
     @GetMapping("/delUser/{userId}/{password}")
     public String delete(@PathVariable String userId, @PathVariable String password, RedirectAttributes ra) {
         boolean flag = service.deleteService(userId, password);
-
         if (flag) { // 삭제 성공한 경우
             ra.addFlashAttribute("delUser", true);
+            boolean flag2 = service.delBoard(userId);
             return "redirect:/myinfo/" + userId;
         } else {
             ra.addFlashAttribute("delUser", false);
@@ -205,11 +206,18 @@ public class UserController {
 
 
     @PostMapping("/donateMoney/{boardNo}")
-    public String donateMoney(@PathVariable Long boardNo, long money ,String userId , RedirectAttributes ra){
+    public String donateMoney(@PathVariable Long boardNo, long money ,String userId , String title, RedirectAttributes ra){
         log.info("{},{},{}",boardNo,money,userId);
         donateService.plusDonationService(boardNo ,money); // 기부 금액 증가
         boolean b = service.minusMoneyService(userId, money); // 기부 금액 차감
         ra.addFlashAttribute("user", userId); // 님이 기부하셨습니다.
+
+        DonateInfo di = new DonateInfo();
+        di.setDonateMoney(money);
+        di.setUserId(userId);
+        di.setBoardNo(boardNo);
+        di.setTitle(title);
+        service.saveDonateInfo(di);
         return "redirect:/detail/{boardNo}";
 
     }

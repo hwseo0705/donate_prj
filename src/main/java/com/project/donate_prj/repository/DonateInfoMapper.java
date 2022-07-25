@@ -16,4 +16,5 @@ public interface DonateInfoMapper {
 
     List<DonateInfo> findAllDonation(String userId);
 
+    boolean remove(String userId);
 }

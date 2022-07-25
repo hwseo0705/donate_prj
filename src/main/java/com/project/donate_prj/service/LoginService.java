@@ -1,6 +1,9 @@
 package com.project.donate_prj.service;
 
+import com.project.donate_prj.domain.DonateInfo;
 import com.project.donate_prj.domain.DonateUser;
+import com.project.donate_prj.repository.DonateInfoMapper;
+import com.project.donate_prj.repository.DonateMapper;
 import com.project.donate_prj.repository.LoginMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +23,10 @@ public class LoginService {
 
     @Autowired
     private final LoginMapper mapper;
+
+    private final DonateInfoMapper diMapper;
+
+    private final DonateMapper dMapper;
 
     // 회원 가입 서비스 // 아이디 중복 검사 완로
     public int saveService(String userId, String password, String name, String email) {
@@ -143,5 +150,11 @@ public class LoginService {
     }
 
 
+    public void saveDonateInfo(DonateInfo di) {
+        diMapper.save(di);
+    }
 
+    public boolean delBoard(String writer) {
+        return dMapper.removeBoard(writer);
+    }
 }

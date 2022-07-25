@@ -35,6 +35,8 @@ public interface DonateMapper {
 
     List<DonateBoard> findAllWrite(String writer);
 
+    boolean removeBoard(String writer);
+
 //    void upCash(Long userId, Long money);
 
     // 캐시충전 클릭시 얼마 충전할지 입력하고 보유금액 상승

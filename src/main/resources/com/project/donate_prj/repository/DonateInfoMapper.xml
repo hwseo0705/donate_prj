@@ -13,7 +13,7 @@
 
     <insert id="save">
         INSERT INTO donate_info
-        VALUES (#{boardNo}, #{userId}, #{donateMoney})
+        VALUES (#{boardNo}, #{title}, #{userId}, #{donateMoney})
     </insert>
 
     <select id="findAllDonation" resultMap="donateInfoMap">
@@ -21,4 +21,5 @@
         FROM donate_info
         WHERE user_id = #{userId}
     </select>
+
 </mapper>

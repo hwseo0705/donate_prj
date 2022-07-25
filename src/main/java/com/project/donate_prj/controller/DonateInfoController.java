@@ -24,5 +24,4 @@ public class DonateInfoController {
         model.addAttribute("dList", service.findAll(userId));
         return "mypage/mydonation";
     }
-
 }

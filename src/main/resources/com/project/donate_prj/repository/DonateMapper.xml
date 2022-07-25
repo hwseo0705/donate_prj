@@ -16,6 +16,12 @@
         WHERE board_no=#{boardNo}
     </delete>
 
+
+    <delete id="removeBoard">
+        DELETE FROM donate_board
+        WHERE writer=#{writer}
+    </delete>
+
     <update id="modify">
         UPDATE donate_board
         SET title = #{title}, writer=#{writer}, thumbnail=#{thumbnail}, content=#{content}, target_money=#{targetMoney},

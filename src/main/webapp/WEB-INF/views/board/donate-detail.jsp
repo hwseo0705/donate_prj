@@ -13,25 +13,25 @@
         }
 
 
-        .inputbtn{
+        .inputbtn {
             margin-top: 30px;
 
 
-        .lnr-heart {
-            margin-right: 5px;
-            color: red;
-        }
+            .lnr-heart {
+                margin-right: 5px;
+                color: red;
+            }
 
-        .pink {
-            background: rgb(174, 16, 111);
-            border: 1px solid rgb(174, 16, 111);
-        }
+            .pink {
+                background: rgb(174, 16, 111);
+                border: 1px solid rgb(174, 16, 111);
+            }
 
-        .pink:hover {
-            background: rgb(131, 2, 79);
-            border: 1px solid rgb(131, 2, 79);
+            .pink:hover {
+                background: rgb(131, 2, 79);
+                border: 1px solid rgb(131, 2, 79);
 
-        }
+            }
     </style>
 </head>
 
@@ -65,7 +65,7 @@
             <button type="button" id="donate-btn" class="pink btn btn-primary">기부하기</button>
         </div>
         <div class="inputbtn">
-            <form hidden action="/donateMoney/${b.boardNo}?userId=${y.userId}" method="post" id="inputdonation">
+            <form hidden action="/donateMoney/${b.boardNo}?userId=${y.userId}&title=${b.title}" method="post" id="inputdonation">
                 <input type="number" name="money">
                 <button type="submit" class="btn btn-primary">기부확인</button>
             </form>
@@ -127,11 +127,13 @@
 
         function upLikeCnt() {
             const $likeBtn = document.getElementById('like-btn');
+            if ('${y.userId}' !== '') {
 
-            $likeBtn.onclick = e => {
-                console.log('like clicked');
+                $likeBtn.onclick = e => {
+                    console.log('like clicked');
 
-                location.href = '/uplike/' + '${b.boardNo}/' + '${y.userId}';
+                    location.href = '/uplike/' + '${b.boardNo}/' + '${y.userId}';
+                }
             }
 
         }
@@ -140,18 +142,19 @@
             const $donateBtn = document.getElementById('donate-btn');
             // 히든인 인풋창 가져옴 
             const $donationinput = document.getElementById('inputdonation');
+            if ('${y.userId}' !== '') {
 
+                $donateBtn.onclick = e => {
 
-            $donateBtn.onclick = e => {
+                    // 히든을 지움 
+                    $donationinput.hidden = false;
+                    // console.log('donate clicked');
+                    // location.href='/donate'
 
-                // 히든을 지움 
-                $donationinput.hidden = false;
-                // console.log('donate clicked');
-                // location.href='/donate'
+                    console.log('donate clicked');
+                    // location.href = '/donate'
 
-                console.log('donate clicked');
-                location.href = '/donate'
-
+                }
             }
 
         }
@@ -162,11 +165,7 @@
             upLikeResult();
             hiddenBtn();
         })();
-
-
-
-
-        </script>
+    </script>
 
 
 
