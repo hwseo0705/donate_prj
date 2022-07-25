@@ -123,7 +123,7 @@
 
             $myName.onclick = e => {
                 console.log('clicked');
-                location.href = '/myinfo/' + 'a1'
+                location.href = '/myinfo/' + '${y.userId}'
             }
         }
 
