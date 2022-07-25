@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.donate_prj.repository.QnaMapper">
+
+    <resultMap id="qnaBoard" type="com.project.donate_prj.domain.QnaBoard">
+        <result property="qnaNo" column="qna_no" />
+        <result property="userId" column="user_id" />
+        <result property="qContent" column="qcontent" />
+        <result property="qDate" column="qdate" />
+    </resultMap>
+
+
+    <insert id="save">
+        INSERT INTO qna_table
+        (qna_no ,user_id , qcontent)
+        VALUES (qnum.nextval, #{userId}, #{qContent})
+    </insert>
+
+    <select id="findAll" resultMap="qnaBoard">
+        select * from qna_table
+    </select>
+
+    <select id="findOne" resultMap="qnaBoard">
+        select * from qna_table
+        where qna_no = #{qnaNo}
+    </select>
+
+    <insert id="modify" >
+        UPDATE qna_table
+        SET qcontent = #{qContent}
+        WHERE qna_no = #{qnaNo}
+    </insert>
+
+    <delete id="remove">
+        DELETE FROM QnA_table
+        WHERE qna_no=#{qnaNo}
+    </delete>
+
+
+
+</mapper>
+
+<!--<update id="modify">-->
+<!--UPDATE qna_table-->
+<!--SET qcontent=#{qContent} , qdate=#{qDate}-->
+<!--WHERE QnA_no=#{qnaNo}-->
+<!--</update>v-->

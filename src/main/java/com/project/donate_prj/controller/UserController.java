@@ -206,6 +206,10 @@ public class UserController {
     @PostMapping("/donateMoney/{boardNo}")
     public String donateMoney(@PathVariable Long boardNo, long money, String userId, String title, RedirectAttributes ra) {
         log.info("{},{},{}", boardNo, money, userId);
+        if (service.findMoneyService(userId) < money){
+            ra.addFlashAttribute("no", 1);
+            return "redirect:/detail/{boardNo}";
+        }
         donateService.plusDonationService(boardNo, money); // 기부 금액 증가
         boolean b = service.minusMoneyService(userId, money); // 기부 금액 차감
         ra.addFlashAttribute("user", userId); // 님이 기부하셨습니다.

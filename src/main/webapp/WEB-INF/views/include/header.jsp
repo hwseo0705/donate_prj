@@ -3,32 +3,7 @@
 
 
 <style>
-    /* .container2 .search-join .wrap {
-        background-color: aqua;
-    }
-
-    .container2 .search-join .btn-outline-light {
-        background: green;
-        position: relative;
-    }
-
-    .container2 .search-join .btn-outline-light:hover {}
-
-    .container2 .search-join .list-box {
-        width: 100px;
-        height: 100px;
-        float: left;
-        position: absolute;
-         텍스트 중앙정렬 
-        line-height: 100px;
-        text-align: center;
-        background: yellow;
-
-    }
-
-    .container2 .search-join .btn-warning {
-        float: right;
-    } */
+   
 </style>
 
 <header class="p-3">
@@ -44,7 +19,7 @@
             <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
             <li><a href="#" class="nav-link px-2 text-white">Donate</a></li>
             <li><a href="#" class="nav-link px-2 text-white">Community</a></li>
-            <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+            <li><a href="/qna" class="nav-link px-2 text-white" id="qna" >FAQs</a></li>
             <li><a href="#" class="nav-link px-2 text-white">About</a></li>
         </ul>
 
@@ -101,6 +76,16 @@
                 });
             }
         }
+        
+        // // 큐엔에이 이동하는 이벤트 
+        // function QnaRequestEvent(){
+
+        //     const $qna = document.getElementById('qna');
+        //        $qna.onclick = e =>{
+        //         console.log("click qna");
+        //         location.href = '/qna';
+        //        } 
+        // }
 
         // 회원가입 버튼 클릭 이벤트
         function signUpRequestEvent() {
@@ -123,7 +108,7 @@
 
             $myName.onclick = e => {
                 console.log('clicked');
-                location.href = '/myinfo/' + '${y.userId}'
+                location.href = '/myinfo/' + '${y.userId}';
             }
         }
 
