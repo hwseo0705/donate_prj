@@ -65,6 +65,16 @@
         SELECT *
         FROM donate_board
         WHERE writer=#{writer}
+
+<!--        SELECT *-->
+<!--        FROM (SELECT ROWNUM rn, d_board.*-->
+<!--        FROM (-->
+<!--        SELECT *-->
+<!--        FROM donate_board-->
+<!--        WHERE writer=#{writer}-->
+<!--        ORDER BY board_no DESC-->
+<!--        ) d_board)-->
+<!--        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})-->
     </select>
 
     <select id="getTotalCnt" resultType="long">

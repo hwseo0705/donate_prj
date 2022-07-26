@@ -62,6 +62,7 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">목표 모금액</label>
+
             <input type="text" class="form-control input-targetM" id="exampleFormControlInput1"
                 placeholder="목표모금액을 입력하세요." name="targetMoney" maxlength="10">
             <div class="invalid-feedback">
