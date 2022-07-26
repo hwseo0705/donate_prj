@@ -8,7 +8,8 @@
     <insert id="save">
         INSERT INTO donate_board
         (board_no, title, writer, thumbnail, content, target_money, start_date, end_date)
-        VALUES (seq_donate_board.nextval, #{title}, #{writer}, #{thumbnail}, #{content}, #{targetMoney}, #{startDate}, #{endDate})
+        VALUES (seq_donate_board.nextval, #{title}, #{writer}, #{thumbnail}, #{content}, #{targetMoney}, #{startDate},
+        #{endDate})
     </insert>
 
     <delete id="remove">
@@ -30,28 +31,28 @@
     </update>
 
     <resultMap id="donateBoardMap" type="com.project.donate_prj.domain.DonateBoard">
-        <result property="boardNo" column="board_no" />
-        <result property="targetMoney" column="target_money" />
-        <result property="currentMoney" column="current_money" />
-        <result property="startDate" column="start_date" />
-        <result property="endDate" column="end_date" />
-        <result property="likeCnt" column="like_cnt" />
+        <result property="boardNo" column="board_no"/>
+        <result property="targetMoney" column="target_money"/>
+        <result property="currentMoney" column="current_money"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="likeCnt" column="like_cnt"/>
     </resultMap>
 
 
     <select id="findAll" resultMap="donateBoardMap">
-        SELECT  *
+        SELECT *
         FROM (SELECT ROWNUM rn, d_board.*
-                FROM (
-                        SELECT *
-                        FROM donate_board
-                        <!-- type = value 에서 value 값을 한글자로 주면 char 타입으로 인식하기 때문에 한글자 입력은 피하라! -->
-                        <if test="keyword != null">WHERE title LIKE '%' || #{keyword} || '%'</if>
-<!--                            OR content LIKE '%' || #{keyword} || '%'-->
-                        ORDER BY board_no DESC
-                ) d_board)
+        FROM (
+        SELECT *
+        FROM donate_board
+        <!-- type = value 에서 value 값을 한글자로 주면 char 타입으로 인식하기 때문에 한글자 입력은 피하라! -->
+        <if test="keyword != null">WHERE title LIKE '%' || #{keyword} || '%'</if>
+        <!--                            OR content LIKE '%' || #{keyword} || '%'-->
+        ORDER BY board_no DESC
+        ) d_board)
         WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
-<!--        SELECT * FROM donate_board-->
+        <!--        SELECT * FROM donate_board-->
     </select>
 
 
@@ -62,26 +63,34 @@
     </select>
 
     <select id="findAllWrite" resultMap="donateBoardMap">
+        <!--        SELECT *-->
+        <!--        FROM donate_board-->
+        <!--        WHERE writer=#{writer}-->
+
         SELECT *
+        FROM (
+            SELECT ROWNUM rn, d_board.*
+            FROM (
+                SELECT *
+                FROM donate_board
+                WHERE writer=#{writer}
+                ORDER BY board_no DESC
+            ) d_board)
+        WHERE rn BETWEEN (#{page.pageNum} - 1) * #{page.amount} + 1 AND (#{page.pageNum} * #{page.amount})
+    </select>
+
+    <select id="getMyTotalCnt" resultType="long">
+        SELECT COUNT(*)
         FROM donate_board
         WHERE writer=#{writer}
-
-<!--        SELECT *-->
-<!--        FROM (SELECT ROWNUM rn, d_board.*-->
-<!--        FROM (-->
-<!--        SELECT *-->
-<!--        FROM donate_board-->
-<!--        WHERE writer=#{writer}-->
-<!--        ORDER BY board_no DESC-->
-<!--        ) d_board)-->
-<!--        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})-->
     </select>
 
     <select id="getTotalCnt" resultType="long">
         SELECT COUNT(*)
         FROM donate_board
         <if test="keyword != null">WHERE title LIKE '%' || #{keyword} || '%'
-            OR content LIKE '%' || #{keyword} || '%'</if>
+            OR content LIKE '%' || #{keyword} || '%'
+        </if>
     </select>
 
 
@@ -91,11 +100,11 @@
         WHERE board_no = #{boardNo}
     </update>
 
-<!--    <update id="upCash">-->
-<!--        UPDATE donate_user-->
-<!--        SET money = money + #{money}-->
-<!--        WHERE user_id = #{userId}-->
-<!--    </update>-->
+    <!--    <update id="upCash">-->
+    <!--        UPDATE donate_user-->
+    <!--        SET money = money + #{money}-->
+    <!--        WHERE user_id = #{userId}-->
+    <!--    </update>-->
 
 
     <!--   기부 -->
@@ -104,7 +113,6 @@
         SET current_money = current_money + #{currentMoney}
         WHERE board_no = #{boardNo}
     </update>
-
 
 
 </mapper>

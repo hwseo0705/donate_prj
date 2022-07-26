@@ -97,19 +97,23 @@ public class DonateController {
         return "redirect:/main";
     }
 
-//    @PostMapping("/upCash/{userId}/{money}")
+    //    @PostMapping("/upCash/{userId}/{money}")
 //    public String upCash(@PathVariable Long userId, @PathVariable Long money) {
 //        service.upCashService(userId, money);
 //        return "redirect:/myinfo";
 //    }
-@GetMapping("/myboard/{writer}")
-public String myBoard(@PathVariable String writer, Model model) {
-    log.info("into mypage/myboard");
-    model.addAttribute("dList", service.findAllWrite(writer));
-    return "mypage/myboard";
-}
+    @GetMapping("/myboard/{writer}")
+    public String myBoard(@PathVariable String writer, Model model, Page page) {
+        log.info("into mypage/myboard");
 
+        Map<String, Object> findAllMap = service.findAllWrite(writer, page);
+        //  페이지 정보 생성용
+        PageMaker pm = new PageMaker(new Page(page.getPageNum(), page.getAmount()), (Long) findAllMap.get("tc"));
 
+        model.addAttribute("dList", findAllMap.get("dbList"));
+        model.addAttribute("pm", pm);
 
+        return "mypage/myboard";
+    }
 }
 

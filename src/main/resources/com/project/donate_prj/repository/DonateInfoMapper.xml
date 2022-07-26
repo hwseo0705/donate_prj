@@ -17,19 +17,26 @@
     </insert>
 
     <select id="findAllDonation" resultMap="donateInfoMap">
-        SELECT *
-        FROM donate_info
-        WHERE user_id = #{userId}
-
-<!--        SELECT *-->
-<!--        FROM (SELECT ROWNUM rn, d_board.*-->
-<!--        FROM (-->
 <!--        SELECT *-->
 <!--        FROM donate_info-->
-<!--        WHERE user_id=#{userId}-->
-<!--        ORDER BY board_no DESC-->
-<!--        ) d_board)-->
-<!--        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})-->
+<!--        WHERE user_id = #{userId}-->
+
+        SELECT *
+        FROM (SELECT ROWNUM rn, d_board.*
+        FROM (
+        SELECT *
+        FROM donate_info
+        WHERE user_id=#{userId}
+        ORDER BY board_no DESC
+        ) d_board)
+        WHERE rn BETWEEN (#{page.pageNum} - 1) * #{page.amount} + 1 AND (#{page.pageNum} * #{page.amount})
     </select>
+
+    <select id="getMyTotalCnt" resultType="long">
+        SELECT COUNT(*)
+        FROM donate_info
+        WHERE user_id=#{user_id}
+    </select>
+
 
 </mapper>

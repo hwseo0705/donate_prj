@@ -15,6 +15,7 @@
         }
 
 
+
         .top-banner {
             background: rgb(227, 223, 223);
         }
@@ -63,6 +64,32 @@
         .my-board .table {
             margin-left: 20px;
         }
+
+        /* paging */
+        .list-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-bottom .paging {
+            flex: 9;
+            padding-left: 50px;
+        }
+
+        .list-bottom .btn-write {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .bd-placeholder-img:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -97,35 +124,66 @@
                     </tr>
                 </c:forEach>
             </table>
+
+            <div class="list-bottom">
+                <!-- 페이지 버튼 -->
+                <div class="paging">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-lg pagination-custom">
+
+                            <c:if test="${pm.prev}">
+                                <li class="page-item"><a class="page-link"
+                                        href="/myboard/${y.userId}?pageNum=${pm.beginPage - 1}&amount=${pm.getPage().getAmount()}">Prev</a>
+                                </li>
+                            </c:if>
+
+                            <!-- step=1인 경우,, 생략 가능!! -->
+                            <c:forEach var="n" begin="${pm.beginPage}" end="${pm.endPage}" step="1">
+                                <li data-page-num="${n}" class="page-item"><a class="page-link"
+                                        href="/myboard/${y.userId}?pageNum=${n}&amount=${pm.getPage().getAmount()}">${n}</a>
+                                </li>
+                            </c:forEach>
+
+
+                            <c:if test="${pm.next}">
+                                <li class="page-item"><a class="page-link"
+                                        href="/myboard/${y.userId}?pageNum=${pm.endPage + 1}&amount=${pm.getPage().getAmount()}">Next</a>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
 
+    </div>
 
-        <script>
-            function detailEvent() {
-                //상세보기 요청 이벤트
-                const $table = document.querySelector(".articles");
+    <script>
+        function detailEvent() {
+            //상세보기 요청 이벤트
+            const $table = document.querySelector(".articles");
 
-                $table.addEventListener('click', e => {
-
-
-                    if (!e.target.matches('.articles td')) return;
-
-                    console.log('tr 클릭됨! - ', e.target);
-
-                    let bn = e.target.parentElement.firstElementChild.textContent;
-                    console.log('글번호: ' + bn);
-                    location.href = '/detail/' + bn;
-                });
-            }
-            (function () {
-                detailEvent();
-            })();
-        </script>
+            $table.addEventListener('click', e => {
 
 
+                if (!e.target.matches('.articles td')) return;
+
+                console.log('tr 클릭됨! - ', e.target);
+
+                let bn = e.target.parentElement.firstElementChild.textContent;
+                console.log('글번호: ' + bn);
+                location.href = '/detail/' + bn;
+            });
+        }
+        (function () {
+            detailEvent();
+        })();
+    </script>
 
 
-        <%@ include file="/WEB-INF/views/include/footer.jsp" %>
+
+
+    <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 
 </body>

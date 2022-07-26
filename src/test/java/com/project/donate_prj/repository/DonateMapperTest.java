@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataAccessException;
 
 import java.text.ParseException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -107,6 +108,17 @@ class DonateMapperTest {
     @DisplayName("boardNo 주고 금액 말하면 현재 가격이 오름 ")
     void plusDonationTest(){
         mapper.plusDonation(21,5500);
+    }
+
+    @Test
+    @DisplayName("boardNo 주고 금액 말하면 현재 가격이 오름 ")
+    void findAllWriteTest(){
+        List<DonateBoard> d1 = mapper.findAllWrite("d1", new Page());
+        for (DonateBoard db : d1) {
+            System.out.println(
+                    db
+            );
+        }
     }
 
 
