@@ -108,8 +108,6 @@
         text-align: center;
     }
 
-    .wrap .main-detail {}
-
     .wrap .main-detail .title {
         text-align: center;
         width: 40%;
