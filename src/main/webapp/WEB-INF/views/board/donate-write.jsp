@@ -91,7 +91,7 @@
 
         <div class="btn-group btn-group-lg custom-btn-group" role="group">
             <button id="mod-btn" type="button" class="btn btn-danger">완료</button>
-            <button type="button" class="btn btn-dark">목록</button>
+            <button type="button" class="to-main btn btn-dark">목록</button>
         </div>
 
     </form>
@@ -147,38 +147,30 @@
                     $inputEndD.nextElementSibling.style.display = 'none';
                     checkArr[3] = true;
                 }
-                
+
                 for (let c of checkArr) {
                     if (c === false) {
                         return;
                     }
                 }
-                
+
                 $writeForm.submit();
 
             };
         }
 
-        // function wirteSubmitEvent() {
-        //     $writeBtn.onclick = e => {
-        //         for (let c of checkArr) {
-        //             if (c === false) {
-        //                 return;
-        //             }
-        //         }
-        //         $writeForm.submit();
-        //     }
-        // }
+        function toMain() {
+            const $toMain = document.querySelector('.to-main');
 
-
-
-
-
+            $toMain.onclick = e => {
+                location.href = '/main'
+            }
+        }
 
         // 실행부
         (function () {
             writeRequestEvent();
-            // wirteSubmitEvent();
+            toMain();
         })();
     </script>
 

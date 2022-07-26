@@ -101,13 +101,13 @@
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">이름</label>
                     <input required disabled type="text" class="form-control" id="exampleFormControlInput1"
-                        placeholder="이름" name="name" value="${my.name}">
+                        placeholder="이름" name="name" value="${my.name}" maxlength="20">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">이메일</label>
                     <input required disabled type="text" class="form-control" id="exampleFormControlInput1"
-                        placeholder="이메일" name="email" value="${my.email}">
+                        placeholder="이메일" name="email" value="${my.email}" maxlength="25">
                 </div>
 
                 <div class="mb-3">
@@ -119,7 +119,7 @@
                 <div class="mb-3">
                     <label hidden id="hidden-label" for="exampleFormControlInput1" class="form-label">충전할 금액 입력</label>
                     <input hidden id="hidden-input" type="number" class="form-control" id="exampleFormControlInput1"
-                        placeholder="충전할 금액" min="0" max="1000000000">
+                        placeholder="충전할 금액" min="1" max="1000000000">
                 </div>
 
                 <div class="btn-group btn-group-lg custom-btn-group" role="group">
@@ -202,7 +202,7 @@
                 $hiddenLabel.hidden = false;
 
                 $cashDone.onclick = e => {
-                    if ($hiddenInput.value < 0 || $hiddenInput.value > 1000000000) {
+                    if ($hiddenInput.value < 1 || $hiddenInput.value > 1000000000) {
                         alert('잘못된 입력값입니다. 다시 입력해주세요.');
                     } else {
                         location.href = '/upCash/' + '${my.userId}/' + $hiddenInput.value;
