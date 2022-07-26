@@ -41,8 +41,8 @@
             </a>
         </h1>
         <ul class="nav">
-            <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2 text-white">Donate</a></li>
+            <li><a href="/main" class="nav-link px-2 text-secondary">Home</a></li>
+            <li><a href="/main" class="nav-link px-2 text-white">Donate</a></li>
             <li><a href="#" class="nav-link px-2 text-white">Community</a></li>
             <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
             <li><a href="#" class="nav-link px-2 text-white">About</a></li>
