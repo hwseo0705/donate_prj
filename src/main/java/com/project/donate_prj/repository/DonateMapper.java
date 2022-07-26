@@ -1,5 +1,6 @@
 package com.project.donate_prj.repository;
 
+import com.project.donate_prj.common.paging.Page;
 import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import org.apache.ibatis.annotations.Mapper;
@@ -30,10 +31,12 @@ public interface DonateMapper {
     // 전체 게시물 수 조회 ( 페이징 목적 )
     Long getTotalCnt(Search search);
 
+    Long getMyTotalCnt(String writer);
+
     // 응원하기 클릭시 like_cnt 숫자 상승 시켜서 db에 저장할 메서드
     void upLikeCnt(Long boardNo);
 
-    List<DonateBoard> findAllWrite(String writer);
+    List<DonateBoard> findAllWrite(@Param("writer") String writer, @Param("page") Page page);
 
     boolean removeBoard(String writer);
 

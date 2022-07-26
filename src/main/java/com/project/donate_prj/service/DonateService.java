@@ -1,5 +1,6 @@
 package com.project.donate_prj.service;
 
+import com.project.donate_prj.common.paging.Page;
 import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import com.project.donate_prj.repository.DonateMapper;
@@ -21,8 +22,15 @@ public class DonateService {
         return mapper.save(board);
     }
 
-    public List<DonateBoard> findAllWrite(String writer) {
-        return mapper.findAllWrite(writer);
+    public Map<String, Object> findAllWrite(String writer, Page page) {
+
+        List<DonateBoard> DBList = mapper.findAllWrite(writer, page);
+        Long totalCnt = mapper.getMyTotalCnt(writer);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("dbList", DBList);
+        map.put("tc", totalCnt);
+        return map;
     }
 
     public Map<String, Object> findAllService(Search search) {
@@ -49,14 +57,15 @@ public class DonateService {
         return mapper.modify(board);
     }
 
-    public void upLikeService(Long boardNo) { mapper.upLikeCnt(boardNo); }
-
-    // 플러스 해주는 서비스
-    public void plusDonationService(long boardNo , long currentMoney ){
-
-        mapper.plusDonation(boardNo,currentMoney);
+    public void upLikeService(Long boardNo) {
+        mapper.upLikeCnt(boardNo);
     }
 
+    // 플러스 해주는 서비스
+    public void plusDonationService(long boardNo, long currentMoney) {
+
+        mapper.plusDonation(boardNo, currentMoney);
+    }
 
 
 //    public void upCashService(Long userId, Long money) {
