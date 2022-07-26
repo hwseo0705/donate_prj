@@ -179,6 +179,12 @@
             alert('현재 잔액이 부족합니다. 잔액을 확인해 주세요.')
         }
 
+        const no = '${no}';
+        console.log(no);
+        if (no === '1') {
+            alert('현재 잔액이 부족합니다. 잔액을 확인해 주세요.')
+        }
+
         (function () {
             upLikeCnt();
             donate();

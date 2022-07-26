@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.donate_prj.repository.QnaMapper">
+
+    <resultMap id="qnaBoard" type="com.project.donate_prj.domain.QnaBoard">
+        <result property="qnaNo" column="qna_no"/>
+        <result property="userId" column="user_id"/>
+        <result property="content" column="qcontent"/>
+        <result property="questionDate" column="qdate"/>
+    </resultMap>
+
+
+    <insert id="save">
+        INSERT INTO qna_table
+        (qna_no ,user_id, qcontent)
+        VALUES (qnum.nextval, #{userId}, #{content})
+    </insert>
+
+    <select id="findAll2" resultMap="qnaBoard">
+        select * from qna_table
+    </select>
+
+    <select id="findAll" resultMap="qnaBoard">
+        SELECT *
+        FROM (SELECT ROWNUM rn, d_board.*
+                 FROM (
+                 SELECT *
+                 FROM qna_table
+                 <!-- type = value 에서 value 값을 한글자로 주면 char 타입으로 인식하기 때문에 한글자 입력은 피하라! -->
+<!--                 <if test="keyword != null">WHERE title LIKE '%' || #{keyword} || '%'</if>-->
+                 <!--                            OR content LIKE '%' || #{keyword} || '%'-->
+                 ORDER BY qna_no DESC
+                 ) d_board)
+        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
+        <!--        SELECT * FROM donate_board-->
+    </select>
+
+    <select id="findOne" resultMap="qnaBoard">
+        select * from qna_table
+        where qna_no = #{qnaNo}
+    </select>
+
+    <insert id="modify">
+        UPDATE qna_table
+        SET qcontent = #{content}
+        WHERE qna_no = #{qnaNo}
+    </insert>
+
+    <delete id="remove">
+        DELETE FROM QnA_table
+        WHERE qna_no=#{qnaNo}
+    </delete>
+
+    <select id="qnaTotalCnt" resultType="long">
+        SELECT COUNT(*)
+        FROM QnA_table
+        <!--        <if test="keyword != null">WHERE title LIKE '%' || #{keyword} || '%'-->
+        <!--            OR content LIKE '%' || #{keyword} || '%'</if>-->
+    </select>
+
+
+</mapper>
+
+        <!--<update id="modify">-->
+        <!--UPDATE qna_table-->
+        <!--SET qcontent=#{qContent} , qdate=#{qDate}-->
+        <!--WHERE QnA_no=#{qnaNo}-->
+        <!--</update>v-->
