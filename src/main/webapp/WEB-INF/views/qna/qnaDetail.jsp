@@ -70,13 +70,13 @@
     </div>
 
 
-    
+
     <script>
 
         // {you.qnaNo - 이 게 시물의 글 번호 }
         function modiButton() {
             const $modi = document.getElementById('qna-modify');
-            // 수정하는 이벤트 
+            // 수정하는 이벤트
             $modi.onclick = e => {
                 location.href = '/qmodi/${you.qnaNo}';
             }
