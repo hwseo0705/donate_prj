@@ -60,7 +60,6 @@
         .d-btn {
             display: none;
         }
-
     </style>
 </head>
 
@@ -91,34 +90,36 @@
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">아이디</label>
-                    <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디"
-                        name="userId" value="${my.userId}">
+                    <input hidden type="text" class="stayDisabled form-control" id="exampleFormControlInput1"
+                        placeholder="아이디" name="userId" value="${my.userId}">
+                    <input disabled type="text" class="stayDisabled form-control" id="exampleFormControlInput1"
+                        placeholder="아이디" name="userId" value="${my.userId}">
                 </div>
 
                 <input hidden type="password" name="password" value="${my.password}">
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">이름</label>
-                    <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름"
-                        name="name" value="${my.name}">
+                    <input required disabled type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="이름" name="name" value="${my.name}">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">이메일</label>
-                    <input disabled type="text" class="form-control" id="exampleFormControlInput1" placeholder="이메일"
-                        name="email" value="${my.email}">
+                    <input required disabled type="text" class="form-control" id="exampleFormControlInput1"
+                        placeholder="이메일" name="email" value="${my.email}">
                 </div>
 
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">보유금액</label>
-                    <input disabled type="text" class="myMoney form-control" id="exampleFormControlInput1"
+                    <input disabled type="text" class="stayDisabled form-control" id="exampleFormControlInput1"
                         placeholder="보유금액" name="money" value="${my.money}">
                 </div>
 
                 <div class="mb-3">
                     <label hidden id="hidden-label" for="exampleFormControlInput1" class="form-label">충전할 금액 입력</label>
                     <input hidden id="hidden-input" type="number" class="form-control" id="exampleFormControlInput1"
-                        placeholder="충전할 금액">
+                        placeholder="충전할 금액" min="0" max="1000000000">
                 </div>
 
                 <div class="btn-group btn-group-lg custom-btn-group" role="group">
@@ -140,14 +141,13 @@
                 <div class="btn-group btn-group-lg custom-btn-group" role="group">
                     <button id="del-btn" type="button" class="btn btn-danger">탈퇴</button>
                 </div>
-                 
+
             </form>
 
             <br>
 
             <div class="inputbtn d-btn">
-                <form action="/delUser/${my.userId}" method="post"
-                    id="input-del-user">
+                <form action="/delUser/${my.userId}" method="post" id="input-del-user">
                     <input type="password" name="password" maxlength="15" placeholder="삭제하려면 비밀번호를 입력하세요.">
                     <!-- <div class="invalid-feedback">
                         비정상적 입력입니다.
@@ -155,7 +155,7 @@
                     <button type="submit" class="btn btn-danger delete">탈퇴하기</button>
                 </form>
             </div>
-            
+
         </div>
 
 
@@ -166,17 +166,17 @@
         // 회원정보 수정 이벤트
         function modifyEvent() {
             const $modify = document.querySelector('#mod-btn');
-            const $form = document.querySelectorAll('.form-control')
+            const $form = document.querySelectorAll('.form-control');
             const $done = document.getElementById('done-btn');
 
             // 수정 누르면 수정완료 버튼 생성, disabled remove$form[i]
-            ;
+
             $modify.onclick = e => {
 
                 console.log('clicked');
 
                 for (let i = 0; i < $form.length; i++) {
-                    if (!$form[i].classList.contains('myMoney')) {
+                    if (!$form[i].classList.contains('stayDisabled')) {
                         $form[i].removeAttribute('disabled');
                     }
                 }
@@ -184,16 +184,6 @@
                 $done.removeAttribute('hidden');
 
             };
-
-            // // 수정 완료 버튼 누르면 다시 disabled
-            // $done.onclick = e => {
-            //     $done.hidden = true;
-            //     for (let i = 0; i < $form.length; i++) {
-            //         // $form[i].disabled = true;
-            //     }
-
-            //     //location.href = '/mypage';
-            // }
         }
 
         // 캐시충전 이벤트 (미완성)
@@ -212,7 +202,11 @@
                 $hiddenLabel.hidden = false;
 
                 $cashDone.onclick = e => {
-                    location.href = '/upCash/' + '${my.userId}/' + $hiddenInput.value;
+                    if ($hiddenInput.value < 0 || $hiddenInput.value > 1000000000) {
+                        alert('잘못된 입력값입니다. 다시 입력해주세요.');
+                    } else {
+                        location.href = '/upCash/' + '${my.userId}/' + $hiddenInput.value;
+                    }
                 }
             }
         }
@@ -225,12 +219,12 @@
                 const $delBox = document.querySelector('.d-btn');
                 $delBox.style.display = 'block';
 
-            //     var proceed = confirm("정말로 탈퇴하시겠습니까?");
+                //     var proceed = confirm("정말로 탈퇴하시겠습니까?");
 
-            //     if (proceed) {
-            //         let pw = prompt('비밀번호를 입력하세요');
-            //         location.href = '/delUser/' + '${my.userId}/' + pw;
-            //     }
+                //     if (proceed) {
+                //         let pw = prompt('비밀번호를 입력하세요');
+                //         location.href = '/delUser/' + '${my.userId}/' + pw;
+                //     }
             }
         }
 
