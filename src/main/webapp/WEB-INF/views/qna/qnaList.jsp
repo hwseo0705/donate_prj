@@ -148,7 +148,7 @@
             $qnaBtn.onclick = e => {
                 location.href = '/qwrite';
             }
-            // /${boardNo} 이거 나중에 넣어야됨 어디로 가는지 알아야 하기 때문에 
+          
         }
 
         (function () {

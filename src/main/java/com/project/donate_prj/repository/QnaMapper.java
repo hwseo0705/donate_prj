@@ -25,7 +25,7 @@ public interface QnaMapper {
     boolean remove(long qnaNo);
 
     // 게시물 수정
-    boolean modify(@Param("qnaNo") long qnaNo,@Param("qContent") String qContent);
+    boolean modify(@Param("qnaNo") long qnaNo,@Param("content") String content);
 
     long qnaTotalCnt();
 

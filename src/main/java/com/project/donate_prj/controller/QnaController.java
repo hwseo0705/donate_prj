@@ -63,11 +63,11 @@ public class QnaController {
 
 
     // remove 삭제하는 것
-    @GetMapping("/qdelete")
-    public String qDelete(long qnaNo){
+    @GetMapping("/qdelete/{qnaNo}")
+    public String qDelete(@PathVariable long qnaNo){
         log.info("delete success");
         service.removeService(qnaNo);
-        return "qna/qnaList";
+        return "redirect:/qna";
     }
 
 
@@ -81,20 +81,20 @@ public class QnaController {
     }
 
     // 수정 하는 페이지
-    @GetMapping("qmodi/{qnaNo}")
+    @GetMapping("/qmodi/{qnaNo}")
     public String qModi(@PathVariable long qnaNo,Model model){
         log.info("come your {} to modify" , qnaNo);
         QnaBoard one = service.findOneService(qnaNo);
-        model.addAttribute("moid",one);
+        model.addAttribute("modi",one);
 
-        return "수정하는 창 띄우기 ";
+        return "qna/qnaModify";
     }
 
-    @PostMapping("qmodi/{qnaNo}")
-    public String qModi(long qnaNo ,String qContent){
-        log.info("your {} , content {}",qnaNo,qContent);
-        service.modifyService(qnaNo,qContent);
-        return "/qna/qnaList"; // 리스트로 가기
+    @PostMapping("/qmodi/{qnaNo}")
+    public String qModi(@PathVariable long qnaNo ,String content){
+        log.info("your {} , content {}",qnaNo,content);
+        service.modifyService(qnaNo,content);
+        return "redirect:/qna"; // 리스트로 가기
     }
 
 
