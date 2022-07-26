@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,9 +31,7 @@ public class QnaService {
         // 페이지와 총 갯수를 담은 맵을 반환하는
         // // 파인드 올 서비스
         List<QnaBoard> all = mapper.findAll(page);
-        for (QnaBoard q : all) {
-
-        }
+        process(all);
 
         log.info("all : {}",all);
 
@@ -66,6 +66,24 @@ public class QnaService {
     public long qnaTotalCntService(){
         long l = mapper.qnaTotalCnt();
         return l;
+    }
+
+    public void process(List<QnaBoard> list){
+        for (QnaBoard q : list) {
+            convertDate(q);
+            subStringQ(q);
+        }
+    }
+    // 5자리만 나오고 나머지는 ... 으로 만듬
+    public void subStringQ(QnaBoard q){
+        String ct = q.getContent();
+        String sb = ct.substring(0, 3);
+        q.setContent(sb+"...");
+    }
+    public void convertDate(QnaBoard q){
+        Date qd = q.getQuestionDate();
+        SimpleDateFormat sf = new SimpleDateFormat("yy-MM-dd a hh:mm");
+        q.setConvertDate(sf.format(qd));
     }
 
 

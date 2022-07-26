@@ -62,7 +62,7 @@
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
     <div class="faq">
-        <h1> 여기가 QnA 리스트 나오는곳이야 ~ </h1>
+        <h1> QnA </h1>
 
         <table class="table table-striped table-hover articles">
             <tr>
@@ -77,7 +77,7 @@
                     <td>${q.qnaNo}</td>
                     <td>${q.userId}</td>
                     <td>${q.content}</td>
-                    <td>${q.questionDate}</td>
+                    <td>${q.convertDate}</td>
                 </tr>
             </c:forEach>
         </table>

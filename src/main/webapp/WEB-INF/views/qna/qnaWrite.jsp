@@ -28,7 +28,7 @@
         
         <div class="mb-3">
             <label for="formGroupExampleInput2" class="form-label">건의 사항 </label>
-            <textarea type="text" class="form-control" id="formGroupExampleInput2" name="content"></textarea>
+            <textarea type="text" class="form-control" id="formGroupExampleInput2" name="content" minlength="5"></textarea>
         </div>
         
         <button type="submit" id="qna-write">게시글 올리기 </button>

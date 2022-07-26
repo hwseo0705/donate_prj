@@ -18,6 +18,10 @@ public class QnaBoard {
     private String content;
     private Date questionDate;
 
+    // 포멧하는 데이터
+    private String convertDate; // questionDate 를 보기좋게 바꿔서 넣을
+
+
 
 
 
