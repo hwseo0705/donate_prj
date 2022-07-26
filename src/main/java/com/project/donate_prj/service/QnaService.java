@@ -1,12 +1,15 @@
 package com.project.donate_prj.service;
 
+import com.project.donate_prj.common.paging.Page;
 import com.project.donate_prj.domain.QnaBoard;
 import com.project.donate_prj.repository.QnaMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @Service
@@ -17,14 +20,27 @@ public class QnaService {
 
 
     // 저장소
-    public boolean saveSevice(String userId ,String qContent){
-        boolean save = mapper.save(userId, qContent);
+    public boolean saveService(String userId ,String content){
+        boolean save = mapper.save(userId, content);
         return save;
     }
     // 모두 불러오기
-    public List<QnaBoard> findAllService(){
-        List<QnaBoard> all = mapper.findAll();
-        return all;
+    public Map<String ,Object> findAllService(Page page){
+        // 페이지와 총 갯수를 담은 맵을 반환하는
+        // // 파인드 올 서비스
+        List<QnaBoard> all = mapper.findAll(page);
+
+        log.info("all :11 {}",all);
+
+        long l = mapper.qnaTotalCnt();
+
+        log.info("totalCnt : 222{}", l);
+
+        Map<String ,Object> map = new HashMap<>();
+        map.put("qList",all);
+        map.put("qnacnt",l);
+
+        return map;
     }
     // qna 하나 불러오기
     public QnaBoard findOneService(long qnaNo){
@@ -38,10 +54,17 @@ public class QnaService {
     }
 
     // 수정 결과
-    public boolean modifyService(long qnaNo,String qContent){
-        boolean modify = mapper.modify(qnaNo, qContent);
+    public boolean modifyService(long qnaNo,String content){
+        boolean modify = mapper.modify(qnaNo, content);
         return modify;
     }
+
+    // 전체 페이지수 가져오는 메서드
+    public long qnaTotalCntService(){
+        long l = mapper.qnaTotalCnt();
+        return l;
+    }
+
 
 
 

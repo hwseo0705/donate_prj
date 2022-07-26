@@ -1,6 +1,7 @@
 package com.project.donate_prj.repository;
 
 
+import com.project.donate_prj.common.paging.Page;
 import com.project.donate_prj.domain.DonateUser;
 import com.project.donate_prj.domain.QnaBoard;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,10 +13,10 @@ import java.util.List;
 public interface QnaMapper {
 
      // QnA 올리기
-    boolean save(String userId ,String qContent);
+    boolean save(String userId ,String content);
 
     // 게시물 전체 조회
-    List<QnaBoard> findAll();
+    List<QnaBoard> findAll(Page page);
 
     // 게시물 하나 조회
      QnaBoard findOne(long qnaNo);
@@ -26,7 +27,7 @@ public interface QnaMapper {
     // 게시물 수정
     boolean modify(@Param("qnaNo") long qnaNo,@Param("qContent") String qContent);
 
-
+    long qnaTotalCnt();
 
 
 

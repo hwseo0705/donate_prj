@@ -15,8 +15,8 @@ public class QnaBoard {
 
     private long qnaNo;
     private String userId;
-    private String qContent;
-    private Date qDate;
+    private String content;
+    private Date questionDate;
 
 
 

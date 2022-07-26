@@ -1,5 +1,6 @@
 package com.project.donate_prj.repository;
 
+import com.project.donate_prj.common.paging.Page;
 import com.project.donate_prj.domain.DonateUser;
 import com.project.donate_prj.domain.QnaBoard;
 import lombok.extern.log4j.Log4j2;
@@ -21,31 +22,27 @@ class QnaMapperTest {
 
     @Test
     @DisplayName("일단 조회 ")
-    void findOneTest(){
+    void findOneTest() {
         QnaBoard one = mapper.findOne(3);
         System.out.println(one);
     }
 
     @Test
     @DisplayName("모두 불러오기 ")
-    void findAllTest(){
-        List<QnaBoard> all = mapper.findAll();
-        for (QnaBoard q : all) {
-            System.out.println("\n\n============\n\n");
-            System.out.println(q);
-        }
+    void findAllTest() {
+
     }
 
     @Test
     @DisplayName("save test ")
-    void saveTest(){
+    void saveTest() {
         boolean save = mapper.save("a3", "안녕하세요 모금좀");
         assertTrue(save);
     }
 
     @Test
     @DisplayName("delete test")
-    void removeTest(){
+    void removeTest() {
         boolean remove = mapper.remove(6);
         assertTrue(remove);
 
@@ -53,15 +50,18 @@ class QnaMapperTest {
 
     @Test
     @DisplayName("modify")
-    void modifyTest(){
+    void modifyTest() {
         boolean s = mapper.modify(2, "음하하하하핳하하");
         assertTrue(s);
     }
 
 
-
-
-
+    @Test
+    @DisplayName("게시물 수 새는 test")
+    void qnaTotalCntTest() {
+        long l = mapper.qnaTotalCnt();
+        System.out.println(l);
+    }
 
 
 }
