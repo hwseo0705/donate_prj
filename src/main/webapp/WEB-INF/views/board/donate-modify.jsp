@@ -34,7 +34,7 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">제목</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="제목" name="title"
-                value="${b.title}">
+                value="${b.title}" maxlength="90">
         </div>
 
         <input hidden type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="writer" value="${y.userId}">
@@ -58,19 +58,19 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">목표 모금액</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="targetMoney"
-                value="${b.targetMoney}">
+                value="${b.targetMoney}" maxlength="10">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">시작일</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="yy-mm-dd"
-                name="startDate" value="${b.startDate}">
+                name="startDate" value="${b.startDate}" maxlength="8">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">종료일</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="yy-mm-dd" name="endDate"
-                value="${b.endDate}">
+                value="${b.endDate}" maxlength="8">
         </div>
 
 

@@ -7,13 +7,6 @@
 
     <%@ include file="include/static-head.jsp" %>
 
-    <style>
-
-        .invalid-feedback {
-            /* display: block; */
-        }
-
-    </style>
 
 </head>
 
@@ -154,7 +147,6 @@
         }
 
         $regForm.submit();
-
     });
 
     
