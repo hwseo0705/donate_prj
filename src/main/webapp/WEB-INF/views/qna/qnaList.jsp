@@ -145,8 +145,15 @@
         function writeButton() {
             const $qnaBtn = document.getElementById('qna-btn');
 
+            
             $qnaBtn.onclick = e => {
-                location.href = '/qwrite';
+                if('${y.userId}'===''){
+                    location.href = '/login';
+                    alert("로그인부터 하고오세요")
+                }
+                else{
+                    location.href = '/qwrite';
+                }
             }
           
         }

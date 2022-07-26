@@ -29,12 +29,15 @@ public class QnaService {
         // 페이지와 총 갯수를 담은 맵을 반환하는
         // // 파인드 올 서비스
         List<QnaBoard> all = mapper.findAll(page);
+        for (QnaBoard q : all) {
 
-        log.info("all :11 {}",all);
+        }
+
+        log.info("all : {}",all);
 
         long l = mapper.qnaTotalCnt();
 
-        log.info("totalCnt : 222{}", l);
+        log.info("totalCnt :{}", l);
 
         Map<String ,Object> map = new HashMap<>();
         map.put("qList",all);

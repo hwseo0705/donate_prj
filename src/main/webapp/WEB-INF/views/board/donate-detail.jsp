@@ -88,7 +88,7 @@
 
     <script>
         function hiddenBtn() {
-            const $hiddenBtn = document.getElementById('hidden-btn');
+            // const $hiddenBtn = document.getElementById('hidden-btn');
             if ('${b.writer}' === '${y.userId}') {
                 modButton();
                 delButton();

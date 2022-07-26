@@ -61,11 +61,13 @@
             </div>
 
         </div>
-        <button type="button" class="btn btn-warning" id="qna-modify"> 내용 수정 </button>
+   
+            <button hidden type="button" class="btn btn-warning" id="qna-modify"> 내용 수정 </button>
 
-        <button type="button" class="btn btn-danger" id="qna-remove"> 삭제 </button>
+            <button hidden type="button" class="btn btn-danger" id="qna-remove"> 삭제 </button>
 
-        <button type="button" class="btn btn-dark" id="qna-list"> 목록 </button>
+    
+             <button type="button" class="btn btn-dark" id="qna-list"> 목록 </button>
 
     </div>
 
@@ -73,11 +75,21 @@
 
     <script>
 
+
+
+        
+
         // {you.qnaNo - 이 게 시물의 글 번호 }
         function modiButton() {
             const $modi = document.getElementById('qna-modify');
+            if('${y.userId}' === '${you.userId}'){
+                $modi.hidden = false;
+            }
             // 수정하는 이벤트
+
             $modi.onclick = e => {
+            
+             
                 location.href = '/qmodi/${you.qnaNo}';
             }
 
@@ -87,7 +99,10 @@
         function reomButton() {
             // 제거하는 이벤트 
             const $remo = document.getElementById('qna-remove');
-
+            if('${y.userId}' === '${you.userId}'){
+                $remo.hidden = false;
+            }
+            
             $remo.onclick = e => {
                 location.href = '/qdelete/${you.qnaNo}';
             }

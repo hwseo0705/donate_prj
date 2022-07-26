@@ -28,7 +28,7 @@
         
         <div class="mb-3">
             <label for="formGroupExampleInput2" class="form-label">건의 사항 </label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="건의사항을 적어주세요" name="content">
+            <textarea type="text" class="form-control" id="formGroupExampleInput2" name="content"></textarea>
         </div>
         
         <button type="submit" id="qna-write">게시글 올리기 </button>
