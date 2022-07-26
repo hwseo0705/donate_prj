@@ -141,7 +141,7 @@
 
                 <!-- 글쓰기 버튼 영역 -->
                 <div class="btn-write">
-                    <a class="btn btn-outline-danger btn-lg" href="/write">글쓰기</a>
+                    <a class="btn btn-outline-danger btn-lg">글쓰기</a>
                 </div>
             </div>
         </section>
@@ -172,11 +172,23 @@
             });
         }
 
+        function noLoginNoWrite() {
+            const $writeBtn = document.querySelector('.btn-write');
+
+            $writeBtn.addEventListener('click', e => {
+                if ('${y.userId}' === '') {
+                    alert('로그인이 필요한 요청입니다.');
+                } else {
+                    location.href = '/write';
+                }
+            });
+        }
+
 
         // 즉시 실행 함수
         (function () {
             detailRequestEvent();
-
+            noLoginNoWrite();
         }) ();
 
 
