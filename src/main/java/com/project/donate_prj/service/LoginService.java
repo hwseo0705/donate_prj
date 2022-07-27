@@ -52,15 +52,29 @@ public class LoginService {
         return mapper.findOne(userId);
     }
 
-    // 삭제 하기 회원 탈퇴
-    public boolean deleteService(String userId, String password) {
-        if (!findPasswordService(userId).equals(password)) {
-            log.info("일치하지 않는 비밀번호입니다. - {}", password);
+
+
+
+    // 검증
+    public boolean verification(String userId , String password){
+        if (findIdService(userId)){
+            log.info("find userId == {}",userId);
+            if (findPasswordService(userId).equals(password)){
+                log.info("your my page user !! {} , {}" ,userId,password);
+                return true;
+            }
+            else {
+                log.info("false password  :you input {}" ,password);
+                return false;
+            }
+        }
+        else {
+            log.info("not found userId == {}",userId);
             return false;
         }
-        mapper.remove(userId);
-        return true;
     }
+
+
 
     // 개인정보 수정
     public boolean modifyService(DonateUser donateUser) {
@@ -93,6 +107,11 @@ public class LoginService {
             return 1;
         }
 
+    }
+
+    // 단순 지우기
+    public boolean deleteUser(String userId){
+        return mapper.remove(userId);
     }
 
 
