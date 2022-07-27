@@ -52,6 +52,10 @@
                 <option value="/img/example2.jpg">세이브 더 칠드런 로고</option>
                 <option value="/img/example3.jpg">굿네이버스 로고</option>
                 <option value="/img/example4.jpg">월드비전 로고</option>
+                <option value="/img/example5.jpg">도네이션 박스 사진</option>
+                <option value="/img/example6.jpg">기부 하트 클립아트</option>
+                <option value="/img/example7.jpg">기부 하트 사진</option>
+
             </select>
         </div>
 

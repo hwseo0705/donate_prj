@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,15 +57,16 @@ class DonateMapperTest {
     }
 
     @Test
-    @DisplayName("20개의 게시물을 삽입해야 한다.")
+    @DisplayName("150개의 게시물을 삽입해야 한다.")
     void bulkInsert() throws ParseException {
         DonateBoard donate;
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 1; i <= 150; i++) {
             donate = new DonateBoard();
-            donate.setTitle("제목" + i);
-            donate.setWriter("글쓴이" + i);
-            donate.setThumbnail("/img/example" + i);
-            donate.setContent("내용입니다~~" + i);
+            donate.setTitle("기부 해주세요~ " + i);
+            Random random = new Random();
+            donate.setWriter("a" + (random.nextInt(3 - 1 + 1) + 1));
+            donate.setThumbnail("/img/example" + (random.nextInt(7 - 1 + 1) + 1) + ".jpg");
+            donate.setContent("기부 해주세요! 디테일 내용입니다~~ " + i);
             donate.setTargetMoney((long) (i * 10000000));
             donate.setStartDate("22-07-01");
             donate.setEndDate("22-08-17");
@@ -106,13 +108,13 @@ class DonateMapperTest {
 
     @Test
     @DisplayName("boardNo 주고 금액 말하면 현재 가격이 오름 ")
-    void plusDonationTest(){
-        mapper.plusDonation(21,5500);
+    void plusDonationTest() {
+        mapper.plusDonation(21, 5500);
     }
 
     @Test
     @DisplayName("boardNo 주고 금액 말하면 현재 가격이 오름 ")
-    void findAllWriteTest(){
+    void findAllWriteTest() {
         List<DonateBoard> d1 = mapper.findAllWrite("d1", new Page());
         for (DonateBoard db : d1) {
             System.out.println(
@@ -120,12 +122,6 @@ class DonateMapperTest {
             );
         }
     }
-
-
-
-
-
-
 
 
 }
