@@ -40,7 +40,7 @@
 
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">건의 사항 </label>
-                <textarea type="text" class="form-control" id="formGroupExampleInput2" name="content"
+                <textarea required type="text" class="form-control" id="formGroupExampleInput2" name="content"
                     minlength="5"></textarea>
             </div>
 
