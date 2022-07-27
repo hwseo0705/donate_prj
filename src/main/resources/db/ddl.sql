@@ -25,7 +25,7 @@ CREATE TABLE donate_info (
     , title VARCHAR2(100) NOT NULL
     , user_id VARCHAR2(50) NOT NULL
     , donate_money NUMBER(10) NOT NULL
-    , FOREIGN KEY (board_no) REFERENCES donate_board(board_no)
+    , FOREIGN KEY (board_no) REFERENCES donate_board(board_no) ON DELETE CASCADE
     , FOREIGN KEY (user_id) REFERENCES donate_user(user_id) ON DELETE CASCADE
 );
 
