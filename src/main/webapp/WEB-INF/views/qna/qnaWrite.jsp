@@ -29,7 +29,7 @@
 
     <div class="qnaSection">
 
-        <h2> ${y.name} 님의 고충을 적어주세요 </h2>
+        <h2> ${y.name} 님의 질문을 적어주세요 </h2>
         <form action="/qwrite" method="post">
             <input type="hidden" name="userId" value="${y.userId}">
             <div class="mb-3">
@@ -39,7 +39,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">건의 사항 </label>
+                <label for="formGroupExampleInput2" class="form-label">질문 사항 </label>
                 <textarea required type="text" class="form-control" id="formGroupExampleInput2" name="content"
                     minlength="5"></textarea>
             </div>

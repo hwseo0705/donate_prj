@@ -149,7 +149,7 @@
             $qnaBtn.onclick = e => {
                 if('${y.userId}'===''){
                     location.href = '/login';
-                    alert("로그인부터 하고오세요")
+                    alert("로그인이 필요한 서비스입니다.")
                 }
                 else{
                     location.href = '/qwrite';

@@ -177,7 +177,7 @@
 
             $writeBtn.addEventListener('click', e => {
                 if ('${y.userId}' === '') {
-                    alert('로그인이 필요한 요청입니다.');
+                    alert('로그인이 필요한 서비스입니다.');
                 } else {
                     location.href = '/write';
                 }
