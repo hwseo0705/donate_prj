@@ -52,4 +52,27 @@ CREATE TABLE like_check (
     , FOREIGN KEY (like_board_no) REFERENCES donate_board (board_no) ON DELETE CASCADE
 );
 
+CREATE SEQUENCE qNum;
+DROP SEQUENCE qnum;
+
+SELECT * FROM QnA_table;
+DROP TABLE QnA_table ;
+CREATE TABLE QnA_table (
+    QnA_no NUMBER(10) PRIMARY KEY
+    , user_id VARCHAR2(50) NOT NULL
+    , qcontent CLOB
+    , qdate DATE DEFAULT SYSDATE
+    , FOREIGN KEY (user_id) REFERENCES donate_user (user_id) ON DELETE CASCADE
+);
+
+insert into QnA_table values (qNum.nextval , 'a1',' 더 기부하고싶어요 월급 받으면 또 올게요' , SYSDATE  );
+insert into QnA_table values (qNum.nextval , 'a2',' 기부는 좋은 것이에요 ' , SYSDATE );
+insert into QnA_table values (qNum.nextval , 'a3',' 기부는 ㅎㅎ 저에게 해주세요 ' , SYSDATE  );
+insert into QnA_table values (qNum.nextval , 'a1',' 더 기부하고싶어요 월급 받으면 또 올게요1' , SYSDATE  );
+insert into QnA_table values (qNum.nextval , 'a2',' 기부는 좋은 것이에요1 ' , SYSDATE );
+insert into QnA_table values (qNum.nextval , 'a3',' 기부는 ㅎㅎ 저에게 해주세요1 ' , SYSDATE  );
+insert into QnA_table values (qNum.nextval , 'a1',' 더 기부하고싶어요 월급 받으면 또 올게요2' , SYSDATE  );
+insert into QnA_table values (qNum.nextval , 'a2',' 기부는 좋은 것이에요2 ' , SYSDATE );
+insert into QnA_table values (qNum.nextval , 'a3',' 기부는 ㅎㅎ 저에게 해주세요 2' , SYSDATE  );
+
 commit;
