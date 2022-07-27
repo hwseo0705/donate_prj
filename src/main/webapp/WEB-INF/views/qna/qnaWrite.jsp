@@ -18,7 +18,7 @@
 
 
 
-    <h2> ${y.name} 님의 고충을 적어주세요 </h2>
+    <h2> ${y.name} 님의 건의사항을 적어주세요</h2>
     <form action="/qwrite" method="post">
         <input type="hidden" name="userId" value="${y.userId}">
         <div class="mb-3">

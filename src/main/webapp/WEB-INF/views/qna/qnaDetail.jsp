@@ -53,7 +53,7 @@
             <div class="group">
 
                 <label for="">작성일</label>
-                <div class="li">${you.questionDate}</div>
+                <div class="li">${you.convertDate}</div>
             </div>
             <div class="group">
                 <label for="">질문 </label>

@@ -48,6 +48,7 @@ public class QnaService {
     // qna 하나 불러오기
     public QnaBoard findOneService(long qnaNo){
         QnaBoard one = mapper.findOne(qnaNo);
+        convertDate(one);
         return one;
     }
     // 삭제 결과
