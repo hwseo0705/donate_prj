@@ -74,7 +74,7 @@
                         <div class="col">
                             <div class="card shadow-sm">
                                 <div class="hidden">${db.boardNo}</div>
-                                <img data-boardNo="${db.boardNo}" class="thumbnail bd-placeholder-img card-img-top" width="100%" height="225"
+                                <img data-bno="${db.boardNo}" class="thumbnail bd-placeholder-img card-img-top" width="100%" height="225"
                                     src="${db.thumbnail}" role="img" aria-label="Placeholder: Thumbnail"
                                     preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
@@ -159,8 +159,12 @@
             const $thumbImgList = document.querySelectorAll('.thumbnail');
 
             for (let $img of $thumbImgList) {
-                fetch('/')
-                    .then()
+                const filePath = $img.getAttribute('src');
+
+                let originFileName = filePath.substring(filePath.indexOf('_') + 1);
+
+                $img.setAttribute('src', '/loadFile?fileName=' + filePath);
+                $img.setAttribute('alt', originFileName);
             }
 
         }

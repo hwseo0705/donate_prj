@@ -46,10 +46,14 @@ public interface DonateMapper {
 
 
     // 게시글 등록 시 파일 업로딩 반영 메서드
-    boolean addFile(String fileName);
+    boolean addThumbnail(String fileName);
 
 
     // 게시물 상세조회 시 첨부된 파일 전체 조회 메서드
-    List<String> findFiles(Long boardNo);
+//    List<String> findFiles(Long boardNo);
+
+
+    // 게시물 번호에 따른 썸네일 이미지 조회 메서드
+    String findThumbnail(Long boardNo);
 
 }

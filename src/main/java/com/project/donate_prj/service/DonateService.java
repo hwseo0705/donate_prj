@@ -21,6 +21,12 @@ public class DonateService {
     private final DonateMapper mapper;
 
 
+    // 썸네일 파일명(경로 포함) 반환 중간처리 메서드
+    public String findThumbnailService(Long boardNo) {
+        return mapper.findThumbnail(boardNo);
+    }
+
+
     @Transactional
     public boolean saveService(DonateBoard board) {
         boolean flag = mapper.save(board);
@@ -30,7 +36,7 @@ public class DonateService {
 
         if (fileNames != null && fileNames.size() > 0) {
             for (String fileName : fileNames) {
-                mapper.addFile(fileName);
+                mapper.addThumbnail(fileName);
             }
         }
 
@@ -51,6 +57,12 @@ public class DonateService {
     public Map<String, Object> findAllService(Search search) {
 
         List<DonateBoard> DBList = mapper.findAll(search);
+
+        for (DonateBoard board : DBList) {
+            String thumbnail = mapper.findThumbnail(board.getBoardNo());
+            board.setThumbnail(thumbnail);
+        }
+
         Long totalCnt = mapper.getTotalCnt(search);
 
         Map<String, Object> map = new HashMap<>();
@@ -67,9 +79,10 @@ public class DonateService {
     public DonateBoard findOneService(Long boardNo) {
         DonateBoard board = mapper.findOne(boardNo);
 
-        List<String> files = mapper.findFiles(boardNo);
-
-        board.setThumbnailFileNames(files);
+//      나중에 image 파일 제외한 일반 파일들 조회할 때 쓸 듯
+//        List<String> files = mapper.findFiles(boardNo);
+//
+//        board.setThumbnailFileNames(files);
 
         return board;
     }

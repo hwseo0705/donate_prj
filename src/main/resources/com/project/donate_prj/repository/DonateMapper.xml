@@ -24,7 +24,7 @@
 
     <update id="modify">
         UPDATE donate_board
-        SET title = #{title}, writer=#{writer}, thumbnail=#{thumbnail}, content=#{content}, target_money=#{targetMoney},
+        SET title = #{title}, writer=#{writer}, content=#{content}, target_money=#{targetMoney},
         start_date=#{startDate}, end_date=#{endDate}
         WHERE board_no=#{boardNo}
     </update>
@@ -42,14 +42,14 @@
     <select id="findAll" resultMap="donateBoardMap">
         SELECT *
         FROM (SELECT ROWNUM rn, d_board.*
-        FROM (
-        SELECT *
-        FROM donate_board
+                FROM (
+                        SELECT *
+                        FROM donate_board
         <!-- type = value 에서 value 값을 한글자로 주면 char 타입으로 인식하기 때문에 한글자 입력은 피하라! -->
         <if test="keyword != null">WHERE title LIKE '%' || #{keyword} || '%'</if>
         <!--                            OR content LIKE '%' || #{keyword} || '%'-->
-        ORDER BY board_no DESC
-        ) d_board)
+                        ORDER BY board_no DESC
+                        ) d_board)
         WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
         <!--        SELECT * FROM donate_board-->
     </select>
@@ -68,13 +68,13 @@
 
         SELECT *
         FROM (
-            SELECT ROWNUM rn, d_board.*
-            FROM (
-                SELECT *
-                FROM donate_board
-                WHERE writer=#{writer}
-                ORDER BY board_no DESC
-            ) d_board)
+        SELECT ROWNUM rn, d_board.*
+        FROM (
+        SELECT *
+        FROM donate_board
+        WHERE writer=#{writer}
+        ORDER BY board_no DESC
+        ) d_board)
         WHERE rn BETWEEN (#{page.pageNum} - 1) * #{page.amount} + 1 AND (#{page.pageNum} * #{page.amount})
     </select>
 
@@ -115,17 +115,17 @@
 
 
     <!-- 글 작성이 완료되면 파일 업로딩 또한 완료된 것이니 DB에 반영해야지 -->
-    <insert id="addFile">
-        INSERT INTO donate_file_upload
-            (file_name, bno)
+    <insert id="addThumbnail">
+        INSERT INTO donate_thumbnail_upload
+        (file_name, bno)
         VALUES
-            (#{fileName}, seq_donate_board.currval)
+        (#{fileName}, seq_donate_board.currval)
     </insert>
 
-    <!-- 게시글 조회시 첨부된 파일 목록도 보여줘야 하기 때문에 DB에서 꺼내오자 -->
-    <select id="findFiles" resultType="string">
+    <!-- 메인 화면 조회시 첨부된 썸네일 이미지도 보여줘야 하기 때문에 DB에서 파일명(경로가 포함된)을 꺼내오자 -->
+    <select id="findThumbnail" resultType="string">
         SELECT file_name
-        FROM donate_file_upload
+        FROM donate_thumbnail_upload
         WHERE bno = #{boardNo}
     </select>
 </mapper>
