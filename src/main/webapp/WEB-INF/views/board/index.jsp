@@ -75,7 +75,7 @@
                             <div class="card shadow-sm">
                                 <div class="hidden">${db.boardNo}</div>
                                 <img class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                    src="${db.thumbnail}" role="img" aria-label="Placeholder: Thumbnail"
+                                    src="/loadFile?fileName=${db.thumbnail}" role="img" aria-label="Placeholder: Thumbnail"
                                     preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
                                 <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"

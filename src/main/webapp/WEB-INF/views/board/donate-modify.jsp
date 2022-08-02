@@ -29,7 +29,7 @@
 
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-    <form id="modify-form" action="/modify" method="post">
+    <form id="modify-form" action="/modify" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="boardNo" value="${b.boardNo}">
 
@@ -37,8 +37,8 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">제목</label>
-            <input type="text" class="form-control input-title" id="exampleFormControlInput1" placeholder="제목" name="title"
-                value="${b.title}" maxlength="90">
+            <input type="text" class="form-control input-title" id="exampleFormControlInput1" placeholder="제목"
+                name="title" value="${b.title}" maxlength="90">
             <div class="invalid-feedback">
                 필수입력 항목입니다.
             </div>
@@ -47,17 +47,9 @@
         <input hidden type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="writer"
             value="${y.userId}">
 
-        <div class="mb-3">
+        <div id="upload-form" class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">썸네일</label>
-            <select class="form-select" name="thumbnail" id="thumbnail">
-                <option value="/img/example1.jpg">유니세프</option>
-                <option value="/img/example2.jpg">세이브 더 칠드런</option>
-                <option value="/img/example3.jpg">굿네이버스</option>
-                <option value="/img/example4.jpg">월드비전</option>
-                <option value="/img/example5.jpg">도네이션 박스 사진</option>
-                <option value="/img/example6.jpg">기부 하트 클립아트</option>
-                <option value="/img/example7.jpg">기부 하트 사진</option>
-            </select>
+            <input type="file" name="file" value="${b.thumbnail}">
         </div>
 
         <div class="mb-3">
@@ -69,8 +61,8 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">목표 모금액</label>
 
-            <input type="text" class="form-control input-targetM" id="exampleFormControlInput1" placeholder="목표 모금액을 입력하세요." name="targetMoney"
-                value="${b.targetMoney}" maxlength="10">
+            <input type="text" class="form-control input-targetM" id="exampleFormControlInput1"
+                placeholder="목표 모금액을 입력하세요." name="targetMoney" value="${b.targetMoney}" maxlength="10">
             <div class="invalid-feedback">
                 필수입력 항목입니다.
             </div>
@@ -87,8 +79,8 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">종료일</label>
-            <input type="text" class="form-control input-endD" id="exampleFormControlInput1" placeholder="yy-mm-dd" name="endDate"
-                value="${b.endDate}" maxlength="8">
+            <input type="text" class="form-control input-endD" id="exampleFormControlInput1" placeholder="yy-mm-dd"
+                name="endDate" value="${b.endDate}" maxlength="8">
             <div class="invalid-feedback">
                 필수입력 항목입니다.
             </div>
@@ -152,7 +144,7 @@
                     $inputEndD.nextElementSibling.style.display = 'none';
                     checkArr[3] = true;
                 }
-                
+
                 for (let c of checkArr) {
                     if (c === false) {
                         return;
@@ -173,11 +165,10 @@
 
 
         // 실행부
-        (function() {
+        (function () {
             modifyRequestEvent();
             toMain();
-        }) ();
-
+        })();
     </script>
 
 </body>

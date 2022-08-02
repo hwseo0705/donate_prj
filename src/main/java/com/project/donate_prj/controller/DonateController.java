@@ -4,15 +4,16 @@ import com.project.donate_prj.common.paging.Page;
 import com.project.donate_prj.common.paging.PageMaker;
 import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
-import com.project.donate_prj.domain.DonateUser;
-import com.project.donate_prj.service.DonateInfoService;
 import com.project.donate_prj.service.DonateService;
-import com.project.donate_prj.service.LoginService;
+import com.project.donate_prj.util.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
@@ -24,6 +25,8 @@ public class DonateController {
 
     private final DonateService service;
 //    private LoginService Uservice;
+
+    private static final String UPLOAD_PATH = "E:\\sl_Haewon_Seo\\upload";
 
 
     // index : 메인페이지 화면 요청 - 모금글 전부 출력 (페이징)
@@ -52,10 +55,17 @@ public class DonateController {
 
     // write post
     @PostMapping("/write")
-    public String write(DonateBoard board, RedirectAttributes ra) {
+    public String write(DonateBoard board, MultipartFile file, RedirectAttributes ra) {
         log.info("controller request /write POST! - {}", board);
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! - {}", file);
+
+        String fullPath = FileUtils.uploadFile(file, UPLOAD_PATH);
+        board.setThumbnail(fullPath);
+
         boolean flag = service.saveService(board);
         if (flag) ra.addFlashAttribute("msg", "reg-success");
+
+
         return "redirect:/main";
     }
 
@@ -90,8 +100,14 @@ public class DonateController {
 
     // modify post
     @PostMapping("/modify")
-    public String modify(DonateBoard board, RedirectAttributes ra) {
+    public String modify(DonateBoard board, MultipartFile file, RedirectAttributes ra) {
         log.info("controller request /modify POST! - {}", board);
+
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! - {}", file);
+
+        String fullPath = FileUtils.uploadFile(file, UPLOAD_PATH);
+        board.setThumbnail(fullPath);
+
         boolean flag = service.modifyService(board);
         if (flag) ra.addFlashAttribute("msg", "modification-success");
         return "redirect:/main";

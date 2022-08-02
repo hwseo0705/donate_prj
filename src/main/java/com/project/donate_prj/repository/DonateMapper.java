@@ -44,5 +44,11 @@ public interface DonateMapper {
 
     // 캐시충전 클릭시 얼마 충전할지 입력하고 보유금액 상승
 
+    // 파일 첨부 기능 처리
+    void addFile(String fileName);
+
+    // 게시물에 붙어있는 첨부파일경로명 전부 조회하기
+    String findFileName(Long bno);
+
 
 }

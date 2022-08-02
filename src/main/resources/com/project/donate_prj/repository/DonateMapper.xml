@@ -69,13 +69,13 @@
 
         SELECT *
         FROM (
-            SELECT ROWNUM rn, d_board.*
-            FROM (
-                SELECT *
-                FROM donate_board
-                WHERE writer=#{writer}
-                ORDER BY board_no DESC
-            ) d_board)
+        SELECT ROWNUM rn, d_board.*
+        FROM (
+        SELECT *
+        FROM donate_board
+        WHERE writer=#{writer}
+        ORDER BY board_no DESC
+        ) d_board)
         WHERE rn BETWEEN (#{page.pageNum} - 1) * #{page.amount} + 1 AND (#{page.pageNum} * #{page.amount})
     </select>
 
@@ -114,5 +114,17 @@
         WHERE board_no = #{boardNo}
     </update>
 
+    <!--  첨부파일 추가  -->
+    <insert id="addFile">
+        INSERT INTO donate_file_upload
+        (file_name, bno)
+        VALUES
+        (#{fileName}, seq_donate_board.currval)
+    </insert>
 
+    <select id="findFileName" resultType="string">
+        SELECT file_name
+        FROM donate_file_upload
+        WHERE bno = #{bno}
+    </select>
 </mapper>

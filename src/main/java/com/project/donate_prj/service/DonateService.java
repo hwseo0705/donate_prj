@@ -5,6 +5,7 @@ import com.project.donate_prj.common.search.Search;
 import com.project.donate_prj.domain.DonateBoard;
 import com.project.donate_prj.repository.DonateMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -13,12 +14,15 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class DonateService {
 
     private final DonateMapper mapper;
 
 
     public boolean saveService(DonateBoard board) {
+        log.info("board thumbnail - {}", board.getThumbnail());
+
         return mapper.save(board);
     }
 

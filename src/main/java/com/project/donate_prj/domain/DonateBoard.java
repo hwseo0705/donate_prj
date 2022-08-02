@@ -2,6 +2,8 @@ package com.project.donate_prj.domain;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -19,4 +21,7 @@ public class DonateBoard {
     private String startDate;
     private String endDate;
     private int likeCnt;
+
+    private String fileName; // 썸네일 이름
+
 }

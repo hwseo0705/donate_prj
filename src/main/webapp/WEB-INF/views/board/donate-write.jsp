@@ -8,20 +8,16 @@
     <%@ include file="/WEB-INF/views/include/static-head.jsp" %>
 
     <style>
-        form {
+        #write-form {
             width: 50%;
             margin: auto;
         }
 
 
-        .main-title {
-
-            margin: 40px 0;
-        }
-
         .invalid-feedback {
             display: none;
         }
+
     </style>
 </head>
 
@@ -29,7 +25,7 @@
 
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-    <form id="write-form" action="/write" method="post">
+    <form id="write-form" action="/write" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="boardNo" value="${b.boardNo}">
 
@@ -45,19 +41,11 @@
         <input hidden type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="writer"
             value="${y.userId}">
 
-        <div class="mb-3">
+        <div id="upload-form" class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">썸네일</label>
-            <select class="form-select" name="thumbnail" id="thumbnail">
-                <option value="/img/example1.jpg">유니세프 로고</option>
-                <option value="/img/example2.jpg">세이브 더 칠드런 로고</option>
-                <option value="/img/example3.jpg">굿네이버스 로고</option>
-                <option value="/img/example4.jpg">월드비전 로고</option>
-                <option value="/img/example5.jpg">도네이션 박스 사진</option>
-                <option value="/img/example6.jpg">기부 하트 클립아트</option>
-                <option value="/img/example7.jpg">기부 하트 사진</option>
-
-            </select>
+            <input type="file" name="file">
         </div>
+
 
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">내용</label>
@@ -99,8 +87,6 @@
         </div>
 
     </form>
-
-    </div>
 
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
@@ -177,6 +163,8 @@
             toMain();
         })();
     </script>
+
+
 
 </body>
 
