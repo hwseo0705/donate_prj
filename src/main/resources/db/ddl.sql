@@ -1,3 +1,7 @@
+ALTER TABLE donate_board
+MODIFY (thumbnail VARCHAR2(100) NULL);
+commit;
+
 
 CREATE SEQUENCE seq_donate_board;
 DROP SEQUENCE seq_donate_board;
