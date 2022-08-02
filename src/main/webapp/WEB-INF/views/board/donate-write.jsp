@@ -22,6 +22,11 @@
         .invalid-feedback {
             display: none;
         }
+
+
+        .preview {
+            display: none;
+        }
     </style>
 </head>
 
@@ -29,7 +34,7 @@
 
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-    <form id="write-form" action="/write" method="post">
+    <form id="write-form" action="/write" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="boardNo" value="${b.boardNo}">
 
@@ -47,7 +52,7 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">썸네일</label>
-            <select class="form-select" name="thumbnail" id="thumbnail">
+            <!-- <select class="form-select" name="thumbnail" id="thumbnail">
                 <option value="/img/example1.jpg">유니세프 로고</option>
                 <option value="/img/example2.jpg">세이브 더 칠드런 로고</option>
                 <option value="/img/example3.jpg">굿네이버스 로고</option>
@@ -55,8 +60,15 @@
                 <option value="/img/example5.jpg">도네이션 박스 사진</option>
                 <option value="/img/example6.jpg">기부 하트 클립아트</option>
                 <option value="/img/example7.jpg">기부 하트 사진</option>
-
-            </select>
+            </select> -->
+            <input id="inputThumbnail" type="file" name="thumbnailFiles">
+            <div class="preview">
+                <ul> 썸네일 미리보기
+                    <li id="preview-img">
+                        <!-- 사용자가 올린 이미지 파일이 비동기로 나올 곳 -->
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="mb-3">
@@ -105,6 +117,87 @@
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 
 
+    <!-- 파일 업로딩 관련 스크립트 영역 -->
+    <script>
+        function isImageFile(originFileName) {
+            //정규표현식
+            const pattern = /jpg$|gif$|png$/i; // jpg로 끝나거나~ gif로 끝나거나~ png로 끝나면 true를 리턴하라.
+
+            return originFileName.match(pattern); // 패턴하고 매치되면 true다.
+        }
+
+
+        function checkExt(fileName) {
+
+            let originFileName = fileName.substring(fileName.indexOf('_') + 1);
+
+            if (isImageFile(originFileName)) {
+
+                const $preivew = document.querySelector('.preview');
+                $preivew.style.display = 'block';
+
+                const $img = document.createElement('img');
+                $img.setAttribute('src', '/loadFile?fileName=' + fileName);
+                $img.setAttribute('alt', originFileName);
+
+
+                const $li = document.getElementById('preview-img');
+                
+                if ($li.children.length > 0) {
+                    $li.removeChild($li.firstElementChild);
+                    $li.appendChild($img);
+                } else {
+                    $li.append($img);
+                }
+            }
+        }
+
+
+        function makePreviewDOM(fileNames) {
+            for (let fileName of fileNames) {
+                checkExt(fileName);
+            }
+        }
+
+
+        (function () {
+
+
+
+            const $inputThumbnail = document.getElementById('inputThumbnail');
+
+            $inputThumbnail.onchange = e => {
+
+
+                console.log($inputThumbnail.files[0]);
+
+
+                const formData = new FormData();
+
+                for (let files of $inputThumbnail.files) {
+                    formData.append('files', files);
+                }
+
+                const Obj = {
+                    method: 'POST',
+                    body: formData
+                }
+
+
+                fetch('/ajax-upload', Obj)
+                    .then(res => res.json())
+                    .then(fileNames => {
+                        makePreviewDOM(fileNames);
+                    }).catch(err => {
+                        alert('썸네일 미리보기 화면 요청(비동기) 처리를 위한 서버와의 통신 실패:', err);
+                    })
+
+            };
+        })();
+    </script>
+
+
+    <!-- 프로젝트 당시 썼던 스크립트 영역 -->
     <script>
         // input창들 제대로 입력 안했으면 통과시키지 않기
         const $writeForm = document.getElementById('write-form');

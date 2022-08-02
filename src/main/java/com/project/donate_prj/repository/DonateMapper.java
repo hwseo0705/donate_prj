@@ -45,4 +45,11 @@ public interface DonateMapper {
     // 캐시충전 클릭시 얼마 충전할지 입력하고 보유금액 상승
 
 
+    // 게시글 등록 시 파일 업로딩 반영 메서드
+    boolean addFile(String fileName);
+
+
+    // 게시물 상세조회 시 첨부된 파일 전체 조회 메서드
+    List<String> findFiles(Long boardNo);
+
 }

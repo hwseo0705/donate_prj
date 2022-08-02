@@ -115,4 +115,18 @@
     </update>
 
 
+    <!-- 글 작성이 완료되면 파일 업로딩 또한 완료된 것이니 DB에 반영해야지 -->
+    <insert id="addFile">
+        INSERT INTO
+            (file_name, bno)
+        VALUES
+            (#{fileName}, seq_donate_board.currval)
+    </insert>
+
+    <!-- 게시글 조회시 첨부된 파일 목록도 보여줘야 하기 때문에 DB에서 꺼내오자 -->
+    <select id="findFiles" resultType="string">
+        SELECT file_name
+        FROM donate_file_upload
+        WHERE bno = #{boardNo}
+    </select>
 </mapper>

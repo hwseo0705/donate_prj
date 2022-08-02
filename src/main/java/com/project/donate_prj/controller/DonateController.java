@@ -13,8 +13,10 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -52,8 +54,18 @@ public class DonateController {
 
     // write post
     @PostMapping("/write")
-    public String write(DonateBoard board, RedirectAttributes ra) {
-        log.info("controller request /write POST! - {}", board);
+    public String write(DonateBoard board,
+                        @RequestParam("thumbnailFiles") List<MultipartFile> fileList,
+                        RedirectAttributes ra) {
+
+        log.info("controller request /write POST! - {}, {}", board, fileList);
+
+        for (MultipartFile file : fileList) {
+            String filename = file.getOriginalFilename();
+
+            board.getThumbnailFileList().add(filename);
+        }
+
         boolean flag = service.saveService(board);
         if (flag) ra.addFlashAttribute("msg", "reg-success");
         return "redirect:/main";

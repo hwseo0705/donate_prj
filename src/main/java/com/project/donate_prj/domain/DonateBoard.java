@@ -1,6 +1,9 @@
 package com.project.donate_prj.domain;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +22,8 @@ public class DonateBoard {
     private String startDate;
     private String endDate;
     private int likeCnt;
+
+
+
+    private List<String> thumbnailFileList;
 }
