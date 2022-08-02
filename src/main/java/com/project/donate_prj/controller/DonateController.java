@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -58,13 +59,17 @@ public class DonateController {
                         @RequestParam("thumbnailFiles") List<MultipartFile> fileList,
                         RedirectAttributes ra) {
 
-        log.info("controller request /write POST! - {}, {}", board, fileList);
+        log.info("controller request /write POST! - {}, {}", board, fileList.get(0).getOriginalFilename());
+
+        List<String> thumbnailFileList = new ArrayList<>();
 
         for (MultipartFile file : fileList) {
-            String filename = file.getOriginalFilename();
-
-            board.getThumbnailFileList().add(filename);
+            thumbnailFileList.add(file.getOriginalFilename());
         }
+
+
+        board.setThumbnailFileList(thumbnailFileList);
+
 
         boolean flag = service.saveService(board);
         if (flag) ra.addFlashAttribute("msg", "reg-success");

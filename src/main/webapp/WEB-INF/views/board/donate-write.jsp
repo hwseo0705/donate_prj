@@ -61,7 +61,7 @@
                 <option value="/img/example6.jpg">기부 하트 클립아트</option>
                 <option value="/img/example7.jpg">기부 하트 사진</option>
             </select> -->
-            <input id="inputThumbnail" type="file" name="thumbnailFiles">
+            <input id="exampleFormControlInput1" class="form-control inputThumbnail" type="file" name="thumbnailFiles">
             <div class="preview">
                 <ul> 썸네일 미리보기
                     <li id="preview-img">
@@ -164,7 +164,7 @@
 
 
 
-            const $inputThumbnail = document.getElementById('inputThumbnail');
+            const $inputThumbnail = document.querySelector('.inputThumbnail');
 
             $inputThumbnail.onchange = e => {
 

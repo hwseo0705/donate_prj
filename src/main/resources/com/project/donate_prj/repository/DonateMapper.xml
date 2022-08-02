@@ -7,9 +7,8 @@
 
     <insert id="save">
         INSERT INTO donate_board
-        (board_no, title, writer, thumbnail, content, target_money, start_date, end_date)
-        VALUES (seq_donate_board.nextval, #{title}, #{writer}, #{thumbnail}, #{content}, #{targetMoney}, #{startDate},
-        #{endDate})
+        (board_no, title, writer, content, target_money, start_date, end_date)
+        VALUES (seq_donate_board.nextval, #{title}, #{writer}, #{content}, #{targetMoney}, #{startDate}, #{endDate})
     </insert>
 
     <delete id="remove">
@@ -117,7 +116,7 @@
 
     <!-- 글 작성이 완료되면 파일 업로딩 또한 완료된 것이니 DB에 반영해야지 -->
     <insert id="addFile">
-        INSERT INTO
+        INSERT INTO donate_file_upload
             (file_name, bno)
         VALUES
             (#{fileName}, seq_donate_board.currval)

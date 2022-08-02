@@ -27,8 +27,8 @@ public class DonateService {
 
         List<String> thumbnailFileNames = board.getThumbnailFileList();
 
-        for (String file : thumbnailFileNames) {
-            mapper.addFile(file);
+        for (String fileName : thumbnailFileNames) {
+            mapper.addFile(fileName);
         }
 
         return flag;
