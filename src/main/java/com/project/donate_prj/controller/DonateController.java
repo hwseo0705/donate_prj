@@ -56,19 +56,19 @@ public class DonateController {
     // write post
     @PostMapping("/write")
     public String write(DonateBoard board,
-                        @RequestParam("thumbnailFiles") List<MultipartFile> fileList,
+                        @RequestParam("thumbnailImage") List<MultipartFile> fileList,
                         RedirectAttributes ra) {
 
         log.info("controller request /write POST! - {}, {}", board, fileList.get(0).getOriginalFilename());
 
-        List<String> thumbnailFileList = new ArrayList<>();
-
-        for (MultipartFile file : fileList) {
-            thumbnailFileList.add(file.getOriginalFilename());
-        }
-
-
-        board.setThumbnailFileList(thumbnailFileList);
+//        List<String> thumbnailFileList = new ArrayList<>();
+//
+//        for (MultipartFile file : fileList) {
+//            thumbnailFileList.add(file.getOriginalFilename());
+//        }
+//
+//
+//        board.setThumbnailFileNames(thumbnailFileList);
 
 
         boolean flag = service.saveService(board);

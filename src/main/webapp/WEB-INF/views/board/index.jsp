@@ -74,7 +74,7 @@
                         <div class="col">
                             <div class="card shadow-sm">
                                 <div class="hidden">${db.boardNo}</div>
-                                <img class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                <img data-boardNo="${db.boardNo}" class="thumbnail bd-placeholder-img card-img-top" width="100%" height="225"
                                     src="${db.thumbnail}" role="img" aria-label="Placeholder: Thumbnail"
                                     preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
@@ -153,6 +153,18 @@
 
     <script>
 
+        function ajaxLoadingThumbnail() {
+            
+            // 한 페이지에 로딩된 썸네일 이미지들을 다 잡아오자.
+            const $thumbImgList = document.querySelectorAll('.thumbnail');
+
+            for (let $img of $thumbImgList) {
+                fetch('/')
+                    .then()
+            }
+
+        }
+
         function detailRequestEvent() {
             //상세보기 요청 이벤트
             const $ul = document.querySelector(".list");
@@ -189,6 +201,7 @@
         (function () {
             detailRequestEvent();
             noLoginNoWrite();
+            ajaxLoadingThumbnail();
         }) ();
 
 

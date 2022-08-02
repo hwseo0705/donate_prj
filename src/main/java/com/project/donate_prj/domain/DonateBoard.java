@@ -25,5 +25,5 @@ public class DonateBoard {
 
 
 
-    private List<String> thumbnailFileList;
+    private List<String> thumbnailFileNames;
 }

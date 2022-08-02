@@ -61,7 +61,7 @@
                 <option value="/img/example6.jpg">기부 하트 클립아트</option>
                 <option value="/img/example7.jpg">기부 하트 사진</option>
             </select> -->
-            <input id="exampleFormControlInput1" class="form-control inputThumbnail" type="file" name="thumbnailFiles">
+            <input id="exampleFormControlInput1" class="form-control inputThumbnail" type="file" name="thumbnailImage">
             <div class="preview">
                 <ul> 썸네일 미리보기
                     <li id="preview-img">
@@ -139,6 +139,15 @@
                 const $img = document.createElement('img');
                 $img.setAttribute('src', '/loadFile?fileName=' + fileName);
                 $img.setAttribute('alt', originFileName);
+
+
+                const $hiddenInput = document.createElement('input');
+                $hiddenInput.setAttribute('type', 'hidden');
+                $hiddenInput.setAttribute('name', 'thumbnailFileNames');
+                $hiddenInput.setAttribute('value', fileName);
+
+
+                document.getElementById('write-form').appendChild($hiddenInput);
 
 
                 const $li = document.getElementById('preview-img');

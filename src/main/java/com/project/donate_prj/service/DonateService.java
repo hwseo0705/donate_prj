@@ -25,10 +25,13 @@ public class DonateService {
     public boolean saveService(DonateBoard board) {
         boolean flag = mapper.save(board);
 
-        List<String> thumbnailFileNames = board.getThumbnailFileList();
+        List<String> fileNames = board.getThumbnailFileNames();
 
-        for (String fileName : thumbnailFileNames) {
-            mapper.addFile(fileName);
+
+        if (fileNames != null && fileNames.size() > 0) {
+            for (String fileName : fileNames) {
+                mapper.addFile(fileName);
+            }
         }
 
         return flag;
@@ -66,7 +69,7 @@ public class DonateService {
 
         List<String> files = mapper.findFiles(boardNo);
 
-        board.setThumbnailFileList(files);
+        board.setThumbnailFileNames(files);
 
         return board;
     }
