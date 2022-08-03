@@ -27,6 +27,12 @@
         .preview {
             display: none;
         }
+
+        .thumb {
+            width: 50%;
+            height: 225px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -51,7 +57,7 @@
             value="${y.userId}">
 
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">썸네일</label>
+            <label for="exampleFormControlInput1" class="form-label">썸네일 (첨부한 파일이 없으면 기본 이미지로 대체됩니다.)</label>
             <!-- <select class="form-select" name="thumbnail" id="thumbnail">
                 <option value="/img/example1.jpg">유니세프 로고</option>
                 <option value="/img/example2.jpg">세이브 더 칠드런 로고</option>
@@ -62,7 +68,7 @@
                 <option value="/img/example7.jpg">기부 하트 사진</option>
             </select> -->
             <input id="exampleFormControlInput1" class="form-control inputThumbnail" type="file" name="thumbnailImage">
-            <div class="preview">
+            <div class="preview form-control">
                 <ul> 썸네일 미리보기
                     <li id="preview-img">
                         <!-- 사용자가 올린 이미지 파일이 비동기로 나올 곳 -->
@@ -139,6 +145,7 @@
                 const $img = document.createElement('img');
                 $img.setAttribute('src', '/loadFile?fileName=' + fileName);
                 $img.setAttribute('alt', originFileName);
+                $img.classList.add('thumb');
 
 
                 const $hiddenInput = document.createElement('input');
