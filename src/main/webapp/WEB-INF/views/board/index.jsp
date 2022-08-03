@@ -160,11 +160,17 @@
 
             for (let $img of $thumbImgList) {
                 const filePath = $img.getAttribute('src');
-
+                
                 let originFileName = filePath.substring(filePath.indexOf('_') + 1);
+                
+                if (filePath.trim() === '') {
+                    $img.setAttribute('src', '/img/defaultThumbnail.jpg');
+                    $img.setAttribute('alt', '기본 썸네일');
 
-                $img.setAttribute('src', '/loadFile?fileName=' + filePath);
-                $img.setAttribute('alt', originFileName);
+                } else {
+                    $img.setAttribute('src', '/loadFile?fileName=' + filePath);
+                    $img.setAttribute('alt', originFileName);
+                }
             }
 
         }
